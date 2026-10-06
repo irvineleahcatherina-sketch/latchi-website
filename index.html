@@ -720,6 +720,7 @@ table.cmp{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
 .crumbs a{padding-inline:2px}
 /* Ambient frame: whole picture on a soft blur of itself when the frame and photo shapes differ */
 .amb{isolation:isolate}
+.dvc-nimg{position:relative}
 .amb::before{content:"";position:absolute;inset:-30px;background:var(--amb) center/cover no-repeat;filter:blur(24px) saturate(1.15) brightness(.78);z-index:-1;pointer-events:none}
 img.fit-in,video.fit-in{object-fit:contain!important}
 /* Product galleries */
@@ -1631,7 +1632,7 @@ img.fit-in,video.fit-in{object-fit:contain!important}
 <script>
 /* Fit: fill the frame when the photo shape matches, otherwise show the whole photo on a soft blur of itself */
 const FIT_T=.12;let fitRO=null;const fitSet=new Set();
-function fitImg(el,frame,th){frame=frame||el.parentElement;if(!el||!frame)return;
+function fitImg(el,frame,th){if(!el)return;frame=frame||el.parentElement;if(!frame)return;
  const go=()=>{const nw=el.naturalWidth||el.videoWidth||el._pw,nh=el.naturalHeight||el.videoHeight||el._ph,fw=frame.clientWidth,fh=frame.clientHeight;if(!nw||!nh||!fw||!fh)return;
   const ir=nw/nh,fr=fw/fh,crop=1-Math.min(ir,fr)/Math.max(ir,fr),c=crop>(th==null?FIT_T:th);
   el.classList.toggle('fit-in',c);frame.classList.toggle('amb',c);if(c)frame.style.setProperty('--amb','url("'+(el.currentSrc||el.src||el.poster)+'")')};
@@ -1737,8 +1738,21 @@ const ITEMS={
   {id:'canoe',name:'Canoe',sub:'Per person',pp:1,tiers:[['1 hour',17],['2 hours',22],['4 hours',27]]},
   {id:'pedalo',name:'Pedalo with slide',sub:'',tiers:[['1 hour',42],['2 hours',63]]}],
  rya:[
-  {id:'l1',name:'RYA Powerboat Level 1',sub:'1 day, manual and certificate included',pp:1,tiers:[['Course',385]]},
-  {id:'l2',name:'RYA Powerboat Level 2',sub:'Includes manual and certificate',pp:1,tiers:[['Course',625]]}]
+  {id:'l1',name:'RYA Level 1 Start Powerboating',sub:'1 day, manual and certificate included',pp:1,tiers:[['Course',385]]},
+  {id:'l2',name:'RYA Level 2 Powerboat Handling',sub:'2 days, manual and certificate included',pp:1,tiers:[['Course',625]]},
+  {id:'icc',name:'International Certificate of Competence (ICC)',sub:'Half day, Level 2 needed',pp:1,tiers:[['Assessment',150]]},
+  {id:'s1',name:'RYA Level 1 Start Sailing',sub:'Ages 16+, 2 days',pp:1,tiers:[['Per level',525]]},
+  {id:'s2',name:'RYA Level 2 Basic Skills',sub:'Ages 16+, 2 days',pp:1,tiers:[['Per level',525]]},
+  {id:'s3',name:'RYA Level 3 Better Sailing',sub:'Ages 16+, 2 days',pp:1,tiers:[['Per level',525]]},
+  {id:'sea',name:'RYA Seamanship Skills',sub:'Advanced module, 2 days',pp:1,tiers:[['Per module',525]]},
+  {id:'spin',name:'RYA Sailing with Spinnakers',sub:'Advanced module, 2 days',pp:1,tiers:[['Per module',525]]},
+  {id:'y1',name:'RYA Youth Stage 1',sub:'Ages 8+',pp:1,tiers:[['Per stage',525]]},
+  {id:'y2',name:'RYA Youth Stage 2',sub:'Ages 8+',pp:1,tiers:[['Per stage',525]]},
+  {id:'y3',name:'RYA Youth Stage 3',sub:'Ages 8+',pp:1,tiers:[['Per stage',525]]},
+  {id:'y4',name:'RYA Youth Stage 4',sub:'Ages 8+',pp:1,tiers:[['Per stage',525]]},
+  {id:'own',name:'Own boat tuition',sub:'An instructor on your own boat',tiers:[['On request',null]]},
+  {id:'cylic',name:'Cyprus speedboat licence',sub:'Exam preparation and application',tiers:[['On request',null]]},
+  {id:'private',name:'Private one-to-one RYA course',sub:'Your own RYA instructor',tiers:[['On request',null]]}]
 };
 
 /* ---- Yacht charter fleet (latchicharters.com specs + 2026 price list) ---- */
@@ -1925,7 +1939,7 @@ const total=()=>lines().reduce((s,l)=>s+(typeof l[1]==='number'?l[1]:0),0);
 const reqOnly=()=>lines().every(l=>l[1]==='req');
 const hasReq=()=>lines().some(l=>l[1]==='req');
 function render(){
-  $('#dr-title').textContent=B.act==='yacht'?'Book a charter':B.act==='boat'?'Book your boat':'Book '+ACT[B.act].toLowerCase();
+  $('#dr-title').textContent=B.act==='yacht'?'Book a charter':B.act==='boat'?'Book your boat':'Book '+(B.act==='rya'?'an RYA course':B.act==='dive'?'diving':ACT[B.act].toLowerCase());
   $$('#progress li').forEach((li,i)=>li.classList.toggle('on',i<step));
   $('#drBack').hidden=step===1||step===4;$('#drFoot').hidden=step===4;
   const body=$('#drBody');
@@ -2207,6 +2221,108 @@ const DIVEX={
  diy:{w:['Dive on your own schedule','Explore the Akamas with your buddy','Use our boat, tanks and weights'],s:[['Pick up','Boat, tanks and weights for two divers'],['Dive','Plan your own sites along the Akamas'],['Return','Petrol included']],nx:'two'}
 };
 const DPATH=[['dsd','Try'],['sd','Scuba Diver'],['ow','Open Water'],['aow','Advanced'],['rescue','Rescue'],['master','Master Scuba Diver'],['dm','Divemaster'],['idc','Instructor']];
+const KDIVE={groups:DIVE.groups,creds:DIVE.creds,reviews:DIVE.reviews,ex:DIVEX,path:DPATH,img:DV,pathTitle:'Your diving path',catLabel:'Diving categories',back:'diving',f2:'Depth',wTitle:'Take this if you want to',from:45,book:'dive',
+ mt:{g:'Small groups with a PADI instructor on our scheduled courses and trips.',p:'Your own hand-picked PADI instructor with 10+ years of experience and, for dives, a private boat to quieter sites. Price on request.',gd:'Small groups with a PADI instructor. Prefer one-to-one? Choose Private.',pd:'Your own hand-picked PADI instructor with at least 10 years of experience and, for dives, a private boat to quieter sites, tailored to your holiday.'},mb:{g:'Book a dive',p:'Ask for private diving'}};
+/* RYA courses: course facts from rya.org.uk course pages, prices and format from Latchi Watersports */
+const RI=n=>(n.indexOf('act-')===0?'img/act/':'img/')+n+'.webp';
+const RYA={
+ creds:[['RYA Training Centre','Powerboat, sailing and ICC courses in Latchi'],['Classroom, then on the water','Theory in our classroom, practice in the harbour and bay'],['Group or private','Join a small group, or book one-to-one tuition'],['Royal Yachting Association certificates','Recognised by charter companies and authorities in many countries']],
+ groups:[
+  {t:'Powerboat',s:'From first time at the helm to skippering abroad',c:[
+   {id:'l1',n:'Level 1 Start Powerboating',img:'act-rya-1',age:'Ages 8+',dep:'No experience',dur:'1 day',p:385,
+    d:'A one-day introduction to handling a powerboat and using its safety kit. Ideal if you are new to boats, want to be useful crew, or plan to hire a boat on holiday.',
+    k:['Level 1 is not required before Level 2','Children aged 8 to 11 are welcome; some parts, like launching, they watch rather than do','Course manual and RYA certificate included']},
+   {id:'l2',n:'Level 2 Powerboat Handling',img:'rya-pb2',age:'Ages 12+',dep:'None',dur:'2 days',p:625,
+    d:'The RYA\'s core powerboat qualification and our most popular course. Two days of training to drive a powerboat safely and confidently on your own.',
+    k:['No need to do Level 1 first','Please bring a passport photo for your certificate','Our training boat is a 6.4m fibreglass boat with a 150hp engine','Course manual and RYA certificate included']},
+   {id:'icc',n:'International Certificate of Competence (ICC)',img:'speedboat-run',age:'Ages 16+',dep:'Level 2',dur:'Half day',p:150,
+    d:'The ICC is the international proof that you can skipper a pleasure boat. In several Mediterranean countries you need one to take a boat out. You can add it to your Level 2 on the same visit.',
+    k:['The UK ICC is issued by the RYA to UK residents, and to nationals of countries that have not adopted UN Resolution 40. Ask us and we will check what applies to you','Our ICC covers powerboats up to 10m','Please bring a passport photo']}]},
+  {t:'Sailing',s:'Dinghy and catamaran, for adults and teens from 16',c:[
+   {id:'s1',n:'Level 1 Start Sailing',img:'rya-s1',age:'Ages 16+',dep:'No experience',dur:'2 days',p:525,
+    d:'Everything you need to know to get afloat under supervision, on a dinghy or small catamaran.',
+    k:['Run over two days or four shorter sessions','Under 16? Choose the Youth Sailing Scheme']},
+   {id:'s2',n:'Level 2 Basic Skills',img:'rya-s2',age:'Ages 16+',dep:'Level 1 standard',dur:'2 days',p:525,
+    d:'The foundations of sailing: rigging, launching, sailing in all directions, capsize recovery and essential safety.',
+    k:['Run over two days or four shorter sessions','Sailing skills to Level 1 standard needed']},
+   {id:'s3',n:'Level 3 Better Sailing',img:'rya-s3',age:'Ages 16+',dep:'Level 2 standard',dur:'2 days',p:525,
+    d:'Consolidate your skills in a wider range of conditions and try tasters from the advanced modules.',
+    k:['Run over two days or four shorter sessions','Sailing skills to Level 2 standard needed']},
+   {id:'sea',n:'Seamanship Skills',img:'rya-sea',age:'Ages 16+',dep:'Level 2 to 3',dur:'2 days',p:525,
+    d:'An advanced module. Learn to handle a boat in all circumstances and solve problems afloat.',
+    k:['Run over two days or four shorter sessions','Taken on a dinghy or multihull']},
+   {id:'spin',n:'Sailing with Spinnakers',img:'act-rya-4',age:'Ages 16+',dep:'Level 2 to 3',dur:'2 days',p:525,
+    d:'An advanced module. Everything you need to know about sailing with a conventional or asymmetric spinnaker.',
+    k:['Run over two days or four shorter sessions','You learn one type of spinnaker, conventional or asymmetric']}]},
+  {t:'Youth sailing',s:'RYA Youth Sailing Scheme, ages 8 to 15',c:[
+   {id:'y1',n:'Youth Stage 1',img:'rya-youth',age:'Ages 8+',dep:'No experience',dur:'2 days',p:525,
+    d:'A first taste of sailing: the parts of the boat and the basic principles of getting a boat sailing.',
+    k:['Run over two days or four shorter sessions','Each skill is signed off by the instructor']},
+   {id:'y2',n:'Youth Stage 2',img:'rya-s2b',age:'Ages 8+',dep:'Stage 1',dur:'2 days',p:525,
+    d:'The skills to sail around a course, tacking, gybing and controlling boat speed.',
+    k:['Run over two days or four shorter sessions']},
+   {id:'y3',n:'Youth Stage 3',img:'rya-youth2',age:'Ages 8+',dep:'Stage 2',dur:'2 days',p:525,
+    d:'Build confidence to sail in any direction in moderate conditions. The youth equivalent of adult Level 2.',
+    k:['Run over two days or four shorter sessions']},
+   {id:'y4',n:'Youth Stage 4',img:'rya-sea',age:'Ages 8+',dep:'Stage 3',dur:'2 days',p:525,
+    d:'Sail a double-handed boat as crew or helm and solve a variety of problems afloat.',
+    k:['Run over two days or four shorter sessions','Leads on to the advanced modules']}]},
+  {t:'More',s:'Training on your own boat and local licences',c:[
+   {id:'own',n:'Own boat tuition',img:'f-karnic800',age:'Boat owners',dep:'None',dur:'You choose',p:null,
+    d:'One of our instructors joins you on your own boat, whether you have just bought it, are coming back to boating, or want a confident hand on your first long passage. RYA examiners can also be arranged.',
+    k:['Half days, evenings or spread over several weeks','Non-RYA training tailored to what you want to cover']},
+   {id:'cylic',n:'Cyprus speedboat licence',img:'harbour-boats',age:'Boat owners',dep:'None',dur:'Varies',p:null,
+    d:'Owners of Cypriot registered boats need a Cypriot speedboat operator\'s licence. We prepare you for the exam and help with the application.',
+    k:['Not an RYA course','Price on request']}]}
+ ]
+};
+const RYAX={
+ l1:{w:['Prepare the boat and crew','Launch and recover a boat','Handle a powerboat at low speed','Pick up and secure to a mooring buoy','Leave and come alongside'],
+  s:[['Classroom','Life jackets, loading, balance and trim, and the rules of the road'],['On the water','Close-quarters handling in and around Latchi harbour'],['Certificate','RYA Level 1 Start Powerboating']],
+  q:['Helm a powerboat confidently under supervision','A recognised RYA certificate and the first step to Level 2'],
+  u:['Helping as crew on a friend\'s or family boat','Taking over in an emergency if the skipper cannot','A head start before hiring a self-drive boat'],nx:'l2'},
+ l2:{w:['Close-quarters handling and high-speed manoeuvres','Man overboard recovery','Anchoring, mooring and coming alongside','Collision regulations and basic chartwork','Engine checks and legal requirements'],
+  s:[['Classroom','Rules of the road, charts and compass, engine care and the law'],['Day one','Boat handling in and around Latchi harbour'],['Day two','Higher speeds, man overboard, anchoring and seamanship']],
+  q:['Drive a powerboat on your own as a competent skipper','The basis for the International Certificate of Competence (ICC)','With a commercial endorsement (from age 17): work on commercial boats up to 24m, up to 3 miles from a departure point, in daylight and fine weather'],
+  u:['Hiring or chartering a motorboat abroad, where many companies ask for Level 2 or an ICC','Running your own boat with confidence','Work as a boat driver, safety boat or tender operator, with a commercial endorsement','Required before training as an RYA Dinghy Instructor or Start Windsurfing Instructor'],nx:'icc'},
+ icc:{w:['Prove your competence to charter companies and harbour authorities','Turn your Level 2 into an internationally recognised certificate'],
+  s:[['Practical','Leaving a pontoon, manoeuvring, man overboard and coming alongside'],['Theory','Rules of the road and safety, checked by your examiner'],['Your ICC','Issued by the RYA and valid for 5 years']],
+  q:['Skipper or charter a pleasure boat abroad in coastal waters','Accepted in Mediterranean countries such as Spain, Greece and Portugal, where it is often required','Valid for 5 years, then renewable'],
+  u:['Chartering a motorboat on holiday in Europe','Taking your own boat abroad','Inland waterways too, once you pass the CEVNI test']},
+ s1:{w:['Sail in all directions','Steer and control your speed','Launch and recover the boat','Basic safety and what to wear'],
+  s:[['Classroom','How a boat sails, the wind and safety'],['On the water','Sailing with your instructor off the beach'],['Certificate','RYA Level 1 Start Sailing']],
+  q:['Sail in light winds under supervision','An RYA certificate, recognised at RYA centres worldwide'],
+  u:['Renting a dinghy or small catamaran on holiday, under supervision','Joining a sailing club'],nx:'s2'},
+ s2:{w:['Rig and launch the boat','Sail confidently in all directions','Recover from a capsize','Essential safety knowledge'],
+  s:[['Classroom','Points of sail, rules of the road and weather'],['On the water','Rigging, launching and sailing on your own'],['Certificate','RYA Level 2 Basic Skills']],
+  q:['A competent sailor in light winds','Sail and make your own decisions in good conditions'],
+  u:['Proof of experience when you hire a dinghy or cat at a sailing centre','Sailing on your own in good conditions'],nx:'s3'},
+ s3:{w:['Sharpen your Level 1 and 2 skills','Sail in a wider range of conditions','Taster sessions from the advanced modules'],
+  s:[['Classroom','Sail trim, tactics and planning'],['On the water','Coaching in varied conditions'],['Certificate','RYA Level 3 Better Sailing']],
+  q:['More confidence and better technique in a range of conditions','Ready for the advanced modules'],
+  u:['Club sailing and racing','Moving on to Seamanship Skills or Spinnakers'],nx:'sea'},
+ sea:{w:['Launch and recover in different conditions','Stop the boat and reduce sail','Recover a man overboard','Anchor safely'],
+  s:[['Classroom','Planning and problem solving afloat'],['On the water','Real scenarios with your instructor'],['Certificate','RYA Seamanship Skills']],
+  q:['Handle a wide range of situations afloat'],
+  u:['Sailing further from the beach with confidence','A strong base for instructor training later'],nx:'spin'},
+ spin:{w:['Rig a spinnaker','Hoist, gybe and drop it','Sail the best course downwind'],
+  s:[['Classroom','How spinnakers work and when to use one'],['On the water','Hoists, gybes and drops with your instructor'],['Certificate','RYA Sailing with Spinnakers']],
+  q:['Sail with one type of spinnaker, conventional or asymmetric'],
+  u:['Faster, more exciting downwind sailing','Racing at club level']},
+ y1:{w:['Learn the parts of the boat','Steer and handle the boat','Basic sailing and launching'],s:[['Classroom','How a boat sails, explained for young sailors'],['On the water','Steering and first sails with an instructor'],['Certificate','RYA Youth Stage 1']],
+  q:['Steer and understand the basic principles of sailing'],u:['Certificates can count towards school PE and the Duke of Edinburgh\'s Award'],nx:'y2'},
+ y2:{w:['Tack and gybe','Control boat speed','Ropework and avoiding collisions'],s:[['Classroom','Ropework and the rules'],['On the water','Sailing around a course'],['Certificate','RYA Youth Stage 2']],
+  q:['Tack, control boat speed and understand basic principles'],u:['Certificates can count towards school PE and the Duke of Edinburgh\'s Award'],nx:'y3'},
+ y3:{w:['Rig, launch and recover','Sail in any direction','Capsize recovery and sailing theory'],s:[['Classroom','Sailing theory'],['On the water','Sailing a triangle course'],['Certificate','RYA Youth Stage 3']],
+  q:['Launch and sail a dinghy around a triangle in moderate conditions'],u:['Equivalent to adult Level 2','Certificates can count towards school PE and the Duke of Edinburgh\'s Award'],nx:'y4'},
+ y4:{w:['Sail a double-handed boat as crew or helm','Manoeuvre a crewed boat','Recover a man overboard'],s:[['Classroom','Teamwork and problem solving'],['On the water','Crewed sailing in moderate conditions'],['Certificate','RYA Youth Stage 4']],
+  q:['Launch and return to a beach, jetty or mooring','Sail a crewed dinghy around a triangle in moderate conditions'],u:['Ready for the advanced modules','Certificates can count towards school PE and the Duke of Edinburgh\'s Award']},
+ own:{w:['Get to know a new boat','Refresh your skills after a break','Practise towing skiers, anchoring or berthing','Have an instructor with you on a first long passage']},
+ cylic:{w:['Prepare for the Cypriot speedboat operator\'s exam','Get help with the application']}
+};
+const RPATH=[['l1','Start Powerboating'],['l2','Powerboat Level 2'],['icc','ICC'],['s1','Start Sailing'],['s2','Basic Skills'],['s3','Better Sailing'],['sea','Seamanship'],['spin','Spinnakers']];
+const KRYA={groups:RYA.groups,creds:RYA.creds,reviews:null,ex:RYAX,path:RPATH,img:RI,pathTitle:'Your path to qualified',catLabel:'RYA course categories',back:'RYA courses',f2:'You need',wTitle:'What you will learn',from:385,book:'rya',
+ mt:{g:'Small groups with an RYA instructor: theory in our classroom, then out on the water. Sailing groups start from three people.',p:'One-to-one tuition with your own RYA instructor, on dates and times that suit you. Price on request.',gd:'Learn in a small group with an RYA instructor. Prefer one-to-one? Choose Private.',pd:'Your own RYA instructor, one-to-one, on dates and times that suit you. Same syllabus and certificate, all the attention on you.'},mb:{g:'Book a course',p:'Ask for private tuition'}};
 
 /* ---- Activity sheet: each card expands into its own section ---- */
 (()=>{
@@ -2214,7 +2330,7 @@ const A=n=>'img/act/'+n+'.webp',V=n=>({v:'video/act/'+n+'.mp4',src:A(n+'-poster'
 const ACT={
  boat:{nav:'#boat-hire',title:'Self-drive boat hire',hero:{src:'img/hero.webp'}},
  yacht:{nav:'#charters',title:'Yacht charters',hero:{src:'img/yacht.webp'}},
- dive:{dive:1,title:'Diving',eyebrow:'PADI 5-Star IDC Dive Resort',hero:{src:DV('hero')},
+ dive:{cat:KDIVE,title:'Diving',eyebrow:'PADI 5-Star IDC Dive Resort',hero:{src:DV('hero')},
   gal:[{src:DV('octopus')},{src:DV('turtle')},{src:DV('lion')},{src:DV('nudi2')},{src:DV('star')},{src:DV('seahorse')},{src:DV('school')},{src:DV('c_zen')},{src:DV('stride')},{src:A('dive-ig-1'),ig:1}],
   lede:"The Akamas is on our doorstep, and other dive centres drive across Cyprus to dive here. From a first breath underwater to becoming an instructor, every course is taught by our own PADI team.",
   facts:[['From','€45'],['Ages','8+'],['Dive sites','12+'],['Wreck','Zenobia']],
@@ -2224,7 +2340,7 @@ const ACT={
   gal:[{src:A('jet-ig-1'),ig:1},{src:A('jet-ig-4'),ig:1},{src:A('jet-ig-5'),ig:1},{src:A('act-jet-1')},{src:A('act-jet-2')}],
   lede:"Mornings are best, when you have the sea almost to yourself. Take 30 minutes along the coast, an hour around St George's Island, or two hours exploring the bays.",
   facts:[['From','€90'],['Time','20 min to 2 hrs'],['Riders','Up to 2'],['Engine','130hp']],
-  inc:['Life jackets for both riders','Safety briefing before you go','Our safety boat on the water all day'],
+  inc:['Life jackets for both riders','VHF radio, so you are always in touch with our base','Safety briefing before you go','Our safety boat on the water all day'],
   know:['€850 excess held on your card and released when you are back','Prefer not to drive? One of our team can take you out'],book:'jet',from:90},
  para:{title:'Parasailing',eyebrow:'Single or double',hero:{src:A('act-para-2')},
   gal:[{src:A('act-para-1')},{src:A('act-para-3')},{src:A('act-para-4')},{src:'img/access.webp'},{src:'img/parasail.webp'}],
@@ -2244,12 +2360,12 @@ const ACT={
   facts:[['From','€55'],['Tows','Ski, mono, wakeboard'],['Lessons','€100']],
   inc:['Full equipment and instruction','Life jacket for every skier'],
   know:['Mornings are the best time to learn','Beginners welcome, children too'],book:'ski',from:55},
- rya:{title:'RYA courses',eyebrow:'RYA Training Centre',hero:{src:A('act-rya-1')},
-  gal:[{src:A('act-rya-2')},{src:A('act-rya-3')},{src:A('act-rya-4')},{src:'img/rya.webp'}],
-  lede:"Learn properly with a recognised RYA certificate. Powerboat Level 1 is a one-day introduction with no experience needed, and Level 2 is our most popular course. We also run sailing courses and the ICC.",
-  facts:[['From','€385'],['Length','1 to 2 days'],['Courses','Powerboat & sailing']],
-  inc:['Course manual and RYA certificate','Training with an RYA instructor'],
-  know:['Level 1 is not required before Level 2','Sailing courses run over two days or four shorter sessions'],book:'rya',from:385},
+ rya:{cat:KRYA,title:'RYA courses',eyebrow:'RYA Training Centre',hero:{src:A('act-rya-1')},
+  gal:[{src:'img/rya-pb2.webp'},{src:A('act-rya-4')},{src:'img/rya-s1.webp'},{src:'img/rya-s2.webp'},{src:A('act-rya-3')},{src:'img/rya-youth.webp'},{src:A('act-rya-2')}],
+  lede:"Learn properly, with a certificate from the Royal Yachting Association. Every course starts with theory in our classroom, then you put it into practice on the water. Join a small group or book an instructor just for you.",
+  facts:[['From','€385'],['Length','Half day to 2 days'],['Courses','Powerboat, ICC & sailing']],
+  inc:['Classroom theory and practical training on the water','Course manual and RYA certificate','Your RYA instructor, boat and safety kit'],
+  know:['Group courses, or private one-to-one tuition on request','Powerboat Level 1 is not required before Level 2','Sailing courses run over two days or four shorter sessions'],book:'rya',from:385},
  seabob:{title:'Seabob',eyebrow:'New this season',hero:{src:A('seabob-ig-1'),ig:1},
   gal:[{src:'img/seabob-ride.webp'},{src:A('act-seabob-4'),ig:1},{src:'img/seabob-deck.webp'}],
   lede:"An underwater scooter that pulls you along the surface or down into the blue. Super fun for children and adults, and we bring it to your boat or charter.",
@@ -2302,41 +2418,42 @@ function fill(k,a,card){const title=card&&card.querySelector('h3')?card.querySel
  if(a.nav){body.innerHTML='';return}
  const all=[a.hero].concat(a.gal||[]);
  const strip='<section><h3 class="as-h">Photos and video</h3><div class="as-strip">'+all.map((m,i)=>'<button type="button" class="'+(m.v?'vid':'')+'" data-i="'+i+'" aria-label="'+(m.v?'Video':'Photo')+' '+(i+1)+' of '+all.length+'"'+(i===0?' aria-current="true"':'')+'><img src="'+m.src+'" alt="" loading="lazy"></button>').join('')+'</div></section>';
- if(a.dive){
+ if(a.cat){const K=a.cat;
   const ptx=c=>c.p==null?'On request':(c.from?'from €':'€')+c.p;
-  const ALL={};DIVE.groups.forEach((g,gi)=>g.c.forEach(c=>{ALL[c.id]=c;c.g=gi}));
+  const ALL={};K.groups.forEach((g,gi)=>g.c.forEach(c=>{ALL[c.id]=c;c.g=gi}));
   const stars='<span class="dv-stars" aria-hidden="true">★★★★★</span>';
-  const card=c=>'<button type="button" class="dv-card" data-c="'+c.id+'" aria-haspopup="dialog"><span class="dv-img"><img src="'+DV(c.img)+'" alt="" loading="lazy"></span><span class="dv-shade"></span><span class="dv-price">'+ptx(c)+'</span><span class="dv-cb"><b>'+esc(c.n)+'</b><small>'+esc(c.age)+' · '+esc(c.dur)+'</small></span></button>';
+  const card=c=>'<button type="button" class="dv-card" data-c="'+c.id+'" aria-haspopup="dialog"><span class="dv-img"><img src="'+K.img(c.img)+'" alt="" loading="lazy"></span><span class="dv-shade"></span><span class="dv-price">'+ptx(c)+'</span><span class="dv-cb"><b>'+esc(c.n)+'</b><small>'+esc(c.age)+' · '+esc(c.dur)+'</small></span></button>';
   body.innerHTML='<div class="as-in"><p class="as-lede">'+esc(a.lede)+'</p>'
-   +'<ul class="dv-badges">'+DIVE.creds.map(c=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17l-5.9 3 1.2-6.5L2.5 8.9 9.1 8z"/></svg><div><b>'+esc(c[0])+'</b><span>'+esc(c[1])+'</span></div></li>').join('')+'</ul>'
-   +'<section><h3 class="as-h">Your diving path</h3><ol class="dv-path">'+DPATH.map((p,i)=>'<li><button type="button" data-c="'+p[0]+'"><i>'+(i+1)+'</i><span>'+esc(p[1])+'</span></button></li>').join('')+'</ol></section>'
-   +'<section class="dv-cat"><div class="dv-bar"><div class="dv-tabs" role="tablist" aria-label="Diving categories">'+DIVE.groups.map((g,i)=>'<button type="button" role="tab" id="dvt'+i+'" aria-controls="dvp'+i+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+esc(g.t)+'</button>').join('')+'</div>'
+   +'<ul class="dv-badges">'+K.creds.map(c=>'<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17l-5.9 3 1.2-6.5L2.5 8.9 9.1 8z"/></svg><div><b>'+esc(c[0])+'</b><span>'+esc(c[1])+'</span></div></li>').join('')+'</ul>'
+   +(K.path?'<section><h3 class="as-h">'+K.pathTitle+'</h3><ol class="dv-path">'+K.path.map((p,i)=>'<li><button type="button" data-c="'+p[0]+'"><i>'+(i+1)+'</i><span>'+esc(p[1])+'</span></button></li>').join('')+'</ol></section>':'')
+   +'<section class="dv-cat"><div class="dv-bar"><div class="dv-tabs" role="tablist" aria-label="'+K.catLabel+'">'+K.groups.map((g,i)=>'<button type="button" role="tab" id="dvt'+i+'" aria-controls="dvp'+i+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+esc(g.t)+'</button>').join('')+'</div>'
    +'<div class="dv-mode" role="group" aria-label="Group or private"><button type="button" data-m="group" aria-pressed="true">Group</button><button type="button" data-m="private" aria-pressed="false">Private</button></div></div>'
-   +'<p class="dv-modetxt" id="dvModeTxt">Small groups with a PADI instructor on our scheduled courses and trips.</p>'
-   +DIVE.groups.map((g,i)=>'<div class="dv-panel" role="tabpanel" id="dvp'+i+'" aria-labelledby="dvt'+i+'"'+(i?' hidden':'')+'><p class="dv-gsub">'+esc(g.s)+'</p><div class="dv-grid">'+g.c.map(card).join('')+'</div></div>').join('')+'</section>'
-   +'<section class="dv-rev"><h3 class="as-h">What divers say</h3><div class="dv-score"><div><strong>4.9</strong>'+stars+'<span>Latchi Watersports Centre on Tripadvisor, 1,425 reviews</span></div><div><strong>4.8</strong>'+stars+'<span>Discover Scuba Diving on Tripadvisor, 20 reviews</span></div></div><div class="dv-quotes">'+DIVE.reviews.map(r=>'<figure><blockquote>"'+esc(r[0])+'"</blockquote><figcaption><b>'+esc(r[1])+'</b><span>'+esc(r[3])+' · '+esc(r[2])+' · Tripadvisor</span></figcaption></figure>').join('')+'</div></section>'
+   +'<p class="dv-modetxt" id="dvModeTxt">'+K.mt.g+'</p>'
+   +K.groups.map((g,i)=>'<div class="dv-panel" role="tabpanel" id="dvp'+i+'" aria-labelledby="dvt'+i+'"'+(i?' hidden':'')+'><p class="dv-gsub">'+esc(g.s)+'</p><div class="dv-grid">'+g.c.map(card).join('')+'</div></div>').join('')+'</section>'
+   +(K.reviews?'<section class="dv-rev"><h3 class="as-h">What divers say</h3><div class="dv-score"><div><strong>4.9</strong>'+stars+'<span>Latchi Watersports Centre on Tripadvisor, 1,425 reviews</span></div><div><strong>4.8</strong>'+stars+'<span>Discover Scuba Diving on Tripadvisor, 20 reviews</span></div></div><div class="dv-quotes">'+DIVE.reviews.map(r=>'<figure><blockquote>"'+esc(r[0])+'"</blockquote><figcaption><b>'+esc(r[1])+'</b><span>'+esc(r[3])+' · '+esc(r[2])+' · Tripadvisor</span></figcaption></figure>').join('')+'</div></section>':'')
    +strip
    +'<div class="as-two"><section><h3 class="as-h">Always included</h3><ul class="as-list">'+a.inc.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section><section><h3 class="as-h">Good to know</h3><ul class="as-list info">'+a.know.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section></div></div>'
-   +'<div class="as-cta"><div class="p">from<strong>€45</strong></div><a class="btn btn-ghost" href="https://wa.me/35796603611" target="_blank" rel="noopener" aria-label="WhatsApp us">'+WAI+'<span>WhatsApp</span></a><button class="btn btn-cta" type="button" data-book="dive" id="dvMainBook">Book a dive</button></div>'
+   +'<div class="as-cta"><div class="p">from<strong>€'+K.from+'</strong></div><a class="btn btn-ghost" href="https://wa.me/35796603611" target="_blank" rel="noopener" aria-label="WhatsApp us">'+WAI+'<span>WhatsApp</span></a><button class="btn btn-cta" type="button" data-book="'+K.book+'" id="dvMainBook">'+K.mb.g+'</button></div>'
    +'<div class="dv-course" id="dvCourse" hidden role="dialog" aria-modal="true" aria-labelledby="dvcT"></div>';
   let mode='group';const panel=body.querySelector('#dvCourse');fitAll(body,'.dv-img img');
   const tabs=[...body.querySelectorAll('.dv-tabs [role=tab]')];
   const selTab=(i,focus)=>{tabs.forEach((t,j)=>{t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1;body.querySelector('#dvp'+j).hidden=j!==i});if(focus)tabs[i].focus();tabs[i].scrollIntoView({inline:'center',block:'nearest',behavior:reduce?'auto':'smooth'});liveCards()};
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>selTab(i));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();selTab((i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length,true)}})});
-  const setMode=m=>{mode=m;body.querySelectorAll('.dv-mode button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m===m));body.querySelector('#dvModeTxt').textContent=m==='private'?'Your own hand-picked PADI instructor with 10+ years of experience and, for dives, a private boat to quieter sites. Price on request.':'Small groups with a PADI instructor on our scheduled courses and trips.';const mb=body.querySelector('#dvMainBook');mb.textContent=m==='private'?'Ask for private diving':'Book a dive';if(m==='private')mb.dataset.boat='private';else delete mb.dataset.boat};
+  const setMode=m=>{mode=m;body.querySelectorAll('.dv-mode button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m===m));body.querySelector('#dvModeTxt').textContent=m==='private'?K.mt.p:K.mt.g;const mb=body.querySelector('#dvMainBook');mb.textContent=m==='private'?K.mb.p:K.mb.g;if(m==='private')mb.dataset.boat='private';else delete mb.dataset.boat};
   body.querySelectorAll('.dv-mode button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m)));
   let io=null;const liveCards=()=>{if(reduce||!('IntersectionObserver' in window))return;io=io||new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('live',e.isIntersecting)),{root:innerWidth>860?body:sheet,threshold:.2});body.querySelectorAll('.dv-card:not([data-io])').forEach(c=>{c.dataset.io=1;c.style.setProperty('--o',['30% 40%','70% 60%','50% 20%','40% 80%'][Math.floor(Math.random()*4)]);io.observe(c)})};
-  const openCourse=id=>{const c=ALL[id];if(!c)return;const x=DIVEX[id]||{},nx=x.nx&&ALL[x.nx];
-   panel.innerHTML='<div class="dvc-in"><button type="button" class="dvc-back" aria-label="Back to all diving"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span>All diving</span></button>'
-    +'<div class="dvc-img"><img src="'+DV(c.img)+'" alt="'+esc(c.n)+'"><div class="dvc-cap"><p class="eyebrow">'+esc(DIVE.groups[c.g].t)+'</p><h2 id="dvcT">'+esc(c.n)+'</h2></div></div><div class="dvc-body">'
-    +'<div class="as-facts"><div><small>Who</small><b>'+esc(c.age)+'</b></div><div><small>Depth</small><b>'+esc(c.dep)+'</b></div><div><small>Time</small><b>'+esc(c.dur)+'</b></div><div><small>Price</small><b>'+(mode==='private'?'On request':ptx(c))+'</b></div></div>'
+  const openCourse=id=>{const c=ALL[id];if(!c)return;const x=K.ex[id]||{},nx=x.nx&&ALL[x.nx];
+   panel.innerHTML='<div class="dvc-in"><button type="button" class="dvc-back" aria-label="Back to all '+K.back+'"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg><span>All '+K.back+'</span></button>'
+    +'<div class="dvc-img"><img src="'+K.img(c.img)+'" alt="'+esc(c.n)+'"><div class="dvc-cap"><p class="eyebrow">'+esc(K.groups[c.g].t)+'</p><h2 id="dvcT">'+esc(c.n)+'</h2></div></div><div class="dvc-body">'
+    +'<div class="as-facts"><div><small>Who</small><b>'+esc(c.age)+'</b></div><div><small>'+K.f2+'</small><b>'+esc(c.dep)+'</b></div><div><small>Time</small><b>'+esc(c.dur)+'</b></div><div><small>Price</small><b>'+(mode==='private'?'On request':ptx(c))+'</b></div></div>'
     +'<p class="as-lede">'+esc(c.d)+'</p>'
-    +(x.w?'<section><h3 class="as-h">Take this if you want to</h3><ul class="as-list">'+x.w.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>':'')
+    +(x.w?'<section><h3 class="as-h">'+K.wTitle+'</h3><ul class="as-list">'+x.w.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>':'')
     +(x.s?'<section><h3 class="as-h">How it works</h3><ol class="dvc-steps">'+x.s.map((s,i)=>'<li><i>'+(i+1)+'</i><div><b>'+esc(s[0])+'</b><span>'+esc(s[1])+'</span></div></li>').join('')+'</ol></section>':'')
+    +(x.q?'<section class="dvc-q"><h3 class="as-h">What it qualifies you to do</h3><ul class="as-list">'+x.q.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>':'')+(x.u?'<section><h3 class="as-h">Where you can use it</h3><ul class="as-list">'+x.u.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>':'')
     +'<section><h3 class="as-h">Good to know</h3><ul class="as-list info">'+c.k.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul></section>'
-    +'<div class="dvc-mode"><div class="dv-mode" role="group" aria-label="Group or private"><button type="button" data-m="group" aria-pressed="'+(mode==='group')+'">Group</button><button type="button" data-m="private" aria-pressed="'+(mode==='private')+'">Private</button></div><p>'+(mode==='private'?'Your own hand-picked PADI instructor with at least 10 years of experience and, for dives, a private boat to quieter sites, tailored to your holiday.':'Small groups with a PADI instructor. Prefer one-to-one? Choose Private.')+'</p></div>'
-    +(nx?'<button type="button" class="dvc-next" data-c="'+nx.id+'"><span class="dvc-nimg"><img src="'+DV(nx.img)+'" alt="" loading="lazy"></span><span><small>Your next step</small><b>'+esc(nx.n)+'</b><em>'+ptx(nx)+'</em></span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>':'')
-    +'</div><div class="as-cta"><div class="p">'+(mode==='private'||c.p==null?'Price<strong>On request</strong>':(c.from?'from':'')+'<strong>€'+c.p+'</strong>')+'</div><a class="btn btn-ghost" href="https://wa.me/35796603611" target="_blank" rel="noopener" aria-label="WhatsApp us">'+WAI+'<span>WhatsApp</span></a><button class="btn btn-cta" type="button" data-book="dive" data-boat="'+(mode==='private'?'private':c.id)+'">'+(mode==='private'||c.p==null?'Send a request':'Book now')+'</button></div></div>';
+    +'<div class="dvc-mode"><div class="dv-mode" role="group" aria-label="Group or private"><button type="button" data-m="group" aria-pressed="'+(mode==='group')+'">Group</button><button type="button" data-m="private" aria-pressed="'+(mode==='private')+'">Private</button></div><p>'+(mode==='private'?K.mt.pd:K.mt.gd)+'</p></div>'
+    +(nx?'<button type="button" class="dvc-next" data-c="'+nx.id+'"><span class="dvc-nimg"><img src="'+K.img(nx.img)+'" alt="" loading="lazy"></span><span><small>Your next step</small><b>'+esc(nx.n)+'</b><em>'+ptx(nx)+'</em></span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>':'')
+    +'</div><div class="as-cta"><div class="p">'+(mode==='private'||c.p==null?'Price<strong>On request</strong>':(c.from?'from':'')+'<strong>€'+c.p+'</strong>')+'</div><a class="btn btn-ghost" href="https://wa.me/35796603611" target="_blank" rel="noopener" aria-label="WhatsApp us">'+WAI+'<span>WhatsApp</span></a><button class="btn btn-cta" type="button" data-book="'+K.book+'" data-boat="'+(mode==='private'?'private':c.id)+'">'+(mode==='private'||c.p==null?'Send a request':'Book now')+'</button></div></div>';
    fitImg(panel.querySelector('.dvc-img img'));fitImg(panel.querySelector('.dvc-nimg img'));
    const wasOpen=!panel.hidden;panel.hidden=false;panel.scrollTop=0;panel.style.setProperty('--dvl',(innerWidth>860?media.getBoundingClientRect().right:0)+'px');
    if(wasOpen){panel.classList.remove('on');void panel.offsetWidth}requestAnimationFrame(()=>panel.classList.add('on'));
