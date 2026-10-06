@@ -2430,16 +2430,20 @@ const BTXT={
  searay:'A classy flybridge cruiser for up to 20. A large cockpit lounge and swim platform, a second seating area up top, and an air-conditioned saloon with open galley, dining area and three cabins, including a master with ensuite.'
 };
 const BVID={src:'video/loop-cove.webp',v:'video/loop-cove.mp4'},YVID={src:'video/loop-akamas.webp',v:'video/loop-akamas.mp4'};
+/* From our Instagram (@latchiwatersportscentre): fleet slides, yacht shots and short muted clips */
+const IGX={amathunta:['ig-amathunta'],eden18:['ig-eden18'],eden19:['ig-eden19'],edenng:['ig-edenng'],marinello20:['ig-marinello20'],voyager:['ig-voyager'],aqua25:['ig-aqua25'],tornado:['ig-tornado'],marinello22:['ig-marinello22'],marinello26:['ig-marinello26'],karnic701:['ig-karnic701'],karnic702:['ig-karnic702'],karnic742:['ig-karnic742'],sl800:['ig-sl800-a','ig-sl800-b','ig-sl800-c'],searay:['ig-searay-a'],bavaria:['ig-bavaria-a']};
+const IGV=n=>({src:'video/boats/'+n+'.webp',v:'video/boats/'+n+'.mp4',ig:1});
+const BVIDS=[IGV('selfdrive'),IGV('safety')],YVIDS={searay:[IGV('searay52')],bavaria:[IGV('bavaria')]};
 const BI=n=>'img/boats/'+n+'.webp';
-FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const main={src:'img/'+b.img+'.webp'};
- ACT['bt_'+b.id]={title:b.name,eyebrow:'Self-drive · '+lenTxt(b)+' · up to '+b.guests,hero:main,gal:ims.concat([BVID]),
+FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IGX[b.id]||[]).map(n=>({src:BI(n),ig:1}));const main={src:'img/'+b.img+'.webp'};
+ ACT['bt_'+b.id]={title:b.name,eyebrow:'Self-drive · '+lenTxt(b)+' · up to '+b.guests,hero:main,gal:BVIDS.slice(0,1).concat(igi,ims,BVIDS.slice(1)),
   lede:BTXT[b.id]||'',facts:[['Length',lenTxt(b)],['Guests','Up to '+b.guests],['Engine',hpTxt(b)||'Ask us'],['On board',b.board]],
   items:[{name:b.name,sub:'Prices for the whole boat, fuel extra',tiers:b.tiers}],
   inc:['Full briefing and basic training before you go','VHF radio and GPS tracker','Life jackets, sun canopy and cool box','Flares, medical kit and coastal map','Our safety boat on patrol all day'],
   know:['Driven with a car driving licence; the driver must be 21+','€'+b.excess+' excess held on your card and released when you are back','Fuel is extra, charged at market rate for what you use','4-hour slots: 09:00 to 13:00 or 14:00 to 18:00'],
   book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
-YACHTS.forEach(y=>{const ims=(BIMG[y.id]||[]).map(n=>({src:BI(n)})).concat(y.img.map(n=>({src:'img/y/'+n+'.webp'})));const t0=y.tiers[0];
- ACT['yt_'+y.id]={title:y.name+' · '+y.nick,eyebrow:'Private charter · '+y.len+' · up to '+y.guests,hero:{src:'img/y/'+y.img[0]+'.webp'},gal:ims.slice(1).concat([YVID]),
+YACHTS.forEach(y=>{const ims=(IGX[y.id]||[]).map(n=>({src:BI(n),ig:1})).concat((BIMG[y.id]||[]).map(n=>({src:BI(n)})),y.img.slice(1).map(n=>({src:'img/y/'+n+'.webp'})),[{src:BI('ig-charter-toys'),ig:1}]);const t0=y.tiers[0];
+ ACT['yt_'+y.id]={title:y.name+' · '+y.nick,eyebrow:'Private charter · '+y.len+' · up to '+y.guests,hero:{src:'img/y/'+y.img[0]+'.webp'},gal:(YVIDS[y.id]||[]).concat(ims,YVIDS[y.id]?[]:[YVID]),
   lede:BTXT[y.id]||y.blurb,facts:[['Length',y.len],['Guests','Up to '+y.guests],['Cabins',''+y.cabins],['Power',y.eng]],
   items:[{name:y.name,sub:'Price for the whole yacht',tiers:y.tiers.filter(t=>t[1]!=null)}].filter(o=>o.tiers.length),
   inc:['Your captain and crew','Fuel for the standard Akamas route','Masks and snorkels','Bottled water and a seasonal fruit platter','Life jackets and safety kit'],
@@ -2472,7 +2476,7 @@ function startShow(list,alt){stopShow();showL=list.filter(m=>!m.v);if(reduce||sh
 
 function prices(a,k){const it=a.items||(typeof ITEMS!=='undefined'&&ITEMS[k])||[];if(!it.length)return'';
  return '<section><h3 class="as-h">Options and prices</h3><div class="as-opts">'+it.map(o=>{const lo=Math.min(...o.tiers.map(t=>t[1]));return '<div class="as-opt"><b>'+esc(o.name)+'</b>'+(o.sub?'<small>'+esc(o.sub)+'</small>':'<small></small>')+'<div class="from">from<strong>€'+lo.toLocaleString('en-GB')+'</strong></div>'+(o.tiers.length>1?'<div class="as-tiers">'+o.tiers.map(t=>'<span>'+esc(t[0])+'<b>€'+(+t[1]).toLocaleString('en-GB')+'</b></span>').join('')+'</div>':'')+'</div>'}).join('')+'</div></section>'}
-function fill(k,a,card){const title=card&&card.querySelector('h3')?card.querySelector('h3').textContent:a.title;
+function fill(k,a,card){const title=/^(bt|yt)_/.test(k)?a.title:card&&card.querySelector('h3')?card.querySelector('h3').textContent:a.title;
  media.innerHTML='<span class="as-ig" hidden>'+IGI+'@latchiwatersportscentre</span><div class="as-cap">'+(a.eyebrow?'<p class="eyebrow">'+esc(a.eyebrow)+'</p>':'')+'<h2 id="asTitle">'+esc(title)+'</h2></div>';
  stopShow();media.style.height='';showMedia(a.hero,title,true);
  if(!a.nav&&!a.hero.v&&a.gal)startShow([a.hero].concat(a.gal),title);
