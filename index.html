@@ -797,6 +797,19 @@ img.fit-in,video.fit-in{object-fit:contain!important}
 .trust .trust-track li b{white-space:nowrap}
 @keyframes trustMq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.trust-mq{animation:none;width:auto;overflow-x:auto}.trust ul.trust-track[aria-hidden]{display:none!important}}
+/* v30: course page picture sized to the content, ambient fill layered safely */
+.amb::before{z-index:0}
+.amb>img,.amb>video{z-index:1}
+.dvc-img>img{position:relative}
+.dvc-img::after{z-index:2}
+.dvc-cap{z-index:3}
+.dvc-img{max-height:none}
+@media (min-width:861px){
+ .dvc-img{width:calc(100% - 2*clamp(20px,4vw,56px));max-width:calc(720px - 2*clamp(20px,4vw,56px));aspect-ratio:16/9;max-height:44vh;margin:76px auto 0;border-radius:20px;overflow:hidden}
+ .dvc-cap{padding:0 28px 22px}
+ .dvc-cap h2{font-size:clamp(28px,2.6vw,40px)}
+}
+@media (max-width:860px){.dvc-img{aspect-ratio:16/10;max-height:42vh}}
 </style>
 </head>
 <body>
