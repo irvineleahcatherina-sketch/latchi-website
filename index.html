@@ -2076,7 +2076,7 @@ const ITEMS={
 const YACHTS=[
  {id:'sl800',name:'Karnic SL800',nick:'Outlander, Sassenach & Valhalla',len:'9.2m',guests:11,cabins:1,eng:'2 × 200hp',img:['sl800-2'],blurb:'Built in Cyprus and nominated for European Powerboat of the Year 2020. Big sundeck, easy swimming.',tiers:T2(375,625,875)},
  {id:'nc33',name:'Jeanneau NC33',nick:'Princess Leah',len:'10.05m',guests:11,cabins:2,eng:'2 × 220hp',img:['nc33-1','nc33-3','nc33-5'],blurb:'Stable, smooth and easy to move around, with wide side decks. A favourite with families.',tiers:T2(475,850,1050)},
- {id:'cs10',name:'Karnic CS10-S',nick:'Blue Lagoon Flyer',len:'10.5m',guests:14,cabins:2,eng:'2 × 250hp',img:['cs10-4','cs10-3','cs10-1'],blurb:'A sports cruiser with wide sunbeds and onboard speakers, made for a day of swimming and music.',tiers:T2(550,895,1195)},
+ {id:'cs10',name:'Karnic CS10-S',nick:'Blue Lagoon Flyer',len:'10.65m',guests:14,cabins:2,eng:'2 × 250hp',img:['cs10-4','cs10-3','cs10-1'],blurb:'A sports cruiser with wide sunbeds and onboard speakers, made for a day of swimming and music.',tiers:T2(550,895,1195)},
  {id:'rodman',name:'Rodman 38 Flybridge',nick:'Escape II',len:'12m',guests:15,cabins:2,eng:'2 × 370hp',img:['rodman38-1','rodman38-2','rodman38-5'],blurb:'Feels like a much bigger yacht. Flybridge views, a generous cockpit and two cabins.',tiers:T2(745,1300,1700)},
  {id:'bavaria',name:'Bavaria C42',nick:'Breaking Wind',len:'12.9m',guests:12,cabins:3,eng:'Sailing yacht',sail:1,img:['bavaria42-1','bavaria42-4','bavaria42-6'],blurb:'Our sailing yacht. Smooth and stable under sail, with a bright, roomy interior.',tiers:T2(695,1045,1490)},
  {id:'searay',name:'Sea Ray 52',nick:'Voyager',len:'15m',guests:20,cabins:3,eng:'2 × 635hp',img:['searay52-1','searay52-3','searay52-5'],blurb:'Flybridge cruiser with a large swim platform. Room for 20, ideal for celebrations.',tiers:T2(1300,2300,2950)},
@@ -2086,7 +2086,7 @@ const YACHTS=[
 ];
 const YIG={sl800:['sl800-ig1','sl800-ig5','sl800-ig6','sl800-ig7'],cs10:['cs10-top'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig2','bavaria-cockpit','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig3']};
 YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
-const YF={sl800:['bt','cabin','wc','shower','ac','sun','swim'],nc33:['bt','cabin','wc','ac','galley','sun','swim'],cs10:['bt','cabin','galley','bar','sun','swim'],rodman:['bt','fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['bt','sail','cabin','galley','sun'],searay:['bt','fly','cabin','ensuite','ac','galley','swim'],searay62:['bt','cabin','ensuite','ac','galley','sun','swim'],fairline:['bt','fly','cabin','ensuite','jacuzzi','sun'],azimut:['bt','fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
+const YF={sl800:['bt','cabin','wc','shower','ac','sun','swim'],nc33:['bt','cabin','wc','ac','galley','sun','swim'],cs10:['bt','cabin','galley','bar','sun','swim'],rodman:['bt','fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['bt','sail','cabin','ensuite','galley','sun','swim'],searay:['bt','fly','cabin','ensuite','ac','galley','swim'],searay62:['bt','cabin','ensuite','ac','galley','sun','swim'],fairline:['bt','fly','cabin','ensuite','jacuzzi','sun'],azimut:['bt','fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
 YACHTS.forEach(y=>{y.f=YF[y.id]||[]});
 function renderYachts(list){list=list||YACHTS;
   if(!list.length){$('#yachtCards').innerHTML='<p class="fempty">No yacht has all of that. Try removing a filter.</p>';return}
@@ -2813,11 +2813,11 @@ const BTXT={
  karnic702:'The SL702 adds a cabin and a raised sunbathing area to the Karnic layout, with a toilet, shower and Bluetooth music.',
  karnic742:'Our most refined self-drive boat. Nearly 8m, with a cabin for shade or a nap, a freshwater shower, toilet and Bluetooth sound, a big bow sunbed and extra seating at the stern. Fully set up for towing wakeboards, skis and tubes.',
  sl800:'Made right here in Cyprus by Karnic in Limassol and nominated for European Powerboat of the Year 2020. High sides keep everyone dry at speed, the stern seating converts into a dinette or sunbed, and below there is a walnut lounge, a cabin, a wet bar and a shower and toilet. Cruises at around 30 knots.',
- nc33:'A stunning, family-friendly motor yacht, nominated Best for Family at the Best of Boats Awards 2018. No steps into the saloon, wide recessed side decks and a side gate make moving around easy, and the aft seating folds flat for sunbathing.',
+ nc33:'A stunning, family-friendly motor yacht, nominated Best for Family at the Best of Boats Awards 2018. No steps into the saloon, wide recessed side decks and a side gate make moving around easy, and the aft seating folds flat for sunbathing. Designed by Michael Peters, with a side door straight to the helm.',
  cs10:'A sleek sports cruiser with twin 250hp engines. Sunbathing decks, a convertible lounge, a kitchen and a cabin, made for long days at sea, celebrations and sunset trips.',
  rodman:'12m and room for 15. A deep aft cockpit for dining outdoors, a flybridge with views, an air-conditioned saloon and two air-conditioned cabins, each with its own bathroom.',
- bavaria:'Our 2023 Bavaria C42, designed by racing architect Bruce Farr. Smooth under sail, with a big deck for lounging and a bright, modern saloon. Great for sailing enthusiasts and families alike.',
- searay:'A classy flybridge cruiser for up to 20. A large cockpit lounge and swim platform, a second seating area up top, and an air-conditioned saloon with open galley, dining area and three cabins, including a master with en-suite.'
+ bavaria:'Our 2023 Bavaria C42, designed by racing architect Bruce Farr. Smooth under sail, with a big deck for lounging and a bright, modern saloon. Three double cabins, one with its own en-suite, plus a main bathroom. Twin helms, an extendable cockpit table and a fold-down swim platform with ladder. Great for sailing enthusiasts, corporate groups and families with young children.',
+ searay:'A classy flybridge cruiser for up to 20. A large cockpit lounge and swim platform, a second seating area up top, and an air-conditioned saloon with open galley, dining area and three cabins, including a master with en-suite. Sleeps six, with a table on the flybridge and an entertainment system in the saloon. Great for family days out and small corporate meetings.'
 };
 const BVID={src:'video/loop-cove.webp',v:'video/loop-cove.mp4'},YVID={src:'video/loop-akamas.webp',v:'video/loop-akamas.mp4'};
 /* From our Instagram (@latchiwatersportscentre): fleet slides, yacht shots and short muted clips */
@@ -2840,7 +2840,7 @@ YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).l
   items:[{name:y.name,sub:'Price for the whole yacht',tiers:y.tiers.filter(t=>t[1]!=null)}].filter(o=>o.tiers.length),
   inc:['Your captain and crew','Fuel for the standard Akamas route','Masks, snorkels and fins','Soft towels','A platter of fresh seasonal fruit and chilled water','Life jackets and safety kit'],
   treat:1,
-  know:['No deposit, paid in full when you book','Add jet skis, a ski boat, banana rides or a Seabob','Catering on request','If there is swell, your captain picks the most sheltered route'],
+  know:['No deposit, paid in full when you book','Charter for 2, 4 or 6 hours, and extend a 6-hour day by the hour','Add jet skis, a ski boat, banana rides or a Seabob','Scuba diving from the yacht with our own dive instructors, on request','Catering on request','If there is swell, your captain picks the most sheltered route'],
   feat:y.f,book:'yacht',boat:y.id,from:t0[1]||undefined,cta:t0[1]==null?'Enquire':'Book this yacht'}});
 
 const IGI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
