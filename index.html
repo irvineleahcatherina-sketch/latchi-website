@@ -1015,6 +1015,10 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .pv-track{min-height:0;height:100%}
 .pv-track figure{height:100%;min-height:0;overflow:hidden;box-sizing:border-box;display:flex!important;align-items:center;justify-content:center}
 .pv-track img{max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;object-fit:contain!important}
+
+.map-link{display:inline-flex;align-items:center;gap:inherit;color:inherit;text-decoration:underline;text-decoration-color:var(--lagoon);text-underline-offset:4px;min-height:44px}
+.map-link svg{flex:none}
+#coastal-map{scroll-margin-top:100px}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -1311,7 +1315,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <a class="btn btn-ghost" href="#boat-hire">Choose a boat</a>
       </div>
     </div>
-    <figure class="map-card" style="margin:0">
+    <figure class="map-card" id="coastal-map" style="margin:0">
       <div class="map-stage">
       <svg viewBox="0 0 640 520" role="img" aria-labelledby="map-t map-d" id="routeMap" style="width:100%;height:auto;display:block">
         <title id="map-t">Map of the Akamas coast from Latchi harbour to the Blue Lagoon and beyond</title>
@@ -1386,7 +1390,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <li><svg><use href="#i-pin"/></svg>GPS tracker</li>
         <li><svg><use href="#i-cool"/></svg>Cool box</li>
         <li><svg><use href="#i-canopy"/></svg>Sun canopy</li>
-        <li><svg><use href="#i-map"/></svg>Coastal map</li>
+        <li><a class="map-link" href="#coastal-map"><svg><use href="#i-map"/></svg>Coastal map</a></li>
         <li><svg><use href="#i-radio"/></svg>VHF radio</li>
         <li><svg><use href="#i-flare"/></svg>Flares</li>
         <li><svg><use href="#i-medic"/></svg>Medical kit</li>
@@ -1593,7 +1597,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
             <li><svg><use href="#i-pin"/></svg>GPS tracker</li>
             <li><svg><use href="#i-cool"/></svg>Cool box</li>
             <li><svg><use href="#i-canopy"/></svg>Sun canopy</li>
-            <li><svg><use href="#i-map"/></svg>Coastal map</li>
+            <li><a class="map-link" href="#coastal-map"><svg><use href="#i-map"/></svg>Coastal map</a></li>
             <li><svg><use href="#i-medic"/></svg>Medical kit</li>
             <li><svg><use href="#i-flare"/></svg>Flares</li>
             <li><svg><use href="#i-fire"/></svg>Fire extinguisher</li>
