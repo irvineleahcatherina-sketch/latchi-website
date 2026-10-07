@@ -1010,6 +1010,11 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .pv .pv-prev,.pv .pv-next,#calPrev,#calNext{background:transparent!important;box-shadow:none!important;border:0!important}
 .pv .pv-prev svg,.pv .pv-next svg{width:34px!important;height:34px!important;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
 .pv .pv-prev:hover,.pv .pv-next:hover,#calPrev:hover,#calNext:hover{background:transparent!important;transform:scale(1.15)}
+
+/* Full-screen photos always fit the screen, never cut */
+.pv-track{min-height:0;height:100%}
+.pv-track figure{height:100%;min-height:0;overflow:hidden;box-sizing:border-box;display:flex!important;align-items:center;justify-content:center}
+.pv-track img{max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;object-fit:contain!important}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
