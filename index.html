@@ -934,14 +934,12 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .as-mtitle h2{font:400 clamp(30px,3.4vw,48px)/1.05 var(--f-display);color:var(--navy);margin:0}
 /* Fill every frame: no bands */
 .locmap{aspect-ratio:640/420;height:auto!important;min-height:0!important;align-self:center}
-.amb::before{display:none!important}
 /* ---- Nothing cropped: whole photo, soft blur of itself behind ---- */
 .amb::before{z-index:-1!important}
 .amb>img,.amb>video{z-index:auto}
 .amb>video,.amb>img{background:transparent!important}
 .card.amb::before{z-index:-3!important}
 .card.amb>img{z-index:-2}
-.rel img{object-fit:cover!important}
 .access img{object-fit:cover!important}
 .ycar .ys{flex:0 0 100%;width:100%;height:100%;position:relative;overflow:hidden;scroll-snap-align:start}
 .ycar .ys img{width:100%;height:100%;object-fit:cover}
@@ -1057,6 +1055,14 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 }
 
 .gallery{grid-auto-flow:row dense}
+/* Nothing cropped: frames follow the photo, no zoom on hover */
+.acts{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.acts>.card{grid-column:auto!important}
+@media (max-width:900px){.acts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media (max-width:620px){.acts{grid-template-columns:minmax(0,1fr)!important}}
+.card:hover img,.card:hover video,.gallery figure:hover img,.boat:hover .ph>img,.pgal figure:hover img,.dv-card:hover .dv-img img{transform:none!important}
+.gallery figure>img,.gallery figure>video{animation:none!important}
+
 
 /* Booking choices: selected option has only a coloured border with a raised 3D look */
 .dr .opt,#drBody .opt{background:transparent!important;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
@@ -1920,7 +1926,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
 const FIT_T=.01;let fitRO=null;const fitSet=new Set();
 function fitImg(el,frame,th){if(!el)return;frame=frame||el.parentElement;if(!frame)return;
  const go=()=>{const nw=el.naturalWidth||el.videoWidth||el._pw,nh=el.naturalHeight||el.videoHeight||el._ph,fw=frame.clientWidth,fh=frame.clientHeight;if(!nw||!nh||!fw||!fh)return;
-  const ir=nw/nh,fr=fw/fh,crop=1-Math.min(ir,fr)/Math.max(ir,fr),c=false;
+  const ir=nw/nh,fr=fw/fh,crop=1-Math.min(ir,fr)/Math.max(ir,fr),c=crop>(th==null?FIT_T:Math.max(th,.03));
   el.classList.toggle('fit-in',c);frame.classList.toggle('amb',c);if(c)frame.style.setProperty('--amb','url("'+(el.tagName==='VIDEO'?(el.poster||el.currentSrc):(el.currentSrc||el.src))+'")')};
  el._fit=go;fitSet.add(el);
  if(el.tagName==='VIDEO'){if(el.poster){const pi=new Image();pi.onload=()=>{el._pw=pi.naturalWidth;el._ph=pi.naturalHeight;go()};pi.src=el.poster}el.readyState>=1?go():el.addEventListener('loadedmetadata',go,{once:true})}else{el.complete&&el.naturalWidth?go():el.addEventListener('load',go,{once:true})}
@@ -1953,9 +1959,22 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const DUPK={"img/act/dive-ig-3.webp":0,"img/ig-wreck.webp":0,"img/boats/marinello20-1.webp":1,"img/f-marinello20.webp":1,"img/rya-sea.webp":2,"img/rya-s1.webp":2,"img/y/azimut68-1.webp":3,"img/yacht-azimut.webp":3,"img/act/act-seabob-4.webp":4,"img/seabob-ride.webp":4,"img/boats/igc-voyager.webp":5,"img/f-voyager.webp":5,"img/boats/karnic702-0.webp":6,"img/f-karnic702.webp":6,"img/act/act-para-4.webp":7,"img/parasail.webp":7,"img/boats/eden18-1.webp":8,"img/f-eden18.webp":8,"img/boats/amathunta-1.webp":9,"img/f-amathunta.webp":9,"img/act/seabob-ig-1.webp":10,"img/seabob-deck.webp":10,"img/act/act-seabob-3.webp":10,"img/act/act-jet-7.webp":11,"img/ig-jetski.webp":11,"img/boats/tornado-0.webp":12,"img/f-tornado.webp":12,"img/boats/karnic701-0.webp":13,"img/f-karnic701.webp":13,"img/boats/eden19-1.webp":14,"img/f-eden19.webp":14,"img/boats/marinello26-0.webp":15,"img/f-marinello26.webp":15,"img/boats/karnic742-1.webp":16,"img/f-karnic742.webp":16,"img/y/searay52-1.webp":17,"img/yacht-voyager.webp":17,"img/act/act-jet-1.webp":18,"img/jetski-2.webp":18,"img/boats/marinello22-0.webp":19,"img/f-marinello22.webp":19,"img/boats/edennewgen-0.webp":20,"img/f-edennewgen.webp":20,"img/boats/edennewgen-3.webp":20,"img/funday.webp":21,"img/harbour-boats.webp":21,"img/act/act-tube-2.webp":22,"img/tube.webp":22,"img/act/boat-ig-1.webp":23,"img/ig-cove-boat.webp":23,"img/boats/ig-sl800-a.webp":24,"img/f-karnic800.webp":24,"img/y/sl800-ig2.webp":24,"img/y/sl800-ig1.webp":24,"img/y/bavaria42-4.webp":25,"img/boats/bavaria-0.webp":25,"img/boats/amathunta-0.webp":26,"img/boats/ig-amathunta.webp":26,"img/y/sl800-ig7.webp":27,"img/boats/ig-sl800-c.webp":27,"img/y/rodman38-1.webp":28,"img/boats/rodman-1.webp":28,"img/y/sl800-ig4.webp":29,"img/boats/ig-sl800-b.webp":29,"img/y/sl800-5.webp":30,"img/boats/sl800-9.webp":30,"img/y/searay52-5.webp":31,"img/boats/ig-searay-a.webp":31,"img/y/searay-ig2.webp":31};
 const dkey=src=>{const k=String(src||'').replace(/^\.\//,'');return DUPK[k]!=null?'d'+DUPK[k]:(/^img\/(y|boats)\//.test(k)?'b:'+k.split('/').pop():k)};
 function uniqMedia(list){const seen=new Set();return list.filter(m=>{if(!m)return false;const k=m.v?m.v:dkey(m.src);if(seen.has(k))return false;seen.add(k);if(m.v&&m.src)seen.add(dkey(m.src));return true})}
+
+/* Frames take the shape of their photo or video: nothing is cropped */
+function aspectGrid(box,minH){if(!box)return;box.style.rowGap='0px';box.style.gridAutoRows='1px';box.style.gridAutoFlow='row dense';
+ const gap=parseFloat(getComputedStyle(box).columnGap)||12;
+ [...box.children].forEach(it=>{const m=it.querySelector(':scope>img,:scope>video,:scope>picture>img');if(!m)return;
+  const set=()=>{const w=it.getBoundingClientRect().width;const nw=m.naturalWidth||m.videoWidth||m._pw,nh=m.naturalHeight||m.videoHeight||m._ph;if(!nw||!nh||!w)return;
+   const h=Math.max(minH||0,w*nh/nw);it.style.minHeight='0';it.style.height='auto';it.style.marginBottom=gap+'px';it.style.gridRow='span '+Math.max(1,Math.round(h+gap))};
+  it._ag=set;
+  if(m.tagName==='VIDEO'){if(m._pw)set();else if(m.poster){const pi=new Image();pi.onload=()=>{m._pw=pi.naturalWidth;m._ph=pi.naturalHeight;set()};pi.src=m.poster}m.addEventListener('loadedmetadata',set,{once:true})}
+  else{m.complete&&m.naturalWidth?set():m.addEventListener('load',set,{once:true})}})}
+function aspectAll(){aspectGrid(document.querySelector('.acts'),200);document.querySelectorAll('.gallery').forEach(g=>aspectGrid(g,0))}
+addEventListener('DOMContentLoaded',aspectAll);addEventListener('load',aspectAll);
+{let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>document.querySelectorAll('.acts>*,.gallery>*').forEach(i=>i._ag&&i._ag()),150)})}
 /* Fit every framed photo whole, on a soft blur of itself */
 function fitFrames(root){root=root||document;
- [['.card>img',el=>el.parentElement],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
+ [['.card>img,.card>video',el=>el.parentElement],['.rel>img',null],['.as-strip button>img',null],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
  .forEach(([sel,fr])=>root.querySelectorAll(sel).forEach(el=>{if(el._fit)return;const f=fr?fr(el):el.parentElement;if(getComputedStyle(f).position==='static')f.style.position='relative';fitImg(el,f,.01)}))}
 
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
@@ -2093,14 +2112,15 @@ const YACHTS=[
  {id:'azimut',name:'Azimut 68',nick:'Florentina',len:'21.7m',guests:22,cabins:4,eng:'2 × 1070hp',img:['lc-azimut-0', 'lc-azimut-2', 'lc-azimut-1', 'lc-azimut-3', 'lc-azimut-4'],blurb:'Italian elegance, a big flybridge and al fresco dining on the aft deck.',tiers:[['Full day',null]]}
 ];
 const YIG={sl800:['sl800-ig1','sl800-ig5','sl800-ig6','sl800-ig7'],cs10:['lc-cs10-3'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig2','bavaria-cockpit','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig3']};
-YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
+const YDROP={'img/y/lc-sl800-9.webp':1,'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
+YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);y.img=y.img.filter(n=>!YDROP['img/y/'+n+'.webp']);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
 const YF={sl800:['bt','cabin','wc','shower','ac','sun','swim'],nc33:['bt','cabin','wc','ac','galley','sun','swim'],cs10:['bt','cabin','galley','bar','sun','swim'],rodman:['bt','fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['bt','sail','cabin','ensuite','galley','sun','swim'],searay:['bt','fly','cabin','ensuite','ac','galley','swim'],searay62:['bt','cabin','ensuite','ac','galley','sun','swim'],fairline:['bt','fly','cabin','ensuite','jacuzzi','sun'],azimut:['bt','fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
 YACHTS.forEach(y=>{y.f=YF[y.id]||[]});
 const YSPD={"sl800": "Cruises 30 kn, top 45 kn", "nc33": "Cruises 23 to 26 kn", "cs10": "Cruises 25 to 30 kn, top 40+ kn", "rodman": "Cruises 22 to 24 kn, top 30 kn", "bavaria": "6 to 8 kn under sail", "searay": "Cruises 22 kn, top 28 kn", "searay62": "Cruises 22 to 25 kn", "fairline": "Cruises 24 kn, top 31 kn", "azimut": "Cruises 26 to 28 kn, top 32 kn"};
 function renderYachts(list){list=list||YACHTS;
   if(!list.length){$('#yachtCards').innerHTML='<p class="fempty">No yacht has all of that. Try removing a filter.</p>';return}
   $('#yachtCards').innerHTML=list.map(y=>{const t0=y.tiers[0];const price=t0[1]==null?'<p class="from"><b style="font-size:18px">Price on request</b></p>':`<p class="from">from <b class="tnum">€${t0[1].toLocaleString('en-GB')}</b>${y.tiers.length>1?'':' / day'}</p>`;
-    return `<article class="boat"><div class="ph" style="aspect-ratio:4/3"><button type="button" class="yc-arr prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="yc-arr next" aria-label="Next photo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="ycar" tabindex="0" aria-label="${y.name} photos, scroll sideways">${y.img.slice(0,6).map((m,i)=>`<span class="ys"><img decoding="async" src="img/y/${m}.webp" alt="${y.name} ${y.nick}, photo ${i+1}" loading="lazy"></span>`).join('')}</div><span class="count">${Math.min(y.img.length,6)} photos ›</span>${y.sail?'<span class="tag">Sailing</span>':''}</div><div class="bd"><h3>${y.name}</h3><p class="nick">${y.nick}</p><div class="specs"><span>${y.len}</span><span><svg><use href="#i-users"/></svg>Up to ${y.guests}</span><span>${y.cabins} cabin${y.cabins>1?'s':''}</span><span><svg><use href="#i-engine"/></svg>${y.eng}</span></div><p class="blurb">${y.blurb}</p>${fchips(y.f,6)}${y.tiers.length>1?`<div class="tiers tnum">${y.tiers.map(t=>`<span>${t[0].replace(' hours',' h')} <b>€${t[1].toLocaleString('en-GB')}</b></span>`).join('')}</div>`:''}<div class="row">${price}<span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="yt_${y.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="yacht" data-boat="${y.id}">${t0[1]==null?'Enquire':'Book'}</button></span></div></div></article>`}).join('');
+    return `<article class="boat"><div class="ph" style="aspect-ratio:3/2"><button type="button" class="yc-arr prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="yc-arr next" aria-label="Next photo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><div class="ycar" tabindex="0" aria-label="${y.name} photos, scroll sideways">${(()=>{const r=n=>{let z;try{z=SZ['img/y/'+n+'.webp']}catch(e){}return /^lc-/.test(n)?1.5:z?z[0]/z[1]:0};const L=y.img.filter(n=>Math.abs(r(n)-1.5)<.08);return (L.length>=3?L:y.img)})().slice(0,6).map((m,i)=>`<span class="ys"><img decoding="async" src="img/y/${m}.webp" alt="${y.name} ${y.nick}, photo ${i+1}" loading="lazy"></span>`).join('')}</div><span class="count">${Math.min(y.img.length,6)} photos ›</span>${y.sail?'<span class="tag">Sailing</span>':''}</div><div class="bd"><h3>${y.name}</h3><p class="nick">${y.nick}</p><div class="specs"><span>${y.len}</span><span><svg><use href="#i-users"/></svg>Up to ${y.guests}</span><span>${y.cabins} cabin${y.cabins>1?'s':''}</span><span><svg><use href="#i-engine"/></svg>${y.eng}</span></div><p class="blurb">${y.blurb}</p>${fchips(y.f,6)}${y.tiers.length>1?`<div class="tiers tnum">${y.tiers.map(t=>`<span>${t[0].replace(' hours',' h')} <b>€${t[1].toLocaleString('en-GB')}</b></span>`).join('')}</div>`:''}<div class="row">${price}<span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="yt_${y.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="yacht" data-boat="${y.id}">${t0[1]==null?'Enquire':'Book'}</button></span></div></div></article>`}).join('');
   fitFrames($('#yachtCards'));
 }
 $('#yachtCards').addEventListener('click',e=>{const b=e.target.closest('.yc-arr');if(!b)return;e.preventDefault();e.stopPropagation();const c=b.parentElement.querySelector('.ycar'),w=c.clientWidth,n=Math.round(c.scrollLeft/w),max=c.children.length-1;let t=n+(b.classList.contains('next')?1:-1);if(t>max)t=0;if(t<0)t=max;c.scrollTo({left:t*w,behavior:reduce?'auto':'smooth'})},true);
@@ -2846,7 +2866,7 @@ FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IG
   feat:b.f,book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
 const YI=n=>({src:'img/y/'+n+'.webp'});
 YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).length-1,2);
- const YDROP={'img/y/lc-sl800-9.webp':1,'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
+ 
  const ims=yi.slice(0,nl).concat((IGX[y.id]||[]).map(n=>({src:BI(n),ig:1})),(BIMG[y.id]||[]).map(n=>({src:BI(n)})),yi.slice(nl)).filter(m=>!YDROP[m.src]);const t0=y.tiers[0];
  ACT['yt_'+y.id]={title:y.name+' · '+y.nick,eyebrow:'Private charter · '+y.len+' · up to '+y.guests,hero:{src:'img/y/'+y.img[0]+'.webp'},gal:(YVIDS[y.id]||[]).concat(ims),
   lede:BTXT[y.id]||y.blurb,facts:[['Length',y.len],['Guests','Up to '+y.guests],['Cabins',''+y.cabins],['Power',y.eng]].concat(YSPD[y.id]?[['Speed',YSPD[y.id]]]:[]),
