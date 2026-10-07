@@ -2557,7 +2557,7 @@ const BVID={src:'video/loop-cove.webp',v:'video/loop-cove.mp4'},YVID={src:'video
 /* From our Instagram (@latchiwatersportscentre): fleet slides, yacht shots and short muted clips */
 const IGX={amathunta:['ig-amathunta'],eden18:['ig-eden18'],eden19:['ig-eden19'],edenng:['ig-edenng'],marinello20:['ig-marinello20'],voyager:['ig-voyager'],aqua25:['ig-aqua25'],tornado:['ig-tornado'],marinello22:['ig-marinello22'],marinello26:['ig-marinello26'],karnic701:['ig-karnic701'],karnic702:['ig-karnic702'],karnic742:['ig-karnic742'],sl800:['ig-sl800-b','ig-sl800-c'],bavaria:['ig-bavaria-a']};
 const IGV=n=>({src:'video/boats/'+n+'.webp',v:'video/boats/'+n+'.mp4',ig:1});
-const BVIDS=[IGV('selfdrive'),IGV('safety')],BVBY={karnic701:[IGV('karnic701')]},YVIDS={sl800:[IGV('sl800a'),IGV('sl800b'),IGV('sl800c')],nc33:[IGV('nc33')],rodman:[IGV('rodman')],searay:[IGV('searay-voy'),IGV('searay52')],bavaria:[IGV('bavaria'),IGV('bavaria2')]};
+const BVIDS=[IGV('selfdrive'),IGV('safety')],BVBY={karnic701:[IGV('karnic701')],karnic702:[IGV('karnic702')],edenng:[IGV('edennewgen')],eden18:[IGV('eden18')],eden19:[IGV('eden19')]},YVIDS={sl800:[IGV('sl800a'),IGV('sl800b'),IGV('sl800c')],nc33:[IGV('nc33')],rodman:[IGV('rodman')],searay:[IGV('searay-voy'),IGV('searay52')],bavaria:[IGV('bavaria'),IGV('bavaria2')]};
 const BI=n=>'img/boats/'+n+'.webp';
 FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IGX[b.id]||[]).map(n=>({src:BI(n),ig:1}));const main={src:'img/'+b.img+'.webp'};
  ACT['bt_'+b.id]={title:b.name,eyebrow:'Self-drive · '+lenTxt(b)+' · up to '+b.guests,hero:main,gal:(BVBY[b.id]||[]).concat(BVIDS.slice(0,1),igi,ims,BVIDS.slice(1)),
