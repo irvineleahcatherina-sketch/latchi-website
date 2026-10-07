@@ -1036,6 +1036,17 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
  .map-card{margin-inline:0!important;margin-left:calc(50% - 50vw)!important;width:100vw!important;max-width:none!important;border-radius:0!important;padding:4px 0!important}
  .map-card svg#routeMap{width:100%;height:auto}
 }
+
+/* Mobile map: no leader-line legend, compact key below */
+.map-mkey{display:none}
+@media (max-width:620px){
+ #routeMap .mlabels{display:none!important}
+ .map-mkey{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin:10px 16px 0;font-size:13px;line-height:1.25;color:var(--navy)}
+ .map-mkey span{display:flex;align-items:center;gap:8px}
+ .map-mkey b{flex:none;width:20px;height:20px;border-radius:50%;background:#0C2B40;color:#fff;font:700 11px/20px var(--f-body);text-align:center}
+ .map-mkey b.lag{background:var(--lagoon);color:#0C2B40}
+ .map-card figcaption{padding-inline:16px}
+}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -1381,7 +1392,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
       <span class="sr" id="bpName" aria-live="polite"></span>
       </div>
       <ol class="map-key" id="mapKey" aria-label="Stops on the map"></ol>
-      <figcaption class="small" style="margin-top:10px">Tap a number to see the bay. Stylised map, not for navigation. Every boat carries our printed coastal chart and a VHF radio on channel 12.</figcaption>
+      <p class="map-mkey" aria-hidden="true"><span><b>1</b>Takas Bay</span><span><b>2</b>Aphrodite Rocks</span><span><b>3</b>St George's Reef</span><span><b>4</b>St George's Island</span><span><b>5</b>Amphitheatre Bay</span><span><b>6</b>Manolis Bay</span><span><b class="lag">7</b>Blue Lagoon</span><span><b>8</b>Fontana Amorosa</span><span><b>9</b>Beach</span></p><figcaption class="small" style="margin-top:10px">Tap a number to see the bay. Stylised map, not for navigation. Every boat carries our printed coastal chart and a VHF radio on channel 12.</figcaption>
     </figure>
   </div>
 </section>
