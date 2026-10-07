@@ -1005,6 +1005,11 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .as-arr svg,.yc-arr svg{width:36px!important;height:36px!important;filter:drop-shadow(0 1px 3px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(0,0,0,.3))}
 .as-arr svg path,.yc-arr svg path{stroke-width:2.6}
 .as-arr:hover,.yc-arr:hover{background:transparent!important;transform:scale(1.15)}
+
+/* Plain arrows everywhere: lightbox and calendar too */
+.pv .pv-prev,.pv .pv-next,#calPrev,#calNext{background:transparent!important;box-shadow:none!important;border:0!important}
+.pv .pv-prev svg,.pv .pv-next svg{width:34px!important;height:34px!important;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}
+.pv .pv-prev:hover,.pv .pv-next:hover,#calPrev:hover,#calNext:hover{background:transparent!important;transform:scale(1.15)}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
