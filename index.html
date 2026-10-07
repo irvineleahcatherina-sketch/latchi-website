@@ -734,6 +734,7 @@ table.cmp{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
 /* ---- Fit v26: aligned frames, nothing cropped ---- */
 .crumbs{align-items:center;gap:6px;padding-top:16px;line-height:1.2}
 .crumbs>*{display:inline-flex;align-items:center;min-height:44px}
+.rel img{object-fit:cover!important}
 .crumbs a{padding-inline:2px}
 /* Ambient frame: whole picture on a soft blur of itself when the frame and photo shapes differ */
 .amb{isolation:isolate}
@@ -1970,7 +1971,7 @@ addEventListener('DOMContentLoaded',aspectAll);addEventListener('load',aspectAll
 {let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>document.querySelectorAll('.gallery>*').forEach(i=>i._ag&&i._ag()),150)})}
 /* Fit every framed photo whole, on a soft blur of itself */
 function fitFrames(root){root=root||document;
- [['.rel>img',null],['.as-strip button>img',null],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
+ [['.as-strip button>img',null],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
  .forEach(([sel,fr])=>root.querySelectorAll(sel).forEach(el=>{if(el._fit)return;const f=fr?fr(el):el.parentElement;if(getComputedStyle(f).position==='static')f.style.position='relative';fitImg(el,f,.01)}))}
 
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
