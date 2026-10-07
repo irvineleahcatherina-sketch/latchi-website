@@ -1029,6 +1029,13 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 
 .as-close,.pv .pv-x,button.x{border-radius:10px!important}
 .as-close:focus:not(:focus-visible),.pv .pv-x:focus:not(:focus-visible),button.x:focus:not(:focus-visible){outline:none!important;box-shadow:none!important}
+
+/* Mobile map: no stop list, bigger edge-to-edge map */
+@media (max-width:760px){
+ .map-key{display:none!important}
+ .map-card{margin-inline:0!important;margin-left:calc(50% - 50vw)!important;width:100vw!important;max-width:none!important;border-radius:0!important;padding:4px 0!important}
+ .map-card svg#routeMap{width:100%;height:auto}
+}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
