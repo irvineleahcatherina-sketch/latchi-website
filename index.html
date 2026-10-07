@@ -2901,7 +2901,7 @@ FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IG
   know:['Driven with a car driving licence; the driver must be 21+','€'+b.excess+' excess held on your card and released when you are back','Fuel is extra, charged at market rate for what you use','Hire for 1, 2, 4 or 6 hours. 4-hour hires run 09:00 to 13:00 or 14:00 to 18:00'],
   feat:b.f,book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
 const YSPEC={searay:[['Beam','4.65m'],['Draught','1.30m'],['Sleeps','6 in 3 cabins']],searay62:[['Beam','5.02m'],['Draught','1.60m'],['Cabins','Double beds, en-suite']],fairline:[['Beam','5.23m'],['Draught','1.40m'],['Sleeps','8 in 4 cabins']],azimut:[['Beam','5.23m'],['Draught','1.60m'],['Sleeps','8 in 4 cabins']],rodman:[['Beam','3.90m'],['Draught','0.95m'],['Sleeps','4, plus the saloon']],nc33:[['Beam','3.32m'],['Draught','0.96m'],['Fuel','520 L'],['Fresh water','175 L']],cs10:[['Beam','3.32m'],['Draught','0.96m'],['Fuel','570 L'],['Fresh water','200 L']],sl800:[['Beam','2.96m'],['Fuel','400 L'],['Fresh water','90 L']],bavaria:[['Beam','4.30m'],['Draught','2.10m'],['Sleeps','6 in 3 double cabins']]};
-const YPLAN={azimut:1,bavaria:1,fairline:1,cs10:1,sl800:1,rodman:1,searay62:1};
+const YPLAN={nc33:1,searay:1,azimut:1,bavaria:1,fairline:1,cs10:1,sl800:1,rodman:1,searay62:1};
 const YI=n=>({src:'img/y/'+n+'.webp'});
 YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).length-1,2);
  
