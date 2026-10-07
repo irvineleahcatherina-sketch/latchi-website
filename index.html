@@ -1056,6 +1056,8 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 }
 
 .gallery{grid-auto-flow:row dense}
+.as-plan figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:14px}
+.as-plan img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain}
 /* Nothing cropped: frames follow the photo, no zoom on hover */
 .gallery figure:hover img,.boat:hover .ph>img,.pgal figure:hover img,.dv-card:hover .dv-img img{transform:none!important}
 .gallery figure>img,.gallery figure>video{animation:none!important}
@@ -1803,6 +1805,19 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
           <p class="small" style="margin-top:12px">2026 prices. Swipe the photos on each yacht.</p>
         </section>
 
+                <section class="p-sec" aria-labelledby="h-ytypes">
+          <h2 id="h-ytypes">Ways to charter</h2>
+          <div class="related">
+            <a class="rel" href="#halfday" data-open="halfday"><img decoding="async" src="img/y/lc-searay-3.webp" alt="" loading="lazy"><div><b>Half-day charter</b><span>4 hours · from €625</span></div></a>
+            <a class="rel" href="#fullday" data-open="fullday"><img decoding="async" src="img/y/lc-cs10-5.webp" alt="" loading="lazy"><div><b>Full-day charter</b><span>6 hours · from €875</span></div></a>
+            <a class="rel" href="#sunset" data-open="sunset"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip</b><span>3 hours with local wine · €395</span></div></a>
+            <a class="rel" href="#fishing" data-open="fishing"><img decoding="async" src="video/loop-akamas.webp" alt="" loading="lazy"><div><b>Private fishing trip</b><span>3 hours, Northern Akamas · €415</span></div></a>
+            <a class="rel" href="#weddings" data-open="weddings"><img decoding="async" src="img/y/sunset-2.webp" alt="" loading="lazy"><div><b>Weddings at sea</b><span>Ceremonies and receptions</span></div></a>
+            <a class="rel" href="#corporate" data-open="corporate"><img decoding="async" src="img/y/lc-azimut-0.webp" alt="" loading="lazy"><div><b>Corporate events</b><span>Teams and clients</span></div></a>
+            <a class="rel" href="#bespoke" data-open="bespoke"><img decoding="async" src="img/y/lc-bavaria-4.webp" alt="" loading="lazy"><div><b>Bespoke charters</b><span>Built around you</span></div></a>
+          </div>
+        </section>
+
         <section class="p-sec" aria-labelledby="h-yextra">
           <h2 id="h-yextra">Make it your day</h2>
           <div class="related" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
@@ -1822,14 +1837,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
           <details><summary>Can we add a Seabob or catering?</summary><p>Yes, and much more. We'd love to make your day exactly how you want it. Just tell us about any special wishes, whether that's kosher, vegetarian or any other food, your favourite drinks, a birthday cake or decorations for a wedding or proposal, and we'll arrange everything. Message us when you book or on WhatsApp. <a class="link" style="min-height:0;display:inline" href="#special" data-open="special">Special occasions</a></p></details>
         </section>
 
-        <section class="p-sec" aria-labelledby="h-yrel">
-          <h2 id="h-yrel">Shorter trips</h2>
-          <div class="related">
-            <a class="rel" href="#sunset" data-open="sunset"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip to the Akamas</b><span>3 hours with local wine · €395</span></div></a>
-            <a class="rel" href="#fishing" data-open="fishing"><img decoding="async" src="video/loop-akamas.webp" alt="" loading="lazy"><div><b>Private fishing trip</b><span>3 hours, Northern Akamas · €415</span></div></a>
-            <a class="rel" href="#boat-hire"><img decoding="async" src="img/aerial-boat.webp" alt="" loading="lazy"><div><b>Drive yourself</b><span>Self-drive boats from €80</span></div></a>
-          </div>
-        </section>
+        
       </div>
     </div>
   </div>
@@ -2786,6 +2794,36 @@ const ACT={
   inc:['A platter of fresh seasonal fruit','Chilled water'],incTitle:'On every charter',
   know:['Cheese and charcuterie boards on request','Drinks and lunch on board on request','Tell us when you book, or message us on WhatsApp','Let us know about any allergies'],
   book:'yacht'},
+ halfday:{title:'Half-day charter',eyebrow:'4 hours, morning or afternoon',hero:{src:'img/y/lc-searay-3.webp'},
+  gal:[{src:'img/y/lc-cs10-5.webp'},{src:'img/y/lc-nc33-9.webp'},{src:'img/y/lc-searay-22.webp'}],
+  lede:"Four hours on your own yacht. Leave in the calm of the morning or the warm light of the afternoon, anchor in a turquoise bay, swim and snorkel, then stretch out on the sundeck as the Akamas coast drifts by. Your crew takes care of everything.",
+  inc:['Your captain and crew','A route to the Blue Lagoon and the quiet coves','Masks, snorkels and fins','Fresh fruit and chilled water'],
+  know:['Mornings 09:00 to 13:00, afternoons 14:00 to 18:00','Add jet skis, a ski boat, champagne or a dive instructor','No booking fees'],
+  book:'yacht',from:625,cta:'Choose a yacht'},
+ fullday:{title:'Full-day charter',eyebrow:'6 hours along the Akamas',hero:{src:'img/y/lc-cs10-5.webp'},
+  gal:[{src:'img/y/lc-searay-0.webp'},{src:'img/y/lc-bavaria-4.webp'},{src:'img/y/lc-azimut-2.webp'}],
+  lede:"Six unhurried hours at sea. Time for two or more anchorages, from the Blue Lagoon to coves only locals know, long swims, lunch on deck and an afternoon on the sundeck. Your captain shapes the route around you.",
+  inc:['Your captain and crew','Two or more swimming stops','Masks, snorkels and fins','Fresh fruit and chilled water'],
+  know:['Extend by the hour if you are having too good a time to come back','Lunch on board on request','No booking fees'],
+  book:'yacht',from:875,cta:'Choose a yacht'},
+ weddings:{title:'Weddings at sea',eyebrow:'Ceremonies, blessings and receptions',hero:{src:'img/y/sunset-2.webp'},
+  gal:[{src:'img/y/lc-nc33-9.webp'},{src:'img/y/lc-azimut-2.webp'},{src:'img/y/lc-fairline-0.webp'}],
+  lede:"Say yes on the open water, with the Akamas coast behind you and the people you love around you. A private yacht and crew for an elopement, a blessing, a sunset ceremony or a reception at sea.",
+  inc:['Ceremonies, blessings and proposals','Intimate receptions and dinner on deck','Help with flowers, music, a photographer or a celebrant','Champagne, cake and catering','Yachts for 2 to 22 guests'],incTitle:'What we can arrange',
+  know:['Send us your date and your ideas and we will plan it with you','Sunset is the most beautiful time for vows','Several yachts can sail together for bigger parties'],
+  book:'yacht',ext:['https://wa.me/35796603611','Plan it with us']},
+ corporate:{title:'Corporate events',eyebrow:'Teams, clients and celebrations',hero:{src:'img/y/lc-azimut-0.webp'},
+  gal:[{src:'img/y/lc-azimut-2.webp'},{src:'img/y/lc-searay62-0.webp'},{src:'img/y/lc-fairline-2.webp'}],
+  lede:"Swap the boardroom for a sea breeze. Take your team or your clients out on a private yacht for a team day, an incentive trip, a launch or simply a thank you, with total privacy and service from start to finish.",
+  inc:['Team days, incentives and client hospitality','Meetings in the saloon, drinks on deck','Catering, an open bar and branded touches','Watersports and diving for the team','Several yachts together for larger groups'],incTitle:'What we can arrange',
+  know:['Tell us your numbers, date and budget and we will suggest the right yachts','Invoices for companies on request'],
+  book:'yacht',ext:['https://wa.me/35796603611','Plan it with us']},
+ bespoke:{title:'Bespoke charters',eyebrow:'Built around you',hero:{src:'img/y/lc-bavaria-4.webp'},
+  gal:[{src:'img/y/lc-searay-2.webp'},{src:'img/y/lc-cs10-4.webp'},{src:'img/y/lc-rodman-6.webp'}],
+  lede:"For the day only you could dream up. A surprise proposal, a family reunion, a film shoot or an anniversary cruise. Choose the yacht, the route, the timing and the extras, and we will look after every detail.",
+  inc:['Any yacht in our fleet, for 2 to 22 guests','Your route and your timing','Catering, music and watersports to suit','Scuba diving with our own instructors'],incTitle:'What we can arrange',
+  know:['The more you tell us, the better we can plan','Give us a little notice for special requests'],
+  book:'yacht',ext:['https://wa.me/35796603611','Plan it with us']},
  special:{title:'Special occasions',eyebrow:'Your day, your way',hero:{src:'img/y/sunset-1.webp'},
   gal:[{src:'img/y/waterpark-1.webp',ig:1},{src:'img/y/fruit-3.webp'},{src:'img/y/fruit-1.webp'}],
   lede:"We'd love to fulfil all your wishes. Celebrating a birthday, a wedding, a proposal or just being together? Tell us what you have in mind and we'll arrange everything, so all you have to do is enjoy it.",
@@ -2862,6 +2900,8 @@ FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IG
   inc:['Full briefing and basic training before you go','VHF radio and GPS tracker','Life jackets, sun canopy and cool box','Flares, medical kit and coastal map','Our safety boat on patrol all day'],
   know:['Driven with a car driving licence; the driver must be 21+','€'+b.excess+' excess held on your card and released when you are back','Fuel is extra, charged at market rate for what you use','Hire for 1, 2, 4 or 6 hours. 4-hour hires run 09:00 to 13:00 or 14:00 to 18:00'],
   feat:b.f,book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
+const YSPEC={searay:[['Beam','4.65m'],['Draught','1.30m'],['Sleeps','6 in 3 cabins']],searay62:[['Beam','5.02m'],['Draught','1.60m'],['Cabins','Double beds, en-suite']],fairline:[['Beam','5.23m'],['Draught','1.40m'],['Sleeps','8 in 4 cabins']],azimut:[['Beam','5.23m'],['Draught','1.60m'],['Sleeps','8 in 4 cabins']],rodman:[['Beam','3.90m'],['Draught','0.95m'],['Sleeps','4, plus the saloon']],nc33:[['Beam','3.32m'],['Draught','0.96m'],['Fuel','520 L'],['Fresh water','175 L']],cs10:[['Beam','3.32m'],['Draught','0.96m'],['Fuel','570 L'],['Fresh water','200 L']],sl800:[['Beam','2.96m'],['Fuel','400 L'],['Fresh water','90 L']],bavaria:[['Beam','4.30m'],['Draught','2.10m'],['Sleeps','6 in 3 double cabins']]};
+const YPLAN={azimut:1,bavaria:1,fairline:1,cs10:1,sl800:1,rodman:1,searay62:1};
 const YI=n=>({src:'img/y/'+n+'.webp'});
 YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).length-1,2);
  
@@ -2872,6 +2912,7 @@ YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).l
   inc:['Your captain and crew','Fuel for the standard Akamas route','Masks, snorkels and fins','Soft towels','A platter of fresh seasonal fruit and chilled water','Life jackets and safety kit'],
   treat:1,
   know:['No deposit, paid in full when you book','Charter for 2, 4 or 6 hours, and extend a 6-hour day by the hour','Add jet skis, a ski boat, banana rides or a Seabob','Scuba diving from the yacht with our own dive instructors, on request','Catering on request','If there is swell, your captain picks the most sheltered route'],
+  extra:(YSPEC[y.id]?'<section><h3 class="as-h">Specifications</h3><div class="as-facts">'+YSPEC[y.id].map(f=>'<div><small>'+f[0]+'</small><b>'+f[1]+'</b></div>').join('')+'</div></section>':'')+(YPLAN[y.id]?'<section class="as-plan"><h3 class="as-h">Layout</h3><figure><img decoding="async" loading="lazy" src="img/y/plan-'+y.id+'.webp" alt="Deck and cabin layout of the '+y.name+'"></figure></section>':''),
   feat:y.f,book:'yacht',boat:y.id,from:t0[1]||undefined,cta:t0[1]==null?'Enquire':'Book this yacht'}});
 
 const PCAT={"img/f-amathunta.webp":"d","img/boats/amathunta-0.webp":"s","img/boats/amathunta-2.webp":"d","img/f-eden18.webp":"s","img/boats/eden18-0.webp":"d","video/boats/eden19.webp":"s","img/f-eden19.webp":"s","img/boats/eden19-2.webp":"s","img/boats/eden19-3.webp":"s","img/f-edennewgen.webp":"s","img/boats/edennewgen-2.webp":"s","img/f-marinello20.webp":"s","img/boats/marinello20-0.webp":"s","img/f-voyager.webp":"s","img/f-aqua25.webp":"s","img/boats/aqua25-3.webp":"s","img/boats/aqua25-1.webp":"d","img/boats/aqua25-2.webp":"d","img/f-tornado.webp":"s","img/boats/tornado-3.webp":"s","img/boats/tornado-2.webp":"d","img/f-marinello22.webp":"s","img/boats/marinello22-2.webp":"d","video/boats/selfdrive.webp":"s","img/boats/marinello26-4.webp":"s","img/boats/marinello26-1.webp":"d","img/boats/marinello26-2.webp":"d","img/f-karnic701.webp":"s","img/boats/karnic701-1.webp":"d","img/boats/karnic701-2.webp":"s","img/boats/karnic701-4.webp":"s","video/boats/karnic702.webp":"s","img/f-karnic702.webp":"s","img/boats/karnic702-1.webp":"s","img/boats/karnic702-2.webp":"s","img/boats/karnic702-3.webp":"d","img/f-karnic742.webp":"s","img/boats/karnic742-0.webp":"s","img/boats/karnic742-3.webp":"d","img/boats/karnic742-4.webp":"i","img/boats/karnic742-2.webp":"i","video/boats/sl800a.webp":"s","img/y/sl800-ig1.webp":"s","video/boats/sl800c.webp":"s","img/y/sl800-ig5.webp":"s","img/y/sl800-ig7.webp":"s","img/y/fruit-1.webp":"d","img/boats/ig-sl800-b.webp":"s","img/y/lc-sl800-1.webp":"s","img/y/lc-sl800-2.webp":"s","img/y/lc-sl800-6.webp":"s","img/y/lc-sl800-4.webp":"s","img/y/lc-sl800-5.webp":"s","img/y/lc-sl800-8.webp":"d","img/y/lc-sl800-9.webp":"i","img/y/sunset-1.webp":"s","img/y/fruit-3.webp":"d","video/boats/nc33.webp":"d","img/y/lc-nc33-0.webp":"s","img/y/lc-nc33-4.webp":"s","img/y/lc-nc33-1.webp":"s","img/boats/nc33-0.webp":"s","img/y/lc-nc33-3.webp":"s","img/y/lc-nc33-9.webp":"d","img/y/lc-nc33-11.webp":"d","img/y/lc-nc33-13.webp":"i","img/y/lc-nc33-10.webp":"i","img/y/lc-nc33-8.webp":"i","img/y/lc-nc33-5.webp":"d","img/y/lc-cs10-3.webp":"s","img/y/cs10-4.webp":"s","img/y/lc-cs10-4.webp":"s","img/boats/cs10-5.webp":"d","img/y/lc-cs10-5.webp":"s","img/y/lc-cs10-6.webp":"d","img/y/lc-cs10-9.webp":"i","img/y/lc-cs10-13.webp":"d","img/y/lc-cs10-16.webp":"i","img/y/lc-cs10-17.webp":"i","img/y/lc-cs10-23.webp":"d","img/y/lc-cs10-24.webp":"d","img/y/lc-cs10-8.webp":"d","img/y/lc-cs10-18.webp":"i","video/loop-akamas.webp":"s","video/boats/rodman.webp":"d","img/y/rodman-ig2.webp":"s","img/y/rodman-ig3.webp":"s","img/y/rodman-ig4.webp":"s","img/boats/rodman-0.webp":"s","img/y/lc-rodman-3.webp":"s","img/y/lc-rodman-1.webp":"s","img/y/lc-rodman-14.webp":"s","img/y/lc-rodman-6.webp":"d","img/y/lc-rodman-7.webp":"d","img/y/lc-rodman-10.webp":"i","img/y/lc-rodman-8.webp":"i","img/y/lc-rodman-13.webp":"d","img/y/lc-rodman-16.webp":"d","img/y/lc-rodman-17.webp":"d","img/y/lc-rodman-9.webp":"i","video/boats/bavaria-boat.webp":"s","img/y/bavaria-ig2.webp":"s","video/boats/bavaria2.webp":"d","img/y/bavaria-cockpit.webp":"d","img/y/bavaria-ig4.webp":"d","img/y/bavaria-ig5.webp":"d","img/y/lc-bavaria-0.webp":"s","img/y/lc-bavaria-1.webp":"s","img/y/lc-bavaria-4.webp":"s","img/y/lc-bavaria-13.webp":"s","img/y/lc-bavaria-2.webp":"d","img/y/lc-bavaria-5.webp":"d","img/y/lc-bavaria-7.webp":"i","img/y/lc-bavaria-8.webp":"i","img/y/lc-bavaria-9.webp":"i","img/y/lc-bavaria-12.webp":"i","img/y/lc-bavaria-16.webp":"d","img/y/lc-bavaria-15.webp":"d","video/boats/searay-voy.webp":"s","img/y/searay-ig1.webp":"s","img/y/searay-ig3.webp":"s","img/y/lc-searay-0.webp":"s","img/boats/searay-0.webp":"s","img/y/lc-searay-1.webp":"s","img/y/lc-searay-2.webp":"s","img/y/lc-searay-3.webp":"s","img/y/lc-searay-5.webp":"s","img/y/lc-searay-4.webp":"s","img/y/lc-searay-7.webp":"d","img/y/lc-searay-13.webp":"d","img/y/lc-searay-17.webp":"i","img/y/lc-searay-18.webp":"i","img/y/lc-searay-8.webp":"i","img/y/lc-searay-16.webp":"i","img/y/lc-searay-15.webp":"d","img/y/lc-searay-22.webp":"d","img/y/lc-searay-24.webp":"d","img/y/lc-searay-25.webp":"d","img/y/lc-searay62-1.webp":"s","img/y/lc-searay62-0.webp":"s","img/y/lc-searay62-2.webp":"s","img/y/lc-searay62-6.webp":"d","img/y/lc-searay62-5.webp":"i","img/y/lc-searay62-7.webp":"i","img/y/lc-searay62-8.webp":"i","img/y/lc-searay62-9.webp":"i","img/y/lc-fairline-0.webp":"s","img/y/lc-fairline-2.webp":"i","img/y/lc-fairline-3.webp":"i","img/y/lc-fairline-1.webp":"i","img/y/lc-fairline-4.webp":"i","img/y/lc-azimut-0.webp":"s","img/y/lc-azimut-2.webp":"d","img/y/lc-azimut-1.webp":"d","img/y/lc-azimut-3.webp":"i","img/y/lc-azimut-4.webp":"i"};
