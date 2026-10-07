@@ -1019,6 +1019,16 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .map-link{display:inline-flex;align-items:center;gap:inherit;color:inherit;text-decoration:underline;text-decoration-color:var(--lagoon);text-underline-offset:4px;min-height:44px}
 .map-link svg{flex:none}
 #coastal-map{scroll-margin-top:100px}
+
+/* Close buttons: just the cross, no circle */
+.as-close,.pv .pv-x,#drClose,#menuClose,button.x{background:transparent!important;box-shadow:none!important;border:0!important;backdrop-filter:none!important}
+.as-close svg,.pv .pv-x svg,#drClose svg,#menuClose svg{width:26px!important;height:26px!important}
+.as-close{color:var(--navy)!important}
+.as-close svg{filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 0 6px rgba(255,255,255,.6))}
+.as-close:hover,.pv .pv-x:hover,#drClose:hover,#menuClose:hover{background:transparent!important;transform:scale(1.12)}
+
+.as-close,.pv .pv-x,button.x{border-radius:10px!important}
+.as-close:focus:not(:focus-visible),.pv .pv-x:focus:not(:focus-visible),button.x:focus:not(:focus-visible){outline:none!important;box-shadow:none!important}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
