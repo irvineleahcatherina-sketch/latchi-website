@@ -990,6 +990,15 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 
 /* iPhone: make every tappable photo register taps */
 .pgal figure,figure[data-go],.ycar,.ycar .ys,.boat .ph,.mx-card,.rel,.as-strip button,.as-media .mf{cursor:pointer;touch-action:manipulation}
+
+/* Safety video larger */
+@media (min-width:921px){.safety{grid-template-columns:1.25fr 1fr}.safety-photo{aspect-ratio:4/4.4;position:sticky;top:96px}}
+/* Gallery photos drift gently */
+@keyframes galDrift{0%{transform:scale(1.02) translate(0,0)}50%{transform:scale(1.09) translate(-1.5%,-1%)}100%{transform:scale(1.05) translate(1.5%,1%)}}
+.gallery figure>img{animation:galDrift 16s ease-in-out infinite alternate;will-change:transform}
+.gallery figure:nth-child(2n)>img{animation-duration:19s;animation-delay:-6s}
+.gallery figure:nth-child(3n)>img{animation-duration:22s;animation-delay:-11s}
+@media (prefers-reduced-motion:reduce){.gallery figure>img{animation:none}}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -2606,7 +2615,7 @@ const ACT={
   inc:['Tuition, all equipment, tanks and weights','PADI materials and certification on courses up to Rescue Diver','Oxygen and first aid on every boat','Professional liability insurance'],
   know:['Bring your certification card and logbook if you already dive','You need to be medically fit to dive','Do the theory online first with PADI eLearning and spend more time in the water'],book:'dive',from:45},
  jet:{title:'Jet ski',eyebrow:'130hp along the Akamas',hero:Object.assign(V('jet'),{ig:1}),
-  gal:[{src:A('jet-ig-1'),ig:1},{src:A('jet-ig-4'),ig:1},{src:A('jet-ig-5'),ig:1},{src:A('act-jet-1')},{src:A('act-jet-2')}],
+  gal:[{src:A('jet-ig-4'),ig:1},{src:A('jet-ig-5'),ig:1},{src:A('act-jet-1')},{src:A('act-jet-2')}],
   lede:"Mornings are best, when you have the sea almost to yourself. Take 30 minutes along the coast, an hour around St George's Island, or two hours exploring the bays.",
   facts:[['From','€90'],['Time','20 min to 2 hrs'],['Riders','Up to 2'],['Engine','130hp']],
   inc:['Life jackets for both riders','VHF radio, so you are always in touch with our base','Safety briefing before you go','Our safety boat on the water all day'],
@@ -2618,13 +2627,13 @@ const ACT={
   inc:['Harness and life jacket','Experienced boat crew','Friends can ride in the boat for €10'],
   know:['Want longer up there? Add an extra 5 minutes','Guests with reduced mobility board from the jetty with our crew'],book:'para',from:75},
  tube:{title:'Banana & tube rides',eyebrow:'Fun for the whole family',hero:Object.assign(V('tube'),{ig:1}),
-  gal:[{src:A('tube-ig-1'),ig:1},{src:A('tube-ig-3'),ig:1},{src:A('act-tube-1')},{src:A('act-tube-2')},{src:A('act-tube-3')}],
+  gal:[{src:A('act-tube-1')},{src:A('act-tube-2')},{src:A('act-tube-3')}],
   lede:"Leave the beach behind for a fast, giggly ride. Bananas run from our Anassa Hotel beach centre, and the family tubes are great for kids and teenagers.",
   facts:[['From','€25 pp'],['Banana','4+ riders'],['Tube','2+ riders']],
   inc:['Life jackets for every rider','An experienced driver from our team'],
   know:['Too young or not your thing? Ride along in the boat and film it','Or add a tube to your own boat hire for €25'],book:'tube',from:25,pp:1},
  ski:{title:'Waterski & wakeboard',eyebrow:'Two ski boats on the Akamas coast',hero:Object.assign(V('ski'),{ig:1}),
-  gal:[{src:'img/ig2/kids-ski-1.webp',ig:1},{src:'img/waterski-a.webp'},{src:A('ski-ig-1'),ig:1},{src:A('act-ski-1')},{src:A('act-ski-2')},{src:A('act-ski-3')},{src:A('act-ski-4')}],
+  gal:[{src:'img/ig2/kids-ski-1.webp',ig:1},{src:'img/waterski-a.webp'},{src:A('act-ski-1')},{src:A('act-ski-2')},{src:A('act-ski-3')},{src:A('act-ski-4')}],
   lede:"On calm mornings the sea is like glass, and you might even spot turtles. Try skis, a monoski or a wakeboard, or book a lesson with our team.",
   facts:[['From','€55'],['Tows','Ski, mono, wakeboard'],['Lessons','€100']],
   inc:['Full equipment and instruction','Life jacket for every skier'],
@@ -2648,7 +2657,7 @@ const ACT={
   inc:['Paddle and life jacket','Quick tips before you set off'],
   know:['Calmest in the morning','Pedalos have a slide for the kids'],book:'sup',from:17},
  sunset:{title:'Sunset trip',eyebrow:'3 hours on the Akamas',hero:{src:'video/act/sunset.webp',v:'video/act/sunset.mp4',ig:1},
-  gal:[{src:'img/y/sunset-1.webp'},{src:'img/y/sunset-2.webp'},{src:'img/act2/sunset-st-10.webp',ig:1},{src:'img/y/fruit-1.webp'}],
+  gal:[{src:'img/y/sunset-1.webp'},{src:'img/y/sunset-2.webp'},{src:'img/y/fruit-1.webp'}],
   lede:"Head out in the late afternoon with local Cypriot wine, swim in a secluded lagoon, and watch the sun drop behind the Akamas on the way home.",
   facts:[['Price','€395 per boat'],['Time','3 hours'],['Crew','Captain & crew']],
   inc:['Your own captain and crew','Local Cypriot wine','A platter of fresh seasonal fruit','Chilled water','Masks, snorkels and fins','Soft towels','A swim stop in a secluded lagoon','Fuel for the route'],
