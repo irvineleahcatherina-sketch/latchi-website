@@ -2706,7 +2706,7 @@ const ACT={
   book:'yacht',boat:'fishing',price:415}
 };
 /* Boat and yacht detail sheets: photos from our WebReserv catalogue, details from WebReserv and latchicharters.com */
-const BIMG={"amathunta":["amathunta-0","amathunta-2"],"eden18":["eden18-0"],"eden19":["eden19-2","eden19-3"],"edenng":["edennewgen-2"],"marinello20":["marinello20-0"],"voyager":[],"aqua25":["aqua25-3","aqua25-1","aqua25-2"],"tornado":["tornado-3","tornado-2"],"marinello22":["marinello22-1","marinello22-2"],"marinello26":["marinello26-4","marinello26-2"],"karnic701":["karnic701-1","karnic701-2","karnic701-4"],"karnic702":["karnic702-1","karnic702-2","karnic702-3"],"karnic742":["karnic742-0","karnic742-3","karnic742-4","karnic742-2"],"sl800":[],"nc33":["nc33-0"],"cs10":["cs10-0","cs10-1","cs10-2","cs10-3","cs10-4","cs10-5","cs10-6","cs10-7","cs10-8"],"rodman":["rodman-0","rodman-1","rodman-2","rodman-3","rodman-4"],"bavaria":["bavaria-0","bavaria-1","bavaria-2","bavaria-4"],"searay":["searay-0","searay-1","searay-2","searay-3","searay-4","searay-5","searay-6","searay-7","searay-8","searay-9"]};
+const BIMG={"amathunta":["amathunta-0","amathunta-2"],"eden18":["eden18-0"],"eden19":["eden19-2","eden19-3"],"edenng":["edennewgen-2"],"marinello20":["marinello20-0"],"voyager":[],"aqua25":["aqua25-3","aqua25-1","aqua25-2"],"tornado":["tornado-3","tornado-2"],"marinello22":["marinello22-1","marinello22-2"],"marinello26":["marinello26-1","marinello26-2"],"karnic701":["karnic701-1","karnic701-2","karnic701-4"],"karnic702":["karnic702-1","karnic702-2","karnic702-3"],"karnic742":["karnic742-0","karnic742-3","karnic742-4","karnic742-2"],"sl800":[],"nc33":["nc33-0"],"cs10":["cs10-0","cs10-1","cs10-2","cs10-3","cs10-4","cs10-5","cs10-6","cs10-7","cs10-8"],"rodman":["rodman-0","rodman-1","rodman-2","rodman-3","rodman-4"],"bavaria":["bavaria-0","bavaria-1","bavaria-2","bavaria-4"],"searay":["searay-0","searay-1","searay-2","searay-3","searay-4","searay-5","searay-6","searay-7","searay-8","searay-9"]};
 const BTXT={
  amathunta:'Our classic 5.3m runabout and the easiest boat in the fleet to drive. Perfect for couples and small families heading out to the Blue Lagoon.',
  eden18:'A nimble 5.4m boat with a 70hp engine and Bluetooth music. Easy to handle and great value for a first day on the water.',
@@ -2734,7 +2734,7 @@ const IGX={sl800:['ig-sl800-b']};
 const IGV=n=>({src:'video/boats/'+n+'.webp',v:'video/boats/'+n+'.mp4',ig:1});
 const BVIDS=[IGV('selfdrive'),IGV('safety')],BVBY={karnic702:[IGV('karnic702')],eden19:[IGV('eden19')],marinello26:[IGV('selfdrive')]},BVLATE={},YVIDS={sl800:[IGV('sl800a'),IGV('sl800c')],nc33:[IGV('nc33')],rodman:[IGV('rodman')],searay:[IGV('searay-voy')],bavaria:[IGV('bavaria-whole'),IGV('bavaria2')]};
 const BI=n=>'img/boats/'+n+'.webp';
-FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IGX[b.id]||[]).map(n=>({src:BI(n),ig:1}));const main={src:'img/'+b.img+'.webp'};
+FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IGX[b.id]||[]).map(n=>({src:BI(n),ig:1}));const BHERO={marinello26:'marinello26-4'};const main=BHERO[b.id]?{src:BI(BHERO[b.id])}:{src:'img/'+b.img+'.webp'};
  ACT['bt_'+b.id]={title:b.name,eyebrow:'Self-drive · '+lenTxt(b)+' · up to '+b.guests,hero:main,gal:(BVBY[b.id]||[]).concat(igi,ims,BVLATE[b.id]||[]),
   lede:BTXT[b.id]||'',facts:[['Length',lenTxt(b)],['Guests','Up to '+b.guests],['Engine',hpTxt(b)||'Ask us']],
   items:[{name:b.name,sub:'Prices for the whole boat, fuel extra',tiers:b.tiers}],
