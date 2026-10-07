@@ -1160,7 +1160,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <div class="card-body">
           <h3>Self-drive boat hire</h3>
           <div class="meta"><span class="chip"><svg><use href="#i-clock"/></svg>By the hour or the day</span><span class="chip"><svg><use href="#i-id"/></svg>21+ · car licence</span><span class="chip"><svg><use href="#i-users"/></svg>Up to 10 guests</span></div>
-          <div class="card-foot"><p class="price">from <b class="tnum">€80</b> / hour</p><span class="btn btn-cta" data-book="boat">Book</span></div>
+          <div class="card-foot"><p class="price">from <b class="tnum">€80</b> / hour</p><span class="btn btn-cta">Book</span></div>
         </div>
       </a>
       <a class="card c-l" href="#charters" id="yacht">
@@ -2027,7 +2027,7 @@ function showAvail(act,dateStr,g){
  $('#arToYacht')?.addEventListener('click',()=>{$('#bb-act').value='yacht';showAvail('yacht',iso(d),g)});
  sec.hidden=false;fitFrames(sec);
  sec.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});setTimeout(()=>$('#arTitle').focus({preventScroll:true}),400)}
-$('#bookbar').addEventListener('submit',e=>{e.preventDefault();showAvail($('#bb-act').value,$('#bb-date').value,guests)});
+$('#bookbar').addEventListener('submit',e=>{e.preventDefault();if($('#bb-act').value==='boat'){location.hash='#boat-hire';return}showAvail($('#bb-act').value,$('#bb-date').value,guests)});
 $('#arClose').addEventListener('click',()=>{$('#availRes').hidden=true;$('#bookbar').scrollIntoView({block:'center'})});
 $('#arChange').addEventListener('click',()=>{$('#bookbar').scrollIntoView({block:'center'});setTimeout(()=>$('#bb-act').focus(),300)});
 setTimeout(()=>fitFrames(document),0);addEventListener('load',()=>fitFrames(document));
