@@ -999,6 +999,12 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .gallery figure:nth-child(2n)>img{animation-duration:19s;animation-delay:-6s}
 .gallery figure:nth-child(3n)>img{animation-duration:22s;animation-delay:-11s}
 @media (prefers-reduced-motion:reduce){.gallery figure>img{animation:none}}
+
+/* Arrows only, no circles */
+.as-arr,.yc-arr{background:transparent!important;box-shadow:none!important;color:#fff!important}
+.as-arr svg,.yc-arr svg{width:36px!important;height:36px!important;filter:drop-shadow(0 1px 3px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(0,0,0,.3))}
+.as-arr svg path,.yc-arr svg path{stroke-width:2.6}
+.as-arr:hover,.yc-arr:hover{background:transparent!important;transform:scale(1.15)}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
