@@ -1057,6 +1057,12 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 :root[data-theme="dark"] #drBody .slot-btn[aria-pressed="true"]{color:var(--on-navy,#fff)!important}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #drBody .slot-btn[aria-pressed="true"]{color:var(--on-navy,#fff)!important}}
 @media (prefers-reduced-motion:reduce){#drBody .opt,#drBody .slot-btn{transform:none!important}}
+
+/* Dropdown lists readable in night mode (Windows draws the option list itself) */
+select option,select optgroup{background-color:#FFFFFF;color:#0C2B40}
+:root[data-theme="dark"] select{color-scheme:dark}
+:root[data-theme="dark"] select option,:root[data-theme="dark"] select optgroup{background-color:#10283A;color:#F2F6F8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) select{color-scheme:dark}:root:not([data-theme="light"]) select option,:root:not([data-theme="light"]) select optgroup{background-color:#10283A;color:#F2F6F8}}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
