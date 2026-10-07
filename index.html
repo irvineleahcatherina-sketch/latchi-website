@@ -913,6 +913,13 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .as-media .mf{cursor:zoom-in}
 .pv{z-index:120!important}
 .pgal video.pg-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 78%}
+.as-mtitle{display:none}
+@media (max-width:860px){
+ .as-media .as-cap,.as-media .as-ig,.as-media::after{display:none!important}
+ .as-mtitle{display:block}
+ .as-mtitle .eyebrow{margin:0 0 6px;color:var(--lagoon-ink)}
+ .as-mtitle h2{font:400 clamp(30px,8vw,40px)/1.05 var(--f-display);color:var(--navy);margin:0}
+}
 /* Fill every frame: no bands */
 .locmap{aspect-ratio:640/420;height:auto!important;min-height:0!important;align-self:center}
 .amb::before{display:none!important}
@@ -2672,7 +2679,7 @@ function sizeMedia(el){const nw=el.naturalWidth||el.videoWidth||el._pw,nh=el.nat
 function fitMedia(){if(!media._ar)return;const[nw,nh]=media._ar,ar=nw/nh;
  if(innerWidth>860){media.style.width='';media.style.height='';const pad=24,cap=media.querySelector('.as-cap'),capH=(cap?cap.offsetHeight:120)+pad*2,cw=media.clientWidth-pad*2,ch=media.clientHeight-capH-pad;let W=cw,H=W/ar;if(H>ch){H=ch;W=H*ar}
   media.style.setProperty('--pw',Math.round(W)+'px');media.style.setProperty('--ph',Math.round(H)+'px');media.style.setProperty('--pt',Math.round(pad+Math.max(0,(ch-H)/2))+'px');return}
- const W=Math.round(Math.min(sheet.clientWidth||innerWidth,innerHeight*.72*ar));media.style.width=W+'px';media.style.height=Math.round(W/ar)+'px'}
+ const W=Math.round(Math.min(sheet.clientWidth||innerWidth,innerHeight*.9*ar));media.style.width=W+'px';media.style.height=Math.round(W/ar)+'px'}
 addEventListener('resize',()=>{if(!sheet.hidden)fitMedia()});media.addEventListener('click',e=>{if(e.target.closest('a,button'))return;const L=(media._all||[]).map((m,j)=>({src:m.src,alt:'',j}));if(!L.length)return;const k=Math.max(0,L.findIndex(x=>x.j===(media._i||0)));PV.open(L,k)});new ResizeObserver(()=>{if(!sheet.hidden)fitMedia()}).observe(media);
 function showMedia(m,alt,first){const old=[...media.querySelectorAll('.mf')];let el;const f=document.createElement('div');f.className='mf';f.style.setProperty('--amb','url("'+m.src+'")');
  if(m.v&&!reduce){el=document.createElement('video');el.muted=true;el.loop=true;el.playsInline=true;el.autoplay=true;el.poster=m.src;el.src=m.v;el.setAttribute('aria-label',alt);el.play&&el.play().catch(()=>{})}
@@ -2757,7 +2764,7 @@ function fill(k,a,card){const title=/^(bt|yt)_/.test(k)?a.title:card&&card.query
 function rectInset(r){const W=innerWidth,H=innerHeight;return `inset(${Math.max(0,r.top)}px ${Math.max(0,W-r.right)}px ${Math.max(0,H-r.bottom)}px ${Math.max(0,r.left)}px round 18px)`}
 function play(from,to,dur,done){if(anim)anim.cancel();if(reduce||!sheet.animate){sheet.style.clipPath=to;done&&done();return}
  anim=sheet.animate([{clipPath:from},{clipPath:to}],{duration:dur,easing:'cubic-bezier(.65,0,.25,1)',fill:'forwards'});anim.onfinish=()=>{sheet.style.clipPath=to;anim.cancel();anim=null;done&&done()}}
-function openAct(k,card){const a=ACT[k];if(!a)return;open=k;lastCard=card;fill(k,a,card);
+function openAct(k,card){const a=ACT[k];if(!a)return;open=k;lastCard=card;fill(k,a,card);{const c=media.querySelector('.as-cap'),inn=body.querySelector('.as-in');if(c&&inn&&!inn.querySelector('.as-mtitle')){const d=document.createElement('div');d.className='as-mtitle';d.innerHTML=c.innerHTML.replace(/ id="asTitle"/,'');inn.prepend(d)}}
  const from=card?rectInset(card.getBoundingClientRect()):'inset(40% 40% 40% 40% round 18px)';
  sheet.classList.remove('ready');sheet.hidden=false;back.hidden=false;sheet.scrollTop=0;body.scrollTop=0;document.documentElement.style.overflow='hidden';
  requestAnimationFrame(()=>back.classList.add('on'));
