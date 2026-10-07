@@ -908,7 +908,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 .as-media .mf::before{display:none!important}
 .as-media img,.as-media video{object-fit:contain!important;width:100%;height:100%}
 .as-media .kb{animation:none!important}
-.as-body{overflow:visible!important}
+@media (max-width:860px){.as-body{overflow:visible!important}}
 .as-strip{margin-inline:0!important;padding-inline:0!important}
 .as-treat figure{aspect-ratio:auto}
 .as-treat img{height:auto;object-fit:contain}
@@ -1614,7 +1614,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
           <h2 id="h-rel">You might also like</h2>
           <div class="related">
             <a class="rel" href="#plan"><img decoding="async" src="img/blue-lagoon.webp" alt="" loading="lazy"><div><b>Blue Lagoon route</b><span>Our suggested day, stop by stop</span></div></a>
-            <a class="rel" href="#charters"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip to the Akamas</b><span>3 hours with local wine · €395</span></div></a>
+            <a class="rel" href="#sunset" data-open="sunset"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip to the Akamas</b><span>3 hours with local wine · €395</span></div></a>
             <a class="rel" href="#diving"><img decoding="async" src="img/ig-wreck.webp" alt="" loading="lazy"><div><b>Zenobia wreck dives</b><span>Two dives with transfers · from €205</span></div></a>
           </div>
         </section>
@@ -1649,7 +1649,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><span aria-current="page">Yacht charters</span></nav>
     <div class="pgal" aria-label="Photo gallery">
       <figure data-go="yt_searay"><span class="pg-tag">Sea Ray 52 · Voyager<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/searay-ig1.webp" alt="Sea Ray 52 Voyager at anchor under the Akamas cliffs, guests swimming off the stern"></figure>
-      <figure data-go="yt_nc33"><span class="pg-tag">Jeanneau NC33 · Princess Leah<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/nc33-ig1.webp" alt="Jeanneau NC33 Princess Leah in a quiet Akamas bay"></figure>
+      <figure data-go="yt_nc33"><span class="pg-tag">Jeanneau NC33 · Princess Leah<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/nc33-1.webp" alt="Jeanneau NC33 Princess Leah under way off the Akamas"></figure>
       <figure data-go="yt_bavaria"><span class="pg-tag">Bavaria C42 · Breaking Wind<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/bavaria-ig1.webp" alt="Bavaria C42 Breaking Wind under full sail"><button class="all" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>All 7 photos</span></button></figure>
       <figure data-go="yt_searay"><span class="pg-tag">Sea Ray 52 · Voyager<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/searay52-1.webp" alt="Sea Ray 52 Voyager at anchor off the Akamas coast" loading="lazy"></figure>
       <figure data-go="yt_azimut"><span class="pg-tag">Azimut 68 · Florentina<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/azimut68-1.webp" alt="Azimut 68 at sea" loading="lazy"></figure>
@@ -1713,8 +1713,8 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <section class="p-sec" aria-labelledby="h-yrel">
           <h2 id="h-yrel">Shorter trips</h2>
           <div class="related">
-            <a class="rel" href="#charters" data-book="yacht" data-boat="sunset"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip to the Akamas</b><span>3 hours with local wine · €395</span></div></a>
-            <a class="rel" href="#charters" data-book="yacht" data-boat="fishing"><img decoding="async" src="img/y/rodman38-5.webp" alt="" loading="lazy"><div><b>Private fishing trip</b><span>3 hours, Northern Akamas · €415</span></div></a>
+            <a class="rel" href="#sunset" data-open="sunset"><img decoding="async" src="img/y/sunset-1.webp" alt="" loading="lazy"><div><b>Sunset trip to the Akamas</b><span>3 hours with local wine · €395</span></div></a>
+            <a class="rel" href="#fishing" data-open="fishing"><img decoding="async" src="video/loop-akamas.webp" alt="" loading="lazy"><div><b>Private fishing trip</b><span>3 hours, Northern Akamas · €415</span></div></a>
             <a class="rel" href="#boat-hire"><img decoding="async" src="img/aerial-boat.webp" alt="" loading="lazy"><div><b>Drive yourself</b><span>Self-drive boats from €80</span></div></a>
           </div>
         </section>
@@ -1971,9 +1971,9 @@ const YACHTS=[
  {id:'fairline',name:'Fairline Squadron 67',nick:'Ocean Dream',len:'20m',guests:20,cabins:4,eng:'2 × 1000hp',img:['fairline67-1','fairline67-3','fairline67-5'],blurb:'British flagship with four cabins and a master suite with a Jacuzzi bathroom.',tiers:[['Full day',null]]},
  {id:'azimut',name:'Azimut 68',nick:'Florentina',len:'21.7m',guests:22,cabins:4,eng:'2 × 1070hp',img:['azimut68-1','azimut68-2','azimut68-4'],blurb:'Italian elegance, a big flybridge and al fresco dining on the aft deck.',tiers:[['Full day',null]]}
 ];
-const YIG={sl800:['sl800-ig1','sl800-ig3','sl800-ig4','sl800-ig5','sl800-ig6','sl800-ig7','sl800-ig2'],nc33:['nc33-ig1','nc33-ig2','nc33-ig3'],cs10:['cs10-ig1'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig1','bavaria-ig2','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig3','searay-ig4']};
+const YIG={sl800:['sl800-ig1','sl800-ig3','sl800-ig4','sl800-ig5','sl800-ig6','sl800-ig7','sl800-ig2'],cs10:['cs10-ig1'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig1','bavaria-ig2','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig3']};
 YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
-const YF={sl800:['cabin','wc','shower','ac','sun','swim'],nc33:['cabin','wc','ac','galley','sun','swim'],cs10:['cabin','galley','bar','music','sun','swim'],rodman:['fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['sail','cabin','galley','sun'],searay:['fly','cabin','ensuite','ac','galley','music','swim'],searay62:['cabin','ensuite','ac','galley','sun','swim'],fairline:['fly','cabin','ensuite','jacuzzi','sun'],azimut:['fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
+const YF={sl800:['bt','cabin','wc','shower','ac','sun','swim'],nc33:['bt','cabin','wc','ac','galley','sun','swim'],cs10:['bt','cabin','galley','bar','sun','swim'],rodman:['bt','fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['bt','sail','cabin','galley','sun'],searay:['bt','fly','cabin','ensuite','ac','galley','swim'],searay62:['bt','cabin','ensuite','ac','galley','sun','swim'],fairline:['bt','fly','cabin','ensuite','jacuzzi','sun'],azimut:['bt','fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
 YACHTS.forEach(y=>{y.f=YF[y.id]||[]});
 function renderYachts(list){list=list||YACHTS;
   if(!list.length){$('#yachtCards').innerHTML='<p class="fempty">No yacht has all of that. Try removing a filter.</p>';return}
@@ -2010,7 +2010,7 @@ const arEsc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 const AR_IMG={try:'dive/dive-dsd2',bubble:'dive/dive-c_bubble',dsd:'dive/dive-c_dsd',seal:'dive/dive-c_seal',sd:'dive/dive-c_scuba',ow:'dive/dive-c_ow',sdup:'dive/dive-owfun',owref:'dive/dive-group',review:'dive/dive-c_review',adv:'dive/dive-c_fun',aow:'dive/dive-c_aow',efr:'dive/dive-c_efr',rescue:'dive/dive-c_rescue',o2:'dive/dive-smiles',spec:'dive/dive-c_spec',master:'dive/dive-c_master',dm:'dive/dive-c_dm',idc:'dive/dive-c_idc',two:'dive/dive-boat',zen:'dive/dive-c_zen',night:'dive/dive-c_night',pack:'dive/dive-turtle',diy:'dive/dive-stride',
  jet:'act/act-jet-1',jetd:'act/act-jet-2',para:'act2/para-3',banana:'act/act-tube-1',tube:'act/act-tube-3',ski:'act/act-ski-1',sup:'act/act-sup-1',fsup:'act/act-sup-2',canoe:'act/act-sup-4',pedalo:'act/act-sup-5',
  l1:'act/act-rya-1',l2:'rya-pb2',icc:'speedboat-run',s1:'rya-s1',s2:'rya-s2',s3:'rya-s3',sea:'rya-sea',spin:'act/act-rya-4',y1:'rya-youth',y2:'rya-s2b',y3:'rya-youth2',y4:'act/act-rya-2',own:'f-karnic800',cylic:'harbour-boats',
- sunset:'y/sunset-1',fishing:'act/coast-ig-1'};
+ sunset:'y/sunset-1',fishing:'y/sunset-2'};
 const AR_DET={dive:'dive',jet:'jet',para:'para',tube:'tube',ski:'ski',sup:'sup',rya:'rya'};
 function arState(id,d){if(avail(d)==='full')return 'full';let h=0;const t=id+d.getDate()+'-'+d.getMonth();for(const c of t)h=(h*31+c.charCodeAt(0))%997;return h%9===0?'full':h%4===0?'lo':'hi'}
 function showAvail(act,dateStr,g){
@@ -2018,7 +2018,7 @@ function showAvail(act,dateStr,g){
  let list=[];
  if(act==='boat')list=FLEET.filter(b=>b.guests>=g).map(b=>({id:b.id,name:b.name,sub:`${lenTxt(b)} · up to ${b.guests} · ${b.board}`,img:'img/'+b.img+'.webp',from:b.from,unit:'',det:'bt_'+b.id}));
  else if(act==='yacht'){list=YACHTS.filter(y=>y.guests>=g).map(y=>({id:y.id,name:`${y.name} · ${y.nick}`,sub:`${y.len} · up to ${y.guests} · captain and crew`,img:'img/y/'+y.img[0]+'.webp',from:y.tiers[0][1],unit:'',det:'yt_'+y.id}));
-  ITEMS.yacht.filter(x=>x.id==='sunset'||x.id==='fishing').forEach(x=>list.push({id:x.id,name:x.name,sub:x.sub,img:'img/'+AR_IMG[x.id]+'.webp',from:x.tiers[0][1],unit:'',det:x.id==='sunset'?'sunset':null}))}
+  ITEMS.yacht.filter(x=>x.id==='sunset'||x.id==='fishing').forEach(x=>list.push({id:x.id,name:x.name,sub:x.sub,img:'img/'+AR_IMG[x.id]+'.webp',from:x.tiers[0][1],unit:'',det:x.id}))}
  else list=(ITEMS[act]||[]).filter(x=>x.id!=='private').map(x=>{const ps=x.tiers.map(t=>t[1]).filter(v=>v!=null);return{id:x.id,name:x.name,sub:x.sub,img:'img/'+(AR_IMG[x.id]||'hero')+'.webp',from:ps.length?Math.min(...ps):null,unit:x.pp?' pp':'',det:AR_DET[act]||null}});
  list.forEach(x=>x.st=arState(x.id,d));
  const ok=list.filter(x=>x.st!=='full');list.sort((a,b)=>(a.st==='full')-(b.st==='full'));
@@ -2170,6 +2170,7 @@ function closeBooking(){drawer.hidden=true;scrim.hidden=true;document.body.style
 $('#drClose').addEventListener('click',closeBooking);scrim.addEventListener('click',closeBooking);
 addEventListener('keydown',e=>{if(e.key==='Escape'){if(!drawer.hidden)closeBooking();else if(!sheet.hidden)closeMenu()}
   if(e.key==='Tab'&&!drawer.hidden){const f=$$('button:not([disabled]):not([hidden]),input,select,a[href],textarea',drawer).filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+document.addEventListener('click',e=>{const o=e.target.closest('[data-open]');if(o&&window.openAct){e.preventDefault();openAct(o.dataset.open,null)}},true);
 document.addEventListener('click',e=>{const t=e.target.closest('[data-book]');if(!t)return;e.preventDefault();const a=t.dataset.book||'boat';openBooking({act:a,boat:t.dataset.boat,guests,addon:t.dataset.addon})});
 
 // Simulated availability: deterministic per date (live API in production)
@@ -2637,11 +2638,18 @@ const ACT={
   gal:[{src:'img/y/sunset-1.webp'},{src:'img/y/sunset-2.webp'},{src:'img/act2/sunset-st-10.webp',ig:1},{src:'img/y/fruit-1.webp'}],
   lede:"Head out in the late afternoon with local Cypriot wine, swim in a secluded lagoon, and watch the sun drop behind the Akamas on the way home.",
   facts:[['Price','€395 per boat'],['Time','3 hours'],['Crew','Captain & crew']],
-  inc:['Captain and crew','Local Cypriot wine','Snorkels, water and fruit'],
-  know:['Ask us about catering when you book'],book:'yacht',boat:'sunset',price:395}
+  inc:['Your own captain and crew','Local Cypriot wine','A platter of fresh seasonal fruit','Chilled water','Masks, snorkels and fins','Soft towels','A swim stop in a secluded lagoon','Fuel for the route'],
+  know:['Leaves in the late afternoon, timed to the sunset','Private for your group, priced per boat','Ask us about a cheese board, drinks or catering when you book','If there is swell, your captain picks the most sheltered route'],book:'yacht',boat:'sunset',price:395},
+ fishing:{title:'Private fishing trip',eyebrow:'3 hours, Northern Akamas',hero:{src:'video/loop-akamas.webp',v:'video/loop-akamas.mp4'},
+  gal:[{src:'img/y/sunset-2.webp'},{src:'img/aerial-boat-3.webp'}],
+  lede:"Head out early with one of our local fishermen, while the sea is calm and the Akamas is still quiet. He shows you how we fish here, trawling along the coast and bottom fishing over the reefs, and knows where the fish are biting that week. There is time for a swim in a lagoon before you head back.",
+  facts:[['Price','€415 per boat'],['Time','3 hours, early morning'],['Group','Up to 8']],
+  inc:['Local fisherman as your guide','All rods, tackle and bait','Fuel, no extra costs','Breakfast on board'],
+  know:['Best in the early morning, when the sea is calm','Bring a hat, sun cream and a camera','Free cancellation up to 24 hours before'],
+  book:'yacht',boat:'fishing',price:415}
 };
 /* Boat and yacht detail sheets: photos from our WebReserv catalogue, details from WebReserv and latchicharters.com */
-const BIMG={"amathunta":["amathunta-0","amathunta-2"],"eden18":["eden18-0"],"eden19":["eden19-2","eden19-3","igc-eden19"],"edenng":["edennewgen-2","edennewgen-1","igc-edenng"],"marinello20":["marinello20-0","marinello20-2"],"voyager":[],"aqua25":["aqua25-3","aqua25-1","aqua25-2","igc-aqua25"],"tornado":["tornado-3","tornado-2","igc-tornado"],"marinello22":["marinello22-1","marinello22-2","marinello22-3"],"marinello26":["marinello26-4","marinello26-2","marinello26-1"],"karnic701":["karnic701-1","karnic701-2","karnic701-4","karnic701-3","igc-karnic701"],"karnic702":["karnic702-1","karnic702-2","karnic702-3"],"karnic742":["karnic742-0","igc-karnic742","karnic742-3","karnic742-4","karnic742-2"],"sl800":[],"nc33":["nc33-0"],"cs10":["cs10-0","cs10-1","cs10-2","cs10-3","cs10-4","cs10-5","cs10-6","cs10-7","cs10-8"],"rodman":["rodman-0","rodman-1","rodman-2","rodman-3","rodman-4"],"bavaria":["bavaria-0","bavaria-1","bavaria-2","bavaria-4"],"searay":["igc-searay-a","searay-0","searay-1","searay-2","searay-3","searay-4","searay-5","searay-6","searay-7","searay-8","searay-9"]};
+const BIMG={"amathunta":["amathunta-0","amathunta-2"],"eden18":["eden18-0"],"eden19":["eden19-2","eden19-3"],"edenng":["edennewgen-2"],"marinello20":["marinello20-0"],"voyager":[],"aqua25":["aqua25-3","aqua25-1","aqua25-2"],"tornado":["tornado-3","tornado-2"],"marinello22":["marinello22-1","marinello22-2"],"marinello26":["marinello26-4","marinello26-2"],"karnic701":["karnic701-1","karnic701-2","karnic701-4"],"karnic702":["karnic702-1","karnic702-2","karnic702-3"],"karnic742":["karnic742-0","karnic742-3","karnic742-4","karnic742-2"],"sl800":[],"nc33":["nc33-0"],"cs10":["cs10-0","cs10-1","cs10-2","cs10-3","cs10-4","cs10-5","cs10-6","cs10-7","cs10-8"],"rodman":["rodman-0","rodman-1","rodman-2","rodman-3","rodman-4"],"bavaria":["bavaria-0","bavaria-1","bavaria-2","bavaria-4"],"searay":["searay-0","searay-1","searay-2","searay-3","searay-4","searay-5","searay-6","searay-7","searay-8","searay-9"]};
 const BTXT={
  amathunta:'Our classic 5.3m runabout and the easiest boat in the fleet to drive. Perfect for couples and small families heading out to the Blue Lagoon.',
  eden18:'A nimble 5.4m boat with a 70hp engine and Bluetooth music. Easy to handle and great value for a first day on the water.',
