@@ -1056,11 +1056,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 
 .gallery{grid-auto-flow:row dense}
 /* Nothing cropped: frames follow the photo, no zoom on hover */
-.acts{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-.acts>.card{grid-column:auto!important}
-@media (max-width:900px){.acts{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-@media (max-width:620px){.acts{grid-template-columns:minmax(0,1fr)!important}}
-.card:hover img,.card:hover video,.gallery figure:hover img,.boat:hover .ph>img,.pgal figure:hover img,.dv-card:hover .dv-img img{transform:none!important}
+.gallery figure:hover img,.boat:hover .ph>img,.pgal figure:hover img,.dv-card:hover .dv-img img{transform:none!important}
 .gallery figure>img,.gallery figure>video{animation:none!important}
 
 
@@ -1735,7 +1731,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
 
       <aside aria-label="Book a boat">
         <form class="bpanel" id="bpanel">
-          <p class="from"><b class="tnum" id="bpFrom">€170</b> <span id="bpBoatName">Amathunta, 4 hours</span></p>
+          <p class="from"><b class="tnum" id="bpFrom">from €80</b> <span id="bpBoatName">per hour, 13 boats to choose from</span></p>
           <div class="fgrid">
             <div class="fld"><label for="bp-date">Date</label><input type="date" id="bp-date"></div>
             <div class="fld"><label for="bp-g">Guests</label><select id="bp-g"></select></div>
@@ -1761,13 +1757,13 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><span aria-current="page">Yacht charters</span></nav>
     <div class="pgal" aria-label="Photo gallery">
-      <figure data-go="yt_searay"><span class="pg-tag">Sea Ray 52 · Voyager<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/searay-ig1.webp" alt="Sea Ray 52 Voyager at anchor under the Akamas cliffs, guests swimming off the stern"></figure>
+      <figure data-go="yt_searay"><span class="pg-tag">Sea Ray 52 · Voyager<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/lc-searay-3.webp" alt="Sea Ray 52 Voyager in a turquoise cove on the Akamas coast"></figure>
       <figure data-go="yt_nc33"><span class="pg-tag">Jeanneau NC33 · Princess Leah<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/nc33-1.webp" alt="Jeanneau NC33 Princess Leah under way off the Akamas"></figure>
-      <figure data-go="yt_bavaria"><span class="pg-tag">Bavaria C42 · Breaking Wind<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/bavaria-ig1.webp" alt="Bavaria C42 Breaking Wind under full sail"><button class="all" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>All 7 photos</span></button></figure>
+      <figure data-go="yt_bavaria"><span class="pg-tag">Bavaria C42 · Breaking Wind<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" loading="lazy" src="img/y/lc-bavaria-4.webp" alt="Bavaria C42 Breaking Wind under full sail"><button class="all" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>All 7 photos</span></button></figure>
       <figure data-go="yt_searay"><span class="pg-tag">Sea Ray 52 · Voyager<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/searay52-1.webp" alt="Sea Ray 52 Voyager at anchor off the Akamas coast" loading="lazy"></figure>
       <figure data-go="yt_azimut"><span class="pg-tag">Azimut 68 · Florentina<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/azimut68-1.webp" alt="Azimut 68 at sea" loading="lazy"></figure>
       <figure data-go="yt_fairline"><span class="pg-tag">Fairline 67 · Ocean Dream<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/fairline67-1.webp" alt="Fairline 67 off the Akamas" loading="lazy"></figure>
-      <figure data-go="yt_cs10"><span class="pg-tag">Karnic CS10 · Blue Lagoon Flyer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/cs10-3.webp" alt="Karnic CS10 Blue Lagoon Flyer from above" loading="lazy"></figure>
+      <figure data-go="yt_cs10"><span class="pg-tag">Karnic CS10 · Blue Lagoon Flyer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><img decoding="async" src="img/y/lc-cs10-3.webp" alt="Karnic CS10 Blue Lagoon Flyer at anchor over turquoise water" loading="lazy"></figure>
     </div>
     <div class="pgal-n" aria-hidden="true"></div>
     <div class="p-layout" style="grid-template-columns:minmax(0,1fr)">
@@ -1969,12 +1965,12 @@ function aspectGrid(box,minH){if(!box)return;box.style.rowGap='0px';box.style.gr
   it._ag=set;
   if(m.tagName==='VIDEO'){if(m._pw)set();else if(m.poster){const pi=new Image();pi.onload=()=>{m._pw=pi.naturalWidth;m._ph=pi.naturalHeight;set()};pi.src=m.poster}m.addEventListener('loadedmetadata',set,{once:true})}
   else{m.complete&&m.naturalWidth?set():m.addEventListener('load',set,{once:true})}})}
-function aspectAll(){aspectGrid(document.querySelector('.acts'),200);document.querySelectorAll('.gallery').forEach(g=>aspectGrid(g,0))}
+function aspectAll(){document.querySelectorAll('.gallery').forEach(g=>aspectGrid(g,0))}
 addEventListener('DOMContentLoaded',aspectAll);addEventListener('load',aspectAll);
-{let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>document.querySelectorAll('.acts>*,.gallery>*').forEach(i=>i._ag&&i._ag()),150)})}
+{let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>document.querySelectorAll('.gallery>*').forEach(i=>i._ag&&i._ag()),150)})}
 /* Fit every framed photo whole, on a soft blur of itself */
 function fitFrames(root){root=root||document;
- [['.card>img,.card>video',el=>el.parentElement],['.rel>img',null],['.as-strip button>img',null],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
+ [['.rel>img',null],['.as-strip button>img',null],['.gallery figure>img,.gallery figure>video',null],['.safety-photo>img,.safety-photo>video',null],['.as-treat figure>img',null],['.boat .ph>img',null],['.ycar .ys>img',null],['.ar-ph>img',null],['.dv-img img',null]]
  .forEach(([sel,fr])=>root.querySelectorAll(sel).forEach(el=>{if(el._fit)return;const f=fr?fr(el):el.parentElement;if(getComputedStyle(f).position==='static')f.style.position='relative';fitImg(el,f,.01)}))}
 
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
@@ -2127,7 +2123,7 @@ $('#yachtCards').addEventListener('click',e=>{const b=e.target.closest('.yc-arr'
 ITEMS.yacht=[...YACHTS.map(y=>({id:y.id,name:`${y.name} · ${y.nick}`,sub:`${y.len} · up to ${y.guests} · captain & crew included`,guests:y.guests,tiers:y.tiers})),
   {id:'sunset',name:'Sunset trip to the Akamas',sub:'Local Cypriot wine, swim in a secluded lagoon',tiers:[['3 hours',395,3]]},
   {id:'fishing',name:'Private fishing trip',sub:'Northern Akamas, trawling and bottom line kit',tiers:[['3 hours',415,3]]}];
-makeFilter($('#yachtFilter'),{items:()=>YACHTS,price:y=>y.tiers[0][1],size:y=>parseFloat(y.len),render:renderYachts,noun:'yachts',guests:[0,6,10,12,14,20],budgetLabel:'Budget for 2 hours',budget:[0,500,800,1500],feats:['fly','ac','ensuite','galley','swim','sail','jacuzzi']});
+makeFilter($('#yachtFilter'),{items:()=>YACHTS,price:y=>y.tiers[0][1],size:y=>parseFloat(y.len),render:renderYachts,noun:'yachts',guests:[0,6,10,12,14,20],budgetLabel:'Budget for 2 hours',budget:[0,500,800,1500],feats:['fly','ac','ensuite','galley','swim','sail']});
 
 
 
@@ -2185,14 +2181,15 @@ setTimeout(()=>fitFrames(document),0);addEventListener('load',()=>fitFrames(docu
 
 /* ---- Boat panel ---- */
 const bpBoat=$('#bp-boat'),bpG=$('#bp-g'),bpDur=$('#bp-dur');
-bpBoat.innerHTML=FLEET.map(b=>`<option value="${b.id}">${b.name} · up to ${b.guests}</option>`).join('');
+bpBoat.innerHTML='<option value="" selected>Choose a boat</option>'+FLEET.map(b=>`<option value="${b.id}">${b.name} · up to ${b.guests}</option>`).join('');
 bpG.innerHTML=Array.from({length:10},(_,i)=>`<option${i===3?' selected':''}>${i+1}</option>`).join('');
-function syncPanel(){const b=FLEET.find(x=>x.id===bpBoat.value);const di=+bpDur.value||0;bpDur.innerHTML=b.tiers.map((t,i)=>`<option value="${i}"${i===di?' selected':''}>${t[0]} · €${t[1]}</option>`).join('');
+function syncPanel(){const b=FLEET.find(x=>x.id===bpBoat.value);const di=+bpDur.value||0;
+  if(!b){const lo=Math.min(...FLEET.map(x=>x.p[0]));bpDur.innerHTML=DUR.map((d,i)=>`<option value="${i}"${i===di?' selected':''}>${d[0]}</option>`).join('');$('#bpFrom').textContent='from €'+lo;$('#bpBoatName').textContent='per hour, 13 boats to choose from';$('#bpExcess').textContent='€350 or €850 held on card';$('#abPrice b').textContent='€'+lo;return}bpDur.innerHTML=b.tiers.map((t,i)=>`<option value="${i}"${i===di?' selected':''}>${t[0]} · €${t[1]}</option>`).join('');
   $('#bpFrom').textContent='€'+b.p[di];$('#bpBoatName').textContent=b.name+', '+DUR[di][0].toLowerCase();$('#bpExcess').textContent='€'+b.excess+' held on card';$('#abPrice b').textContent='€'+b.from}
 bpBoat.addEventListener('change',syncPanel);bpDur.addEventListener('change',syncPanel);
-bpG.addEventListener('change',()=>{const g=+bpG.value;const b=FLEET.find(x=>x.id===bpBoat.value);if(g>b.guests){const fit=FLEET.find(x=>x.guests>=g);bpBoat.value=fit.id;toast(`${b.name} takes ${b.guests}. Switched to ${fit.name}.`)}syncPanel()});
+bpG.addEventListener('change',()=>{const g=+bpG.value;const b=FLEET.find(x=>x.id===bpBoat.value);if(b&&g>b.guests){const fit=FLEET.find(x=>x.guests>=g);bpBoat.value=fit.id;toast(`${b.name} takes ${b.guests}. Switched to ${fit.name}.`)}syncPanel()});
 bpDur.innerHTML='<option value="2">4 hours</option>';syncPanel();
-$('#bpanel').addEventListener('submit',e=>{e.preventDefault();openBooking({act:'boat',boat:bpBoat.value,tier:+bpDur.value,date:$('#bp-date').value,guests:+bpG.value})});
+$('#bpanel').addEventListener('submit',e=>{e.preventDefault();openBooking({act:'boat',boat:bpBoat.value||undefined,tier:+bpDur.value,date:$('#bp-date').value,guests:+bpG.value})});
 
 /* ---- Router ---- */
 function route(){
@@ -2303,9 +2300,9 @@ const drawer=$('#drawer'),scrim=$('#scrim');
 function pickItem(act,g,id){const L=itemsFor(act);return (id&&L.find(x=>x.id===id))||L.find(x=>!x.guests||x.guests>=g)||L[0]}
 function openBooking(o={}){
   lastFocus=document.activeElement;
-  const act=o.act||'boat',g=o.guests||window.__bbGuests||2;const it=pickItem(act,g,o.boat);
+  const act=o.act||'boat',g=o.guests||window.__bbGuests||2;const it=pickItem(act,g,o.boat);const noPick=act==='boat'&&!o.boat;
   const pd=o.date||($('#bb-date')&&$('#bb-date').value!==iso(tomorrow)?$('#bb-date').value:null);const d=pd?new Date(pd+'T12:00'):tomorrow;
-  B={act,item:it.id,tier:o.tier!=null?o.tier:(act==='boat'?2:0),date:d,slot:null,guests:g,addons:{},name:'',email:'',phone:'',pay:'apple',dep:false,month:new Date(d.getFullYear(),d.getMonth(),1)};
+  B={act,item:noPick?null:it.id,tier:o.tier!=null?o.tier:(act==='boat'?2:0),date:d,slot:null,guests:g,addons:{},name:'',email:'',phone:'',pay:'apple',dep:false,month:new Date(d.getFullYear(),d.getMonth(),1)};
   if(o.addon)B.addons[o.addon]=true;step=1;drawer.hidden=false;scrim.hidden=false;document.body.style.overflow='hidden';render();$('#drClose').focus();
 }
 function closeBooking(){drawer.hidden=true;scrim.hidden=true;document.body.style.overflow='';lastFocus?.focus()}
@@ -2349,8 +2346,8 @@ function render(){
     const actSel=`<div class="f2"><div class="form"><label for="d-act" class="dr-label" style="margin:0">Activity</label><select id="d-act">${Object.entries(ACT).map(([k,v])=>`<option value="${k}"${k===B.act?' selected':''}>${v}</option>`).join('')}</select></div><div class="form"><label for="d-g" class="dr-label" style="margin:0">Guests</label><select id="d-g">${Array.from({length:B.act==='jet'||B.act==='jetd'?6:20},(_,i)=>`<option${i+1===B.guests?' selected':''}>${i+1}</option>`).join('')}</select></div></div>`;
     const it=itemOf();
     const list=itemsFor(B.act).filter(x=>B.act!=='boat'||x.guests>=B.guests);
-    const tooBig=B.act==='boat'&&!list.length;const items=tooBig?`<div class="note">Our self-drive boats take up to 10. For bigger groups, <button type="button" class="link" id="toYacht" style="border:0;background:none;padding:0;font:inherit">see the yacht charters</button>.</div>`:`<div><p class="dr-label">${B.act==='boat'?`Boat for ${B.guests} ${B.guests>1?'guests':'guest'}`:'Choose'}</p><div class="choice">${((L=>{const sel=L.filter(x=>x.id===it.id),rest=L.filter(x=>x.id!==it.id);const o=sel.concat(rest);return B.act==='boat'?o.slice(0,6):o})(list)).map(x=>`<label class="opt"><input type="radio" name="d-item" value="${x.id}" ${x.id===it.id?'checked':''}><div><b>${x.name}</b><span>${B.act==='boat'?`${lenTxt(x)} · up to ${x.guests} · ${x.board}`:x.sub}</span></div><span class="p tnum">${x.tiers[0][1]==null?'On request':'from €'+x.tiers[0][1]}${x.pp?'<small style="font-weight:500"> pp</small>':''}</span></label>`).join('')}</div>${B.act==='boat'?`<a class="link" href="#fleet" id="d-fleet">Compare all ${FLEET.length} boats</a>`:''}</div>`;
-    const tiers=tooBig?'':`<div><p class="dr-label">${it.tiers.length>1?'How long':'Price'}</p><div class="slots">${it.tiers.map((t,i)=>`<button type="button" class="slot-btn" data-t="${i}" aria-pressed="${i===Math.min(B.tier,it.tiers.length-1)}">${t[0]} <small>${t[1]==null?'price on request':'€'+t[1]}${B.act==='boat'&&i===2?' · most popular':''}</small></button>`).join('')}</div>${it.min&&B.guests<it.min?`<p class="small" style="margin-top:8px">Minimum ${it.min} riders. We'll price it for ${it.min}.</p>`:''}</div>`;
+    const tooBig=B.act==='boat'&&!list.length;const items=tooBig?`<div class="note">Our self-drive boats take up to 10. For bigger groups, <button type="button" class="link" id="toYacht" style="border:0;background:none;padding:0;font:inherit">see the yacht charters</button>.</div>`:`<div><p class="dr-label">${B.act==='boat'?`Boat for ${B.guests} ${B.guests>1?'guests':'guest'}`:'Choose'}</p><div class="choice">${((L=>{const sel=L.filter(x=>x.id===B.item),rest=L.filter(x=>x.id!==B.item);const o=sel.concat(rest);return B.act==='boat'?o.slice(0,6):o})(list)).map(x=>`<label class="opt"><input type="radio" name="d-item" value="${x.id}" ${x.id===B.item?'checked':''}><div><b>${x.name}</b><span>${B.act==='boat'?`${lenTxt(x)} · up to ${x.guests} · ${x.board}`:x.sub}</span></div><span class="p tnum">${x.tiers[0][1]==null?'On request':'from €'+x.tiers[0][1]}${x.pp?'<small style="font-weight:500"> pp</small>':''}</span></label>`).join('')}</div>${B.act==='boat'?`<a class="link" href="#fleet" id="d-fleet">Compare all ${FLEET.length} boats</a>`:''}</div>`;
+    const tiers=tooBig||!B.item?'':`<div><p class="dr-label">${it.tiers.length>1?'How long':'Price'}</p><div class="slots">${it.tiers.map((t,i)=>`<button type="button" class="slot-btn" data-t="${i}" aria-pressed="${i===Math.min(B.tier,it.tiers.length-1)}">${t[0]} <small>${t[1]==null?'price on request':'€'+t[1]}${B.act==='boat'&&i===2?' · most popular':''}</small></button>`).join('')}</div>${it.min&&B.guests<it.min?`<p class="small" style="margin-top:8px">Minimum ${it.min} riders. We'll price it for ${it.min}.</p>`:''}</div>`;
     body.innerHTML=`${actSel}${items}${tiers}
       <div><div class="cal-head"><button class="x" type="button" id="calPrev" aria-label="Previous month">‹</button><b>${m.toLocaleDateString(loc(),{month:'long',year:'numeric'})}</b><button class="x" type="button" id="calNext" aria-label="Next month">›</button></div>
       <div class="cal" style="margin-top:10px">${cal}</div>
@@ -2420,11 +2417,11 @@ function render(){
   updateFoot();
 }
 const arrive=s=>{const [h,m]=s.slice(0,5).split(':').map(Number);const t=h*60+m-15;return String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0')};
-function updateFoot(){let txt=reqOnly()?'Price<b>On request</b>':`Total<b class="tnum">${eur(total())}</b>`;if(step===3&&deposit(B.act)&&B.dep)txt='Paying today<b>Deposit</b>';$('#drTot').innerHTML=txt}
+function updateFoot(){if(!B.item){$('#drTot').innerHTML='Total<b>Choose a boat</b>';return}let txt=reqOnly()?'Price<b>On request</b>':`Total<b class="tnum">${eur(total())}</b>`;if(step===3&&deposit(B.act)&&B.dep)txt='Paying today<b>Deposit</b>';$('#drTot').innerHTML=txt}
 $('#drBack').addEventListener('click',()=>{if(step===2)saveDet();step--;render()});
 function saveDet(){if(!$('#d-name'))return;B.name=$('#d-name').value.trim();B.email=$('#d-email').value.trim();B.phone=$('#d-phone').value.trim()}
 $('#drNext').addEventListener('click',()=>{
-  if(step===1){if(!B.date||!B.slot){toast(B.date?'Pick a start time to continue.':'Pick a date to continue.');return}step=2;render();return}
+  if(step===1){if(!B.item){toast('Choose a boat to continue.');return}if(!B.date||!B.slot){toast(B.date?'Pick a start time to continue.':'Pick a date to continue.');return}step=2;render();return}
   if(step===2){saveDet();let ok=true;const chk=(id,cond,msg)=>{const el=$('#d-'+id),er=$('#e-'+id);if(!cond){ok=false;el.setAttribute('aria-invalid','true');er.textContent=msg}else{el.removeAttribute('aria-invalid');er.textContent=''}};
     chk('name',B.name.length>1,'Enter the lead guest\'s name.');chk('email',/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(B.email),'Enter an email like name@example.com.');chk('phone',B.phone.replace(/\D/g,'').length>=8,'Enter a mobile number with country code.');
     if(!ok){$('[aria-invalid="true"]',drawer)?.focus();return}step=3;render();return}
