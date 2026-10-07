@@ -987,6 +987,9 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 
 /* Booking bar sits at the bottom even on short pages */
 @media (min-width:861px){.as-body{display:flex;flex-direction:column}.as-body>.as-in{flex:1 0 auto}.as-body>.as-cta{flex:none}}
+
+/* iPhone: make every tappable photo register taps */
+.pgal figure,figure[data-go],.ycar,.ycar .ys,.boat .ph,.mx-card,.rel,.as-strip button,.as-media .mf{cursor:pointer;touch-action:manipulation}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
