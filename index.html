@@ -2846,7 +2846,7 @@ FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IG
   feat:b.f,book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
 const YI=n=>({src:'img/y/'+n+'.webp'});
 YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).length-1,2);
- const YDROP={'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
+ const YDROP={'img/y/lc-sl800-9.webp':1,'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
  const ims=yi.slice(0,nl).concat((IGX[y.id]||[]).map(n=>({src:BI(n),ig:1})),(BIMG[y.id]||[]).map(n=>({src:BI(n)})),yi.slice(nl)).filter(m=>!YDROP[m.src]);const t0=y.tiers[0];
  ACT['yt_'+y.id]={title:y.name+' · '+y.nick,eyebrow:'Private charter · '+y.len+' · up to '+y.guests,hero:{src:'img/y/'+y.img[0]+'.webp'},gal:(YVIDS[y.id]||[]).concat(ims),
   lede:BTXT[y.id]||y.blurb,facts:[['Length',y.len],['Guests','Up to '+y.guests],['Cabins',''+y.cabins],['Power',y.eng]].concat(YSPD[y.id]?[['Speed',YSPD[y.id]]]:[]),
