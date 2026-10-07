@@ -843,14 +843,39 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 @media (min-width:1081px) and (max-width:1280px){.nav a{font-size:13.5px;padding:10px 7px}.brand small{font-size:10px}}
 @media (max-width:1080px){.top-in{gap:10px}}
 @media (max-width:480px){.brand small{white-space:normal}.theme-btn{width:38px;height:38px}.lang select{padding:0 26px 0 12px}.top-in{gap:8px}}
+.tc-badge{width:34px;height:auto;flex:none;border-radius:3px}
+.trust li .tc-badge{height:44px;width:auto}
+.tc-score{text-decoration:none;color:inherit;align-items:center}
+.tc-score img{width:48px;height:auto;flex:none;border-radius:4px}
+.fbar{display:flex;flex-direction:column;gap:12px;width:100%;padding:16px;border:1px solid var(--line);border-radius:var(--r-l);background:var(--sand-50)}
+.fsel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:10px}
+.fsel label{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.fsel select{height:44px;border:1.5px solid var(--stone);border-radius:12px;background:var(--white);color:var(--ink);font:600 14.5px var(--f-body);padding:0 12px;text-transform:none;letter-spacing:0}
+.fopts{display:flex;flex-wrap:wrap;gap:8px}
+.fopt{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--stone);background:var(--white);color:var(--navy);font:600 13.5px var(--f-body);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.fopt svg{width:17px;height:17px}
+.fopt:hover{border-color:var(--lagoon)}
+.fopt[aria-pressed="true"]{background:var(--lagoon);border-color:var(--lagoon);color:#06202B}
+.fcount{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.fclear{border:0;background:none;color:var(--lagoon-ink);font:600 14px var(--f-body);cursor:pointer;min-height:40px;padding:0 4px}
+.fempty{grid-column:1/-1;padding:28px;border:1px dashed var(--stone);border-radius:var(--r-l);text-align:center;color:var(--muted)}
+.feat{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.feat li{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--navy);background:var(--lagoon-wash);border-radius:999px;padding:4px 10px 4px 8px}
+.feat svg{width:15px;height:15px;color:var(--lagoon-ink)}
+.fleet-tools{align-items:flex-start}
+.fleet-tools .seg{align-self:flex-end}
+.as-feat{margin-top:22px}.as-feat .feat li{font-size:13.5px;padding:6px 12px 6px 10px}
+/* Fill every frame: no bands */
+.locmap{aspect-ratio:640/420;height:auto!important;min-height:0!important;align-self:center}
+.amb::before{display:none!important}
 /* ---- Nothing cropped: whole photo, soft blur of itself behind ---- */
 .amb::before{z-index:-1!important}
 .amb>img,.amb>video{z-index:auto}
 .amb>video,.amb>img{background:transparent!important}
 .card.amb::before{z-index:-3!important}
 .card.amb>img{z-index:-2}
-.rel img{object-fit:contain!important;background:var(--sand)}
-.access img{object-fit:contain!important;background:var(--sand)}
+.rel img{object-fit:cover!important}
+.access img{object-fit:cover!important}
 .ycar .ys{flex:0 0 100%;width:100%;height:100%;position:relative;overflow:hidden;scroll-snap-align:start}
 .ycar .ys img{width:100%;height:100%;object-fit:cover}
 /* ---- Boat page: fleet uses the full width ---- */
@@ -1035,7 +1060,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
   <div class="trust-mq">
     <ul class="trust-track">
       <li><svg><use href="#i-sun"/></svg><span><b>Since 1978</b>Family-run</span></li>
-      <li><svg><use href="#i-award"/></svg><span><b>#1 on Tripadvisor</b>1,300+ five-star reviews</span></li>
+      <li><img class="tc-badge" src="img/tc-2023.png" alt="Tripadvisor Travellers' Choice 2023" width="34" height="51"><span><b>Travellers' Choice</b>4.9 on Tripadvisor, #1 in Latchi</span></li>
       <li><svg><use href="#i-dive"/></svg><span><b>PADI 5-Star</b>IDC Dive Resort</span></li>
       <li><svg><use href="#i-sail"/></svg><span><b>RYA Training Centre</b>Sailing &amp; powerboat</span></li>
       <li><svg><use href="#i-lifebuoy"/></svg><span><b>Safety boats on patrol</b>The most highly trained team</span></li>
@@ -1043,7 +1068,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
     </ul>
     <ul class="trust-track" aria-hidden="true">
       <li><svg><use href="#i-sun"/></svg><span><b>Since 1978</b>Family-run</span></li>
-      <li><svg><use href="#i-award"/></svg><span><b>#1 on Tripadvisor</b>1,300+ five-star reviews</span></li>
+      <li><img class="tc-badge" src="img/tc-2023.png" alt="Tripadvisor Travellers' Choice 2023" width="34" height="51"><span><b>Travellers' Choice</b>4.9 on Tripadvisor, #1 in Latchi</span></li>
       <li><svg><use href="#i-dive"/></svg><span><b>PADI 5-Star</b>IDC Dive Resort</span></li>
       <li><svg><use href="#i-sail"/></svg><span><b>RYA Training Centre</b>Sailing &amp; powerboat</span></li>
       <li><svg><use href="#i-lifebuoy"/></svg><span><b>Safety boats on patrol</b>The most highly trained team</span></li>
@@ -1291,8 +1316,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <h2 class="h-l" id="h-rev">Nearly fifty summers of good days out.</h2>
       </div>
       <div class="rev-top">
-        <div class="score"><svg width="28" height="28" style="color:var(--lagoon-ink)"><use href="#i-award"/></svg><div><b>1,300+</b><small>five-star reviews · #1 on Tripadvisor</small></div></div>
-        <div class="score slot"><div><b class="tnum">–.–</b><small>Live Tripadvisor &amp; Google rating (API)</small></div></div>
+        <a class="score tc-score" href="https://www.tripadvisor.com/Attraction_Review-g190380-d1154684-Reviews-Latchi_Watersports_Centre-Latchi_Polis_Paphos_District.html" target="_blank" rel="noopener"><img src="img/tc-2023.png" alt="Tripadvisor Travellers' Choice 2023 award" width="48" height="72"><div><b class="tnum">4.9 / 5</b><small>1,426 Tripadvisor reviews · #1 of 29 outdoor activities in Latchi</small></div></a>
       </div>
     </div>
     <div class="reviews">
@@ -1360,7 +1384,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 <section class="band" id="visit" aria-labelledby="h-loc">
   <div class="wrap loc">
     <div class="locmap">
-      <svg viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="loc-t">
+      <svg viewBox="0 0 640 420" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="loc-t">
         <title id="loc-t">Map of Latchi harbour showing the Watersports Centre on the harbour front</title>
         <rect width="640" height="420" fill="#D4EEEB"/>
         <path d="M0 260 C120 250 220 270 320 262 C420 254 520 240 640 236 L640 420 L0 420 Z" fill="#EFE7D8"/>
@@ -1373,8 +1397,8 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
           <circle cx="346" cy="242" r="5" fill="#fff"/>
           <rect x="372" y="236" width="196" height="40" rx="20" fill="#fff"/>
           <text x="470" y="261" text-anchor="middle">Latchi Watersports Centre</text>
-          <text x="40" y="355" fill="#566977" font-weight="600">To Polis · 3 km</text>
-          <text x="560" y="345" fill="#566977" font-weight="600" text-anchor="end">To Neo Chorio</text>
+          <text x="40" y="355" fill="#566977" font-weight="600">To Neo Chorio</text>
+          <text x="560" y="345" fill="#566977" font-weight="600" text-anchor="end">To Polis · 3 km</text>
         </g>
         <text x="120" y="140" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="22" fill="#0A777B">Latchi harbour</text>
       </svg>
@@ -1435,12 +1459,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <section class="p-sec" aria-labelledby="h-fleet" id="fleet">
           <h2 id="h-fleet">The fleet</h2>
           <div class="fleet-tools">
-            <div class="filters" role="group" aria-label="Filter boats">
-              <button class="filt" type="button" data-f="all" aria-pressed="true">All boats</button>
-              <button class="filt" type="button" data-f="std">Standard</button>
-              <button class="filt" type="button" data-f="lux">Luxury</button>
-              <button class="filt" type="button" data-f="wc">WC on board</button>
-            </div>
+            <div class="fbar" id="boatFilter" aria-label="Filter boats"></div>
             <div class="seg" role="group" aria-label="View">
               <button type="button" data-v="cards" aria-pressed="true">Cards</button>
               <button type="button" data-v="table" aria-pressed="false">Compare</button>
@@ -1559,13 +1578,13 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="#home">Home</a><span aria-hidden="true">/</span><span aria-current="page">Yacht charters</span></nav>
     <div class="pgal" aria-label="Photo gallery">
-      <figure><img src="img/y/cs10-3.webp" alt="Karnic CS10 anchored in turquoise water, from above"></figure>
-      <figure><img src="img/y/searay52-3.webp" alt="Sea Ray 52 Voyager cruising along the Akamas cliffs"></figure>
-      <figure><img src="img/y/bavaria42-1.webp" alt="Bavaria C42 sailing yacht under full sail"><button class="all" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>All 7 photos</span></button></figure>
+      <figure><img src="img/y/searay-ig1.webp" alt="Sea Ray 52 Voyager at anchor under the Akamas cliffs, guests swimming off the stern"></figure>
+      <figure><img src="img/y/nc33-ig1.webp" alt="Jeanneau NC33 Princess Leah in a quiet Akamas bay"></figure>
+      <figure><img src="img/y/bavaria-ig1.webp" alt="Bavaria C42 Breaking Wind under full sail"><button class="all" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>All 7 photos</span></button></figure>
       <figure><img src="img/y/searay52-1.webp" alt="Sea Ray 52 Voyager at anchor off the Akamas coast" loading="lazy"></figure>
       <figure><img src="img/y/azimut68-1.webp" alt="Azimut 68 at sea" loading="lazy"></figure>
       <figure><img src="img/y/fairline67-1.webp" alt="Fairline 67 off the Akamas" loading="lazy"></figure>
-      <figure><img src="img/y/sl800-2.webp" alt="SL 800 in a quiet cove" loading="lazy"></figure>
+      <figure><img src="img/y/cs10-3.webp" alt="Karnic CS10 Blue Lagoon Flyer from above" loading="lazy"></figure>
     </div>
     <div class="pgal-n" aria-hidden="true"></div>
     <div class="p-layout" style="grid-template-columns:minmax(0,1fr)">
@@ -1589,6 +1608,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
             <li><svg><use href="#i-engine"/></svg>Fuel</li>
             <li><svg><use href="#i-snorkel"/></svg>Masks and snorkels</li>
             <li><svg><use href="#i-cool"/></svg>Water and seasonal fruit</li>
+            <li><svg><use href="#i-sun"/></svg>Soft towels</li>
             <li><svg><use href="#i-lifebuoy"/></svg>Life jackets and safety kit</li>
           </ul>
           <p class="small" style="margin-top:12px">On the Sea Ray 52 a fuel charge may apply for non-standard cruise areas.</p>
@@ -1597,12 +1617,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
         <section class="p-sec" aria-labelledby="h-yfleet" id="yfleet">
           <h2 id="h-yfleet">Choose your yacht</h2>
           <div class="fleet-tools">
-            <div class="filters" role="group" aria-label="Filter yachts">
-              <button class="filt yf" type="button" data-f="all" aria-pressed="true">All yachts</button>
-              <button class="filt yf" type="button" data-f="s">Up to 12 guests</button>
-              <button class="filt yf" type="button" data-f="l">13 guests or more</button>
-              <button class="filt yf" type="button" data-f="sail">Sailing</button>
-            </div>
+            <div class="fbar" id="yachtFilter" aria-label="Filter yachts"></div>
           </div>
           <div class="fleet yfleet" id="yachtCards"></div>
           <p class="small" style="margin-top:12px">2026 prices. Swipe the photos on each yacht.</p>
@@ -1724,7 +1739,7 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 const FIT_T=.01;let fitRO=null;const fitSet=new Set();
 function fitImg(el,frame,th){if(!el)return;frame=frame||el.parentElement;if(!frame)return;
  const go=()=>{const nw=el.naturalWidth||el.videoWidth||el._pw,nh=el.naturalHeight||el.videoHeight||el._ph,fw=frame.clientWidth,fh=frame.clientHeight;if(!nw||!nh||!fw||!fh)return;
-  const ir=nw/nh,fr=fw/fh,crop=1-Math.min(ir,fr)/Math.max(ir,fr),c=crop>(th==null?FIT_T:th);
+  const ir=nw/nh,fr=fw/fh,crop=1-Math.min(ir,fr)/Math.max(ir,fr),c=false;
   el.classList.toggle('fit-in',c);frame.classList.toggle('amb',c);if(c)frame.style.setProperty('--amb','url("'+(el.tagName==='VIDEO'?(el.poster||el.currentSrc):(el.currentSrc||el.src))+'")')};
  el._fit=go;fitSet.add(el);
  if(el.tagName==='VIDEO'){if(el.poster){const pi=new Image();pi.onload=()=>{el._pw=pi.naturalWidth;el._ph=pi.naturalHeight;go()};pi.src=el.poster}el.readyState>=1?go():el.addEventListener('loadedmetadata',go,{once:true})}else{el.complete&&el.naturalWidth?go():el.addEventListener('load',go,{once:true})}
@@ -1782,16 +1797,36 @@ const FLEET=[
  {id:'karnic742',name:'Karnic SL742',len:8,guests:9,board:'Cabin, WC & shower',p:[210,320,455,660],img:'f-karnic742',cls:'lux',wc:1}
 ];
 FLEET.forEach(b=>{b.from=b.p[0];b.excess=b.len<5.9?350:850;b.tiers=DUR.map((d,i)=>[d[0],b.p[i],d[1]])});
+/* On-board features: latchiwatersportscentre.com, WebReserv listings and latchicharters.com */
+const FI={bt:'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',shower:'M4 21V9a5 5 0 0 1 10 0M9 9h10M12 13v.5M15 13v.5M18 13v.5M13.5 16.5v.5M16.5 16.5v.5M15 20v.5',wc:'M7 3h10v8H7zM4 11h16a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7zM9 18l-1 3h8l-1-3',cabin:'M3 19V6M3 15h18v4M21 15v-2a3 3 0 0 0-3-3h-7v5M7 12.5a1.5 1.5 0 1 0 0-.01',sun:'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4',tow:'M2 17c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2M2 12c2 0 2-2 4-2s2 2 4 2M14 4l6 6M20 4v6h-6',fly:'M12 3l9 5-9 5-9-5zM3 13l9 5 9-5',ac:'M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 4l3 2 3-2M9 20l3-2 3 2',galley:'M7 3v18M4 3v5a3 3 0 0 0 6 0V3M17 21V3c-2 1-3 3-3 6s1 4 3 4',swim:'M8 3v14M16 3v14M8 7h8M8 12h8M2 21c2 0 2.5-1.5 5-1.5S9.5 21 12 21s2.5-1.5 5-1.5S19.5 21 22 21',music:'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',bar:'M5 3h14l-7 9zM12 12v8M8 21h8',bbq:'M12 2c1 3 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 1 1 2 2 3 2 0-2-1-4 0-6z',jacuzzi:'M3 13h18v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4zM8 9a1.5 1.5 0 1 0 0-.01M12 7a1.5 1.5 0 1 0 0-.01M16 9a1.5 1.5 0 1 0 0-.01',ensuite:'M7 3h10v8H7zM4 11h16a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7zM9 18l-1 3h8l-1-3',sail:'M12 2v17M12 3l7 14h-7M10 6L5 17h5M3 20c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0'};
+const FL={bt:'Bluetooth music',shower:'Freshwater shower',wc:'Toilet',cabin:'Cabin',sun:'Sunbathing area',tow:'Ready for towing',fly:'Flybridge',ac:'Air conditioning',galley:'Kitchen',swim:'Swim platform',music:'Sound system',bar:'Wet bar',bbq:'BBQ',jacuzzi:'Jacuzzi',ensuite:'En-suite bathroom',sail:'Sailing yacht'};
+const FS={bt:'Bluetooth',shower:'Shower',wc:'Toilet',cabin:'Cabin',sun:'Sunbathing',tow:'Towing',fly:'Flybridge',ac:'Air con',galley:'Kitchen',swim:'Swim platform',music:'Sound system',bar:'Wet bar',bbq:'BBQ',jacuzzi:'Jacuzzi',ensuite:'En-suite',sail:'Sailing'};
+const ficon=k=>'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+FI[k]+'"/></svg>';
+const fchips=(fs,n)=>'<ul class="feat" aria-label="On board">'+fs.slice(0,n||9).map(k=>'<li>'+ficon(k)+'<span>'+FS[k]+'</span></li>').join('')+'</ul>';
+const BF={amathunta:[],eden18:['bt'],eden19:['bt'],edenng:['bt','sun'],marinello20:['bt','shower'],voyager:['bt','shower'],aqua25:['bt','shower','tow'],tornado:['sun'],marinello22:['bt','shower','sun'],marinello26:['bt','shower','wc'],karnic701:['bt','shower','wc'],karnic702:['bt','shower','wc','cabin','sun'],karnic742:['bt','shower','wc','cabin','sun','tow']};
+FLEET.forEach(b=>{b.f=BF[b.id]||[];b.board=b.f.length?b.f.map(k=>FL[k]).join(', '):'Sun canopy';if(b.id==='aqua25')b.board='Wakeboard tower, Bluetooth music, freshwater shower'});
+/* Generic filter bar: guests, budget, sort, must-have features */
+function makeFilter(el,o){if(!el)return;const st={g:0,max:0,sort:'rec',f:new Set()};
+ el.innerHTML='<div class="fsel"><label><span>Guests</span><select data-k="g">'+o.guests.map(v=>'<option value="'+v+'">'+(v?v+' or more':'Any')+'</option>').join('')+'</select></label><label><span>'+o.budgetLabel+'</span><select data-k="max">'+o.budget.map(v=>'<option value="'+v+'">'+(v?'Up to €'+v.toLocaleString('en-GB'):'Any budget')+'</option>').join('')+'</select></label><label><span>Sort by</span><select data-k="sort"><option value="rec">Recommended</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option><option value="big">Biggest first</option></select></label></div>'
+  +'<div class="fopts" role="group" aria-label="Must have">'+o.feats.map(k=>'<button type="button" class="fopt" data-f="'+k+'" aria-pressed="false">'+ficon(k)+FS[k]+'</button>').join('')+'</div>'
+  +'<div class="fcount"><span aria-live="polite"></span><button type="button" class="fclear" hidden>Clear filters</button></div>';
+ const run=()=>{let L=o.items().filter(x=>x.guests>=st.g&&(!st.max||(o.price(x)!=null&&o.price(x)<=st.max))&&[...st.f].every(k=>x.f.includes(k)));
+  if(st.sort==='lo')L.sort((a,b)=>(o.price(a)??1e9)-(o.price(b)??1e9));else if(st.sort==='hi')L.sort((a,b)=>(o.price(b)??-1)-(o.price(a)??-1));else if(st.sort==='big')L.sort((a,b)=>o.size(b)-o.size(a));
+  o.render(L);const n=o.items().length;el.querySelector('.fcount span').textContent=(L.length===n?'All ':L.length+' of ')+n+' '+o.noun;
+  el.querySelector('.fclear').hidden=!(st.g||st.max||st.f.size||st.sort!=='rec')};
+ el.querySelectorAll('select').forEach(s=>s.addEventListener('change',()=>{const k=s.dataset.k;st[k]=k==='sort'?s.value:+s.value;run()}));
+ el.querySelectorAll('.fopt').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.f,on=!st.f.has(k);on?st.f.add(k):st.f.delete(k);b.setAttribute('aria-pressed',on);run()}));
+ el.querySelector('.fclear').addEventListener('click',()=>{st.g=0;st.max=0;st.sort='rec';st.f.clear();el.querySelectorAll('select').forEach(s=>s.selectedIndex=0);el.querySelectorAll('.fopt').forEach(b=>b.setAttribute('aria-pressed','false'));run()});
+ run();return run}
 const lenTxt=b=>(''+b.len).replace(/\.0$/,'')+'m';
 const hpTxt=b=>b.hpl||(b.hp?b.hp+'hp':'');
 const ph=b=>b.img?`<img src="img/${b.img}.webp" alt="${b.name} self-drive boat" loading="lazy">`:`<div class="noimg"><svg><use href="#i-boat"/></svg><span>Photo coming soon</span></div>`;
-function renderFleet(f='all'){
-  const list=FLEET.filter(b=>f==='all'||(f==='wc'?b.wc:b.cls===f));
-  $('#fleetCards').innerHTML=list.map(b=>`<article class="boat"><div class="ph">${ph(b)}${b.tag?`<span class="tag">${b.tag}</span>`:''}</div><div class="bd"><h3>${b.name}</h3><div class="specs"><span>${lenTxt(b)}</span><span><svg><use href="#i-users"/></svg>Up to ${b.guests}</span>${b.hp?`<span><svg><use href="#i-engine"/></svg>${hpTxt(b)}</span>`:''}</div><div class="small">${b.board}</div><div class="tiers tnum"><span>1 hr <b>€${b.p[0]}</b></span><span>4 hrs <b>€${b.p[2]}</b></span><span>6 hrs <b>€${b.p[3]}</b></span></div><div class="row"><p class="from">from <b class="tnum">€${b.from}</b></p><span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="bt_${b.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="boat" data-boat="${b.id}">Book</button></span></div></div></article>`).join('');fitAll($('#fleetCards'),'.ph>img');
+function renderFleet(list){list=list||FLEET;
+  if(!list.length){$('#fleetCards').innerHTML='<p class="fempty">No boat has all of that. Try removing a filter.</p>';$('#fleetRows').innerHTML='';return}
+  $('#fleetCards').innerHTML=list.map(b=>`<article class="boat"><div class="ph">${ph(b)}${b.tag?`<span class="tag">${b.tag}</span>`:''}</div><div class="bd"><h3>${b.name}</h3><div class="specs"><span>${lenTxt(b)}</span><span><svg><use href="#i-users"/></svg>Up to ${b.guests}</span>${b.hp?`<span><svg><use href="#i-engine"/></svg>${hpTxt(b)}</span>`:''}</div>${b.f.length?fchips(b.f):'<ul class="feat"><li>'+ficon('sun')+'<span>Sun canopy</span></li></ul>'}<div class="tiers tnum"><span>1 hr <b>€${b.p[0]}</b></span><span>4 hrs <b>€${b.p[2]}</b></span><span>6 hrs <b>€${b.p[3]}</b></span></div><div class="row"><p class="from">from <b class="tnum">€${b.from}</b></p><span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="bt_${b.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="boat" data-boat="${b.id}">Book</button></span></div></div></article>`).join('');fitAll($('#fleetCards'),'.ph>img');
   $('#fleetRows').innerHTML=list.map(b=>`<tr><td><b>${b.name}</b></td><td class="num">${b.guests}</td>${b.p.map(x=>`<td class="num"><b>€${x}</b></td>`).join('')}<td>${lenTxt(b)}</td><td>${hpTxt(b)||'–'}</td><td>${b.board}</td><td class="num">€${b.excess}</td></tr>`).join('');
 }
-renderFleet();
-$$('.filt:not(.yf)').forEach(b=>b.addEventListener('click',()=>{$$('.filt:not(.yf)').forEach(x=>x.setAttribute('aria-pressed',x===b));renderFleet(b.dataset.f)}));
+makeFilter($('#boatFilter'),{items:()=>FLEET,price:b=>b.p[2],size:b=>b.len,render:renderFleet,noun:'boats',guests:[0,2,4,6,7,8,9,10],budgetLabel:'Budget for 4 hours',budget:[0,200,250,300,400],feats:['bt','shower','wc','cabin','sun','tow']});
 $$('.seg button').forEach(b=>b.addEventListener('click',()=>{$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));const t=b.dataset.v==='table';$('#fleetTable').hidden=!t;$('#fleetCards').hidden=t}));
 
 /* ---- Other activities, from the same price list ---- */
@@ -1868,18 +1903,20 @@ const YACHTS=[
 ];
 const YIG={sl800:['sl800-ig1','sl800-ig3','sl800-ig4','sl800-ig5','sl800-ig6','sl800-ig7','sl800-ig2'],nc33:['nc33-ig1','nc33-ig2','nc33-ig3'],cs10:['cs10-ig1'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig1','bavaria-ig2','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig2','searay-ig3','searay-ig4']};
 YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
-function renderYachts(f='all'){
-  const list=YACHTS.filter(y=>f==='all'||(f==='sail'?y.sail:f==='s'?y.guests<=12:y.guests>12));
+const YF={sl800:['cabin','wc','shower','ac','sun','swim'],nc33:['cabin','wc','ac','galley','sun','swim'],cs10:['cabin','galley','bar','music','sun','swim'],rodman:['fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['sail','cabin','galley','sun'],searay:['fly','cabin','ensuite','ac','galley','music','swim'],searay62:['cabin','ensuite','ac','galley','sun','swim'],fairline:['fly','cabin','ensuite','jacuzzi','sun'],azimut:['fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
+YACHTS.forEach(y=>{y.f=YF[y.id]||[]});
+function renderYachts(list){list=list||YACHTS;
+  if(!list.length){$('#yachtCards').innerHTML='<p class="fempty">No yacht has all of that. Try removing a filter.</p>';return}
   $('#yachtCards').innerHTML=list.map(y=>{const t0=y.tiers[0];const price=t0[1]==null?'<p class="from"><b style="font-size:18px">Price on request</b></p>':`<p class="from">from <b class="tnum">€${t0[1].toLocaleString('en-GB')}</b>${y.tiers.length>1?'':' / day'}</p>`;
-    return `<article class="boat"><div class="ph" style="aspect-ratio:4/3"><div class="ycar" tabindex="0" aria-label="${y.name} photos, scroll sideways">${y.img.slice(0,6).map((m,i)=>`<span class="ys"><img src="img/y/${m}.webp" alt="${y.name} ${y.nick}, photo ${i+1}" loading="lazy"></span>`).join('')}</div><span class="count">${Math.min(y.img.length,6)} photos ›</span>${y.sail?'<span class="tag">Sailing</span>':''}</div><div class="bd"><h3>${y.name}</h3><p class="nick">${y.nick}</p><div class="specs"><span>${y.len}</span><span><svg><use href="#i-users"/></svg>Up to ${y.guests}</span><span>${y.cabins} cabin${y.cabins>1?'s':''}</span><span><svg><use href="#i-engine"/></svg>${y.eng}</span></div><p class="blurb">${y.blurb}</p>${y.tiers.length>1?`<div class="tiers tnum">${y.tiers.map(t=>`<span>${t[0].replace(' hours',' h')} <b>€${t[1].toLocaleString('en-GB')}</b></span>`).join('')}</div>`:''}<div class="row">${price}<span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="yt_${y.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="yacht" data-boat="${y.id}">${t0[1]==null?'Enquire':'Book'}</button></span></div></div></article>`}).join('');
+    return `<article class="boat"><div class="ph" style="aspect-ratio:4/3"><div class="ycar" tabindex="0" aria-label="${y.name} photos, scroll sideways">${y.img.slice(0,6).map((m,i)=>`<span class="ys"><img src="img/y/${m}.webp" alt="${y.name} ${y.nick}, photo ${i+1}" loading="lazy"></span>`).join('')}</div><span class="count">${Math.min(y.img.length,6)} photos ›</span>${y.sail?'<span class="tag">Sailing</span>':''}</div><div class="bd"><h3>${y.name}</h3><p class="nick">${y.nick}</p><div class="specs"><span>${y.len}</span><span><svg><use href="#i-users"/></svg>Up to ${y.guests}</span><span>${y.cabins} cabin${y.cabins>1?'s':''}</span><span><svg><use href="#i-engine"/></svg>${y.eng}</span></div><p class="blurb">${y.blurb}</p>${fchips(y.f,6)}${y.tiers.length>1?`<div class="tiers tnum">${y.tiers.map(t=>`<span>${t[0].replace(' hours',' h')} <b>€${t[1].toLocaleString('en-GB')}</b></span>`).join('')}</div>`:''}<div class="row">${price}<span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="yt_${y.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="yacht" data-boat="${y.id}">${t0[1]==null?'Enquire':'Book'}</button></span></div></div></article>`}).join('');
   fitFrames($('#yachtCards'));
 }
 ITEMS.yacht=[...YACHTS.map(y=>({id:y.id,name:`${y.name} · ${y.nick}`,sub:`${y.len} · up to ${y.guests} · captain & crew included`,guests:y.guests,tiers:y.tiers})),
   {id:'sunset',name:'Sunset trip to the Akamas',sub:'Local Cypriot wine, swim in a secluded lagoon',tiers:[['3 hours',395,3]]},
   {id:'fishing',name:'Private fishing trip',sub:'Northern Akamas, trawling and bottom line kit',tiers:[['3 hours',415,3]]}];
-renderYachts();
+makeFilter($('#yachtFilter'),{items:()=>YACHTS,price:y=>y.tiers[0][1],size:y=>parseFloat(y.len),render:renderYachts,noun:'yachts',guests:[0,6,10,12,14,20],budgetLabel:'Budget for 2 hours',budget:[0,500,800,1500],feats:['fly','ac','ensuite','galley','swim','sail','jacuzzi']});
 
-$$('.yf').forEach(b=>b.addEventListener('click',()=>{$$('.yf').forEach(x=>x.setAttribute('aria-pressed',x===b));renderYachts(b.dataset.f)}));
+
 
 document.addEventListener('click',e=>{const d=e.target.closest('[data-detail]');const ph=!d&&e.target.closest('#fleetCards .boat .ph,#yachtCards .boat .ph,#fleetCards .boat h3,#yachtCards .boat h3');let k=d&&d.dataset.detail;if(!k&&ph){const bt=ph.closest('.boat').querySelector('[data-detail]');k=bt&&bt.dataset.detail}if(!k||typeof openAct!=='function')return;e.preventDefault();openAct(k,ph?ph.closest('.boat'):d.closest('.boat'))});
 /* ---- Dates ---- */
@@ -2561,21 +2598,21 @@ const BVIDS=[IGV('selfdrive'),IGV('safety')],BVBY={karnic701:[IGV('karnic701')],
 const BI=n=>'img/boats/'+n+'.webp';
 FLEET.forEach(b=>{const ims=(BIMG[b.id]||[]).map(n=>({src:BI(n)}));const igi=(IGX[b.id]||[]).map(n=>({src:BI(n),ig:1}));const main={src:'img/'+b.img+'.webp'};
  ACT['bt_'+b.id]={title:b.name,eyebrow:'Self-drive · '+lenTxt(b)+' · up to '+b.guests,hero:main,gal:(BVBY[b.id]||[]).concat(BVIDS.slice(0,1),igi,ims,BVIDS.slice(1)),
-  lede:BTXT[b.id]||'',facts:[['Length',lenTxt(b)],['Guests','Up to '+b.guests],['Engine',hpTxt(b)||'Ask us'],['On board',b.board]],
+  lede:BTXT[b.id]||'',facts:[['Length',lenTxt(b)],['Guests','Up to '+b.guests],['Engine',hpTxt(b)||'Ask us']],
   items:[{name:b.name,sub:'Prices for the whole boat, fuel extra',tiers:b.tiers}],
   inc:['Full briefing and basic training before you go','VHF radio and GPS tracker','Life jackets, sun canopy and cool box','Flares, medical kit and coastal map','Our safety boat on patrol all day'],
   know:['Driven with a car driving licence; the driver must be 21+','€'+b.excess+' excess held on your card and released when you are back','Fuel is extra, charged at market rate for what you use','4-hour slots: 09:00 to 13:00 or 14:00 to 18:00'],
-  book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
+  feat:b.f,book:'boat',boat:b.id,from:b.from,cta:'Book '+b.name}});
 const YI=n=>({src:'img/y/'+n+'.webp'});
 YACHTS.forEach(y=>{const yi=y.img.slice(1).map(YI),nl=Math.max((YIG[y.id]||[]).length-1,2);
  const ims=yi.slice(0,nl).concat([YI('fruit-1')],(IGX[y.id]||[]).map(n=>({src:BI(n),ig:1})),(BIMG[y.id]||[]).map(n=>({src:BI(n)})),YIG[y.id]?[]:yi.slice(nl),[YI('sunset-1'),YI('fruit-3'),{src:BI('ig-charter-toys'),ig:1},YI('fruit-2')]);const t0=y.tiers[0];
  ACT['yt_'+y.id]={title:y.name+' · '+y.nick,eyebrow:'Private charter · '+y.len+' · up to '+y.guests,hero:{src:'img/y/'+y.img[0]+'.webp'},gal:(YVIDS[y.id]||[]).concat(ims,YVIDS[y.id]?[]:[YVID]),
   lede:BTXT[y.id]||y.blurb,facts:[['Length',y.len],['Guests','Up to '+y.guests],['Cabins',''+y.cabins],['Power',y.eng]],
   items:[{name:y.name,sub:'Price for the whole yacht',tiers:y.tiers.filter(t=>t[1]!=null)}].filter(o=>o.tiers.length),
-  inc:['Your captain and crew','Fuel for the standard Akamas route','Masks and snorkels','A platter of fresh seasonal fruit and chilled water','Life jackets and safety kit'],
+  inc:['Your captain and crew','Fuel for the standard Akamas route','Masks and snorkels','Soft towels','A platter of fresh seasonal fruit and chilled water','Life jackets and safety kit'],
   treat:1,
   know:['No deposit, paid in full when you book','Add jet skis, a ski boat, banana rides or a Seabob','Catering on request','If there is swell, your captain picks the most sheltered route'],
-  book:'yacht',boat:y.id,from:t0[1]||undefined,cta:t0[1]==null?'Enquire':'Book this yacht'}});
+  feat:y.f,book:'yacht',boat:y.id,from:t0[1]||undefined,cta:t0[1]==null?'Enquire':'Book this yacht'}});
 
 const IGI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
 const sheet=document.createElement('div');sheet.className='act-sheet';sheet.id='actSheet';sheet.hidden=true;sheet.setAttribute('role','dialog');sheet.setAttribute('aria-modal','true');sheet.setAttribute('aria-labelledby','asTitle');
@@ -2662,6 +2699,7 @@ function fill(k,a,card){const title=/^(bt|yt)_/.test(k)?a.title:card&&card.query
  const price=a.price?'€'+a.price:a.from?'€'+(+a.from).toLocaleString('en-GB')+(a.pp?' pp':''):'';
  body.innerHTML='<div class="as-in"><p class="as-lede">'+esc(a.lede)+'</p>'
   +'<div class="as-facts">'+a.facts.map(f=>'<div><small>'+esc(f[0])+'</small><b>'+esc(f[1])+'</b></div>').join('')+'</div>'
+  +(a.feat&&a.feat.length?'<section class="as-feat"><h3 class="as-h">On board</h3>'+fchips(a.feat)+'</section>':'')
   +prices(a,k)+strip
   +(a.treat?'<section class="as-treat"><figure><img src="img/y/fruit-1.webp" alt="A platter of fresh fruit with chilled prosecco on a Latchi Charters yacht" loading="lazy"></figure><figure><img src="img/y/fruit-3.webp" alt="A cheese and charcuterie board served on board" loading="lazy"></figure><div><h3 class="as-h">Fresh fruit on board</h3><p>Every charter comes with a platter of fresh seasonal fruit and chilled water, ready when you stop for a swim.</p><p>Want more? Ask about a cheese and charcuterie board, drinks or lunch on board when you book.</p></div></section>':'')
   +'<div class="as-two"><section><h3 class="as-h">What\'s included</h3><ul class="as-list">'+a.inc.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section><section><h3 class="as-h">Good to know</h3><ul class="as-list info">'+a.know.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section></div></div>'
