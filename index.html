@@ -1063,6 +1063,12 @@ select option,select optgroup{background-color:#FFFFFF;color:#0C2B40}
 :root[data-theme="dark"] select{color-scheme:dark}
 :root[data-theme="dark"] select option,:root[data-theme="dark"] select optgroup{background-color:#10283A;color:#F2F6F8}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) select{color-scheme:dark}:root:not([data-theme="light"]) select option,:root:not([data-theme="light"]) select optgroup{background-color:#10283A;color:#F2F6F8}}
+
+/* Date fields: whole field opens the calendar, icon visible in both themes */
+input[type="date"]{cursor:pointer;color-scheme:light}
+input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
+:root[data-theme="dark"] input[type="date"]{color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) input[type="date"]{color-scheme:dark}}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -2079,7 +2085,7 @@ document.addEventListener('click',e=>{const d=e.target.closest('[data-detail]');
 /* ---- Dates ---- */
 const today=new Date();const iso=d=>d.toISOString().slice(0,10);
 const tomorrow=new Date(today);tomorrow.setDate(today.getDate()+1);
-['#bb-date','#bp-date'].forEach(s=>{const el=$(s);el.min=iso(today);el.value=iso(tomorrow)});
+['#bb-date','#bp-date'].forEach(s=>{const el=$(s);el.min=iso(today);el.value=iso(tomorrow);const open=()=>{try{if(el.showPicker)el.showPicker()}catch(e){}};el.addEventListener('click',open);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});const f=el.closest('.bb-field,label,.form,div');if(f&&f!==document.body)f.addEventListener('click',e=>{if(e.target!==el)open()})});
 
 /* ---- Booking bar ---- */
 let guests=2;
@@ -2122,7 +2128,7 @@ function showAvail(act,dateStr,g){
  $('#arToYacht')?.addEventListener('click',()=>{$('#bb-act').value='yacht';showAvail('yacht',iso(d),g)});
  sec.hidden=false;fitFrames(sec);
  sec.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});setTimeout(()=>$('#arTitle').focus({preventScroll:true}),400)}
-$('#bookbar').addEventListener('submit',e=>{e.preventDefault();if($('#bb-act').value==='boat'){location.hash='#boat-hire';return}showAvail($('#bb-act').value,$('#bb-date').value,guests)});
+$('#bookbar').addEventListener('submit',e=>{e.preventDefault();if($('#bb-act').value==='boat'){window.__bbGuests=guests;location.hash='#boat-hire';return}showAvail($('#bb-act').value,$('#bb-date').value,guests)});
 $('#arClose').addEventListener('click',()=>{$('#availRes').hidden=true;$('#bookbar').scrollIntoView({block:'center'})});
 $('#arChange').addEventListener('click',()=>{$('#bookbar').scrollIntoView({block:'center'});setTimeout(()=>$('#bb-act').focus(),300)});
 setTimeout(()=>fitFrames(document),0);addEventListener('load',()=>fitFrames(document));
@@ -2247,8 +2253,8 @@ const drawer=$('#drawer'),scrim=$('#scrim');
 function pickItem(act,g,id){const L=itemsFor(act);return (id&&L.find(x=>x.id===id))||L.find(x=>!x.guests||x.guests>=g)||L[0]}
 function openBooking(o={}){
   lastFocus=document.activeElement;
-  const act=o.act||'boat',g=o.guests||2;const it=pickItem(act,g,o.boat);
-  const d=o.date?new Date(o.date+'T12:00'):tomorrow;
+  const act=o.act||'boat',g=o.guests||window.__bbGuests||2;const it=pickItem(act,g,o.boat);
+  const pd=o.date||($('#bb-date')&&$('#bb-date').value!==iso(tomorrow)?$('#bb-date').value:null);const d=pd?new Date(pd+'T12:00'):tomorrow;
   B={act,item:it.id,tier:o.tier!=null?o.tier:(act==='boat'?2:0),date:d,slot:null,guests:g,addons:{},name:'',email:'',phone:'',pay:'apple',dep:false,month:new Date(d.getFullYear(),d.getMonth(),1)};
   if(o.addon)B.addons[o.addon]=true;step=1;drawer.hidden=false;scrim.hidden=false;document.body.style.overflow='hidden';render();$('#drClose').focus();
 }
