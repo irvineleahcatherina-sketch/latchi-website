@@ -1069,6 +1069,13 @@ input[type="date"]{cursor:pointer;color-scheme:light}
 input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
 :root[data-theme="dark"] input[type="date"]{color-scheme:dark}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) input[type="date"]{color-scheme:dark}}
+
+/* Fleet availability for the chosen date */
+.fleet-avail{scroll-margin-top:96px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:0 0 16px;padding:12px 16px;border:2px solid var(--lagoon);border-radius:var(--r-m);color:var(--ink)}
+.fleet-avail b{font-weight:700}.fleet-avail span{color:var(--muted)}.fleet-avail .link{margin-left:auto;border:0;background:none;font:600 14px var(--f-body);color:var(--lagoon-ink,var(--navy));text-decoration:underline;cursor:pointer;min-height:44px}
+.av-badge{position:absolute;right:12px;top:12px;z-index:3;padding:5px 10px;border-radius:999px;font:700 12px var(--f-body);background:#fff;color:#0C2B40;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.av-badge.av-hi{background:#1FB5AC;color:#06202B}.av-badge.av-lo{background:#F27B5D;color:#2a0d05}.av-badge.av-full,.av-badge.av-small{background:#E7E3DC;color:#5A6670}
+.boat.is-booked{opacity:.55}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -1983,9 +1990,19 @@ function makeFilter(el,o){if(!el)return;const st={g:0,max:0,sort:'rec',f:new Set
 const lenTxt=b=>(''+b.len).replace(/\.0$/,'')+'m';
 const hpTxt=b=>b.hpl||(b.hp?b.hp+'hp':'');
 const ph=b=>b.img?`<img decoding="async" src="img/${b.img}.webp" alt="${b.name} self-drive boat" loading="lazy">`:`<div class="noimg"><svg><use href="#i-boat"/></svg><span>Photo coming soon</span></div>`;
-function renderFleet(list){list=list||FLEET;
+function markFleetAvail(list){const wrap=$('#fleetCards');if(!wrap)return;let note=$('#fleetAvail');const d=window.__bbDate;
+  if(!d){if(note)note.hidden=true;return}
+  if(!note){note=document.createElement('div');note.id='fleetAvail';note.className='fleet-avail';wrap.parentElement.insertBefore(note,wrap)}
+  const g=window.__bbGuests||2;let free=0;
+  [...wrap.querySelectorAll('.boat')].forEach((el,i)=>{const b=list[i];if(!b)return;const st=b.guests<g?'small':arState(b.id,d);if(st==='hi'||st==='lo')free++;
+    el.classList.toggle('is-booked',st==='full'||st==='small');const ph=el.querySelector('.ph');const t={hi:'Available',lo:'Few left',full:'Booked that day',small:'Too small for '+g}[st];
+    ph.insertAdjacentHTML('beforeend','<span class="av-badge av-'+st+'">'+t+'</span>')});
+  note.hidden=false;note.innerHTML='<b>'+d.toLocaleDateString(loc(),{weekday:'short',day:'numeric',month:'short'})+' · '+g+' '+(g>1?'guests':'guest')+'</b><span>'+free+' of '+list.length+' boats available</span><button type="button" class="link" id="faClear">Show all dates</button>';
+  $('#faClear').onclick=()=>{window.__bbDate=null;renderFleet(window.__lastFleet)}}
+function renderFleet(list){list=list||FLEET;window.__lastFleet=list;
   if(!list.length){$('#fleetCards').innerHTML='<p class="fempty">No boat has all of that. Try removing a filter.</p>';$('#fleetRows').innerHTML='';return}
   $('#fleetCards').innerHTML=list.map(b=>`<article class="boat"><div class="ph">${ph(b)}${b.tag?`<span class="tag">${b.tag}</span>`:''}</div><div class="bd"><h3>${b.name}</h3><div class="specs"><span>${lenTxt(b)}</span><span><svg><use href="#i-users"/></svg>Up to ${b.guests}</span>${b.hp?`<span><svg><use href="#i-engine"/></svg>${hpTxt(b)}</span>`:''}</div>${b.f.length?fchips(b.f):'<ul class="feat"><li>'+ficon('sun')+'<span>Sun canopy</span></li></ul>'}<div class="tiers tnum"><span>1 hr <b>€${b.p[0]}</b></span><span>4 hrs <b>€${b.p[2]}</b></span><span>6 hrs <b>€${b.p[3]}</b></span></div><div class="row"><p class="from">from <b class="tnum">€${b.from}</b></p><span class="row-btns"><button class="btn btn-ghost btn-sm" type="button" data-detail="bt_${b.id}">Details</button><button class="btn btn-cta btn-sm" type="button" data-book="boat" data-boat="${b.id}">Book</button></span></div></div></article>`).join('');fitAll($('#fleetCards'),'.ph>img');
+  markFleetAvail(list);
   $('#fleetRows').innerHTML=list.map(b=>`<tr><td><b>${b.name}</b></td><td class="num">${b.guests}</td>${b.p.map(x=>`<td class="num"><b>€${x}</b></td>`).join('')}<td>${lenTxt(b)}</td><td>${hpTxt(b)||'–'}</td><td>${b.board}</td><td class="num">€${b.excess}</td></tr>`).join('');
 }
 makeFilter($('#boatFilter'),{rec:['marinello22','edenng','marinello20','karnic701','marinello26','karnic742','eden19','karnic702','aqua25','voyager','tornado','eden18','amathunta'],items:()=>FLEET,price:b=>b.p[2],size:b=>b.len,render:renderFleet,noun:'boats',guests:[0,2,4,6,7,8,9,10],budgetLabel:'Budget for 4 hours',budget:[0,200,250,300,400],feats:['bt','shower','wc','cabin','sun','swim','tow']});
@@ -2128,7 +2145,7 @@ function showAvail(act,dateStr,g){
  $('#arToYacht')?.addEventListener('click',()=>{$('#bb-act').value='yacht';showAvail('yacht',iso(d),g)});
  sec.hidden=false;fitFrames(sec);
  sec.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});setTimeout(()=>$('#arTitle').focus({preventScroll:true}),400)}
-$('#bookbar').addEventListener('submit',e=>{e.preventDefault();if($('#bb-act').value==='boat'){window.__bbGuests=guests;location.hash='#boat-hire';return}showAvail($('#bb-act').value,$('#bb-date').value,guests)});
+$('#bookbar').addEventListener('submit',e=>{e.preventDefault();if($('#bb-act').value==='boat'){window.__bbGuests=guests;const dv=$('#bb-date').value;window.__bbDate=dv?new Date(dv+'T12:00'):tomorrow;renderFleet(window.__lastFleet);location.hash='#fleet';setTimeout(()=>{const n=$('#fleetAvail');if(n)n.scrollIntoView({block:'start'})},120);return}showAvail($('#bb-act').value,$('#bb-date').value,guests)});
 $('#arClose').addEventListener('click',()=>{$('#availRes').hidden=true;$('#bookbar').scrollIntoView({block:'center'})});
 $('#arChange').addEventListener('click',()=>{$('#bookbar').scrollIntoView({block:'center'});setTimeout(()=>$('#bb-act').focus(),300)});
 setTimeout(()=>fitFrames(document),0);addEventListener('load',()=>fitFrames(document));
