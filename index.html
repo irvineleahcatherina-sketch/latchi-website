@@ -1049,6 +1049,14 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 }
 
 .gallery{grid-auto-flow:row dense}
+
+/* Booking choices: selected option has only a coloured border with a raised 3D look */
+.dr .opt,#drBody .opt{background:transparent!important;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+#drBody .opt:has(input:checked){background:transparent!important;border:2px solid var(--lagoon)!important;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 0 -2px rgba(12,43,64,.18),0 12px 22px -8px rgba(12,43,64,.35);transform:translateY(-2px)}
+#drBody .slot-btn[aria-pressed="true"]{background:transparent!important;color:var(--navy)!important;border:2px solid var(--lagoon)!important;box-shadow:0 5px 0 -2px rgba(12,43,64,.18),0 10px 18px -8px rgba(12,43,64,.35);transform:translateY(-2px)}
+:root[data-theme="dark"] #drBody .slot-btn[aria-pressed="true"]{color:var(--on-navy,#fff)!important}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #drBody .slot-btn[aria-pressed="true"]{color:var(--on-navy,#fff)!important}}
+@media (prefers-reduced-motion:reduce){#drBody .opt,#drBody .slot-btn{transform:none!important}}
 </style>
 <script>(function(){try{var t=localStorage.getItem("lwc-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
 </head>
@@ -2276,10 +2284,10 @@ function render(){
     let cal='';['Mo','Tu','We','Th','Fr','Sa','Su'].forEach(x=>cal+=`<span class="dow" aria-hidden="true">${x}</span>`);
     for(let i=0;i<first;i++)cal+='<span></span>';
     for(let d=1;d<=days;d++){const dt=new Date(m.getFullYear(),m.getMonth(),d,12);const a=avail(dt);const sel=B.date&&dt.toDateString()===B.date.toDateString();cal+=`<button type="button" class="day ${a}" data-d="${d}" ${a==='past'||a==='full'?'disabled':''} aria-pressed="${sel}" aria-label="${fmt(dt)}${a==='lo'?', few left':a==='full'?', fully booked':''}">${d}<span class="dot"></span></button>`}
-    const actSel=`<div class="f2"><div class="form"><label for="d-act" class="dr-label" style="margin:0">Activity</label><select id="d-act">${Object.entries(ACT).map(([k,v])=>`<option value="${k}"${k===B.act?' selected':''}>${v}</option>`).join('')}</select></div><div class="form"><label for="d-g" class="dr-label" style="margin:0">Guests</label><select id="d-g">${Array.from({length:20},(_,i)=>`<option${i+1===B.guests?' selected':''}>${i+1}</option>`).join('')}</select></div></div>`;
+    const actSel=`<div class="f2"><div class="form"><label for="d-act" class="dr-label" style="margin:0">Activity</label><select id="d-act">${Object.entries(ACT).map(([k,v])=>`<option value="${k}"${k===B.act?' selected':''}>${v}</option>`).join('')}</select></div><div class="form"><label for="d-g" class="dr-label" style="margin:0">Guests</label><select id="d-g">${Array.from({length:B.act==='jet'||B.act==='jetd'?6:20},(_,i)=>`<option${i+1===B.guests?' selected':''}>${i+1}</option>`).join('')}</select></div></div>`;
     const it=itemOf();
     const list=itemsFor(B.act).filter(x=>B.act!=='boat'||x.guests>=B.guests);
-    const tooBig=B.act==='boat'&&!list.length;const items=tooBig?`<div class="note">Our self-drive boats take up to 10. For bigger groups, <button type="button" class="link" id="toYacht" style="border:0;background:none;padding:0;font:inherit">see the yacht charters</button>.</div>`:`<div><p class="dr-label">${B.act==='boat'?`Boat for ${B.guests} ${B.guests>1?'guests':'guest'}`:'Choose'}</p><div class="choice">${(B.act==='boat'?list.slice(0,6):list).map(x=>`<label class="opt"><input type="radio" name="d-item" value="${x.id}" ${x.id===it.id?'checked':''}><div><b>${x.name}</b><span>${B.act==='boat'?`${lenTxt(x)} · up to ${x.guests} · ${x.board}`:x.sub}</span></div><span class="p tnum">${x.tiers[0][1]==null?'On request':'from €'+x.tiers[0][1]}${x.pp?'<small style="font-weight:500"> pp</small>':''}</span></label>`).join('')}</div>${B.act==='boat'?`<a class="link" href="#fleet" id="d-fleet">Compare all ${FLEET.length} boats</a>`:''}</div>`;
+    const tooBig=B.act==='boat'&&!list.length;const items=tooBig?`<div class="note">Our self-drive boats take up to 10. For bigger groups, <button type="button" class="link" id="toYacht" style="border:0;background:none;padding:0;font:inherit">see the yacht charters</button>.</div>`:`<div><p class="dr-label">${B.act==='boat'?`Boat for ${B.guests} ${B.guests>1?'guests':'guest'}`:'Choose'}</p><div class="choice">${((L=>{const sel=L.filter(x=>x.id===it.id),rest=L.filter(x=>x.id!==it.id);const o=sel.concat(rest);return B.act==='boat'?o.slice(0,6):o})(list)).map(x=>`<label class="opt"><input type="radio" name="d-item" value="${x.id}" ${x.id===it.id?'checked':''}><div><b>${x.name}</b><span>${B.act==='boat'?`${lenTxt(x)} · up to ${x.guests} · ${x.board}`:x.sub}</span></div><span class="p tnum">${x.tiers[0][1]==null?'On request':'from €'+x.tiers[0][1]}${x.pp?'<small style="font-weight:500"> pp</small>':''}</span></label>`).join('')}</div>${B.act==='boat'?`<a class="link" href="#fleet" id="d-fleet">Compare all ${FLEET.length} boats</a>`:''}</div>`;
     const tiers=tooBig?'':`<div><p class="dr-label">${it.tiers.length>1?'How long':'Price'}</p><div class="slots">${it.tiers.map((t,i)=>`<button type="button" class="slot-btn" data-t="${i}" aria-pressed="${i===Math.min(B.tier,it.tiers.length-1)}">${t[0]} <small>${t[1]==null?'price on request':'€'+t[1]}${B.act==='boat'&&i===2?' · most popular':''}</small></button>`).join('')}</div>${it.min&&B.guests<it.min?`<p class="small" style="margin-top:8px">Minimum ${it.min} riders. We'll price it for ${it.min}.</p>`:''}</div>`;
     body.innerHTML=`${actSel}${items}${tiers}
       <div><div class="cal-head"><button class="x" type="button" id="calPrev" aria-label="Previous month">‹</button><b>${m.toLocaleDateString(loc(),{month:'long',year:'numeric'})}</b><button class="x" type="button" id="calNext" aria-label="Next month">›</button></div>
@@ -2287,7 +2295,7 @@ function render(){
       <div class="legend" style="margin-top:8px"><span><i style="background:var(--lagoon)"></i>Available</span><span><i style="background:var(--coral)"></i>Few left</span><span style="text-decoration:line-through">Fully booked</span></div></div>
       <div><p class="dr-label">${B.date?fmt(B.date):'Pick a date'} · ${B.act==='boat'&&tierOf()[2]>=4?'slot':'start time'}</p><div class="slots" id="startSlots">${slotsFor().map((s,i)=>{const o=B.date&&slotOpen(B.date,s,i);return `<button type="button" class="slot-btn" data-s="${s}" ${o?'':'disabled'} aria-pressed="${B.slot===s}">${s}${o?'':'<small>Booked</small>'}</button>`}).join('')}</div></div>
       <div class="demo-flag">Prototype: availability is simulated. Prices are the 2026 low-season list.</div>`;
-    $('#d-act').addEventListener('change',e=>{B.act=e.target.value;const p=pickItem(B.act,B.guests);B.item=p.id;B.tier=B.act==='boat'?2:0;B.addons={};render()});
+    $('#d-act').addEventListener('change',e=>{B.act=e.target.value;if((B.act==='jet'||B.act==='jetd')&&B.guests>6)B.guests=2;const p=pickItem(B.act,B.guests);B.item=p.id;B.tier=B.act==='boat'?2:0;B.addons={};render()});
     $('#d-g').addEventListener('change',e=>{B.guests=+e.target.value;if(B.act==='boat'&&itemOf().guests<B.guests){B.item=pickItem('boat',B.guests).id}render()});
     $('#calPrev').disabled=B.month<=new Date(today.getFullYear(),today.getMonth(),1);
     $('#calPrev').addEventListener('click',()=>{B.month=new Date(m.getFullYear(),m.getMonth()-1,1);render()});
@@ -2295,7 +2303,7 @@ function render(){
     $$('.day',body).forEach(b=>b.addEventListener('click',()=>{B.date=new Date(m.getFullYear(),m.getMonth(),+b.dataset.d,12);B.slot=null;render();$(`.day[data-d="${b.dataset.d}"]`)?.focus()}));
     $$('#startSlots .slot-btn',body).forEach(b=>b.addEventListener('click',()=>{B.slot=b.dataset.s;$$('#startSlots .slot-btn',body).forEach(x=>x.setAttribute('aria-pressed',x===b));updateFoot()}));
     $$('[data-t]',body).forEach(b=>b.addEventListener('click',()=>{B.tier=+b.dataset.t;if(B.act==='boat')B.slot=null;render();$(`[data-t="${b.dataset.t}"]`)?.focus()}));
-    $$('input[name="d-item"]',body).forEach(r=>r.addEventListener('change',()=>{B.item=r.value;render()}));
+    $$('input[name="d-item"]',body).forEach(r=>r.addEventListener('change',()=>{B.item=r.value;render();const f=$('#drBody .choice');if(f){const sc=$('#drBody');const top=f.parentElement.getBoundingClientRect().top-sc.getBoundingClientRect().top+sc.scrollTop-8;sc.scrollTo({top,behavior:reduce?'auto':'smooth'})}}));
     $('#d-fleet')?.addEventListener('click',closeBooking);$('#toYacht')?.addEventListener('click',()=>{B.act='yacht';B.item=pickItem('yacht',B.guests).id;B.tier=0;render()});
     $('#drNext').textContent='Continue';
   }
