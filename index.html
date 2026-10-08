@@ -1056,6 +1056,16 @@ body,.top,.boat,.bpanel,.drawer,.act-sheet{transition:background-color .35s ease
 }
 
 .gallery{grid-auto-flow:row dense}
+.nav-dd{position:relative;display:flex;align-items:center}
+.nav-dd>a{font-size:14.5px;font-weight:500;text-decoration:none;padding:12px 12px;border-radius:var(--r-pill);opacity:.92;color:inherit;position:relative;z-index:1}
+.nav-dd .dd{position:absolute;top:calc(100% + 6px);left:50%;min-width:230px;transform:translate(-50%,6px);background:var(--white);color:var(--navy);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-2);padding:8px;display:grid;gap:2px;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .3s var(--ease),visibility 0s .3s;z-index:80}
+.nav-dd .dd::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.nav-dd:hover .dd,.nav-dd:focus-within .dd,.nav-dd.open .dd{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .22s ease,transform .3s var(--ease),visibility 0s}
+.nav-dd .dd a{display:block;padding:10px 12px;border-radius:10px;font-size:14.5px;text-decoration:none;color:inherit;white-space:nowrap}
+.nav-dd .dd a:hover,.nav-dd .dd a:focus-visible{background:var(--lagoon-wash)}
+.sheet .msub{display:flex;flex-wrap:wrap;gap:6px 14px;margin:-2px 0 8px;padding-left:2px}
+.sheet .msub a{color:var(--on-navy-muted);text-decoration:none;font-size:15px;padding:6px 0}
+
 .pv-track figure>video{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px}
 /* ---- Smooth transitions everywhere ---- */
 :root{--ease:cubic-bezier(.22,1,.36,1)}
@@ -1185,7 +1195,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
       <a href="#boat-hire" data-i18n="nav_boat">Boat Hire</a>
       <a href="#charters" data-i18n="nav_yacht">Yacht Charters</a>
       <a href="#diving" data-i18n="nav_dive">Diving</a>
-      <a href="#watersports" data-i18n="nav_ws">Watersports</a>
+      <div class="nav-dd"><a href="#watersports" data-i18n="nav_ws" aria-haspopup="true" aria-expanded="false">Watersports</a><div class="dd" role="menu"><a role="menuitem" href="#jetski">Jet ski</a><a role="menuitem" href="#waterski">Waterski &amp; wakeboard</a><a role="menuitem" href="#tube">Banana &amp; tube rides</a><a role="menuitem" href="#parasailing">Parasailing</a><a role="menuitem" href="#seabob">Seabob</a><a role="menuitem" href="#paddleboards">Paddleboards &amp; pedalos</a></div></div>
       <a href="#rya" data-i18n="nav_rya">RYA Courses</a>
       <a href="#plan" data-i18n="nav_plan">Plan your day</a>
     </nav>
@@ -1210,6 +1220,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
   <a class="big" href="#charters">Yacht Charters</a>
   <a class="big" href="#diving">Diving</a>
   <a class="big" href="#watersports">Watersports</a>
+  <div class="msub"><a href="#jetski">Jet ski</a><a href="#waterski">Waterski &amp; wakeboard</a><a href="#tube">Banana &amp; tube rides</a><a href="#parasailing">Parasailing</a><a href="#seabob">Seabob</a><a href="#paddleboards">Paddleboards &amp; pedalos</a></div>
   <a class="big" href="#rya">RYA Courses</a>
   <a class="big" href="#plan">Plan your day</a>
   <a class="big" href="#visit">Contact &amp; directions</a>
@@ -1852,6 +1863,12 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
           </div>
         </section>
 
+        <section class="p-sec" aria-labelledby="h-yrev">
+          <h2 id="h-yrev">What our charter guests say</h2>
+          <p class="small" style="margin:-4px 0 16px">Latchi Charters is rated 5.0 out of 5 on <a class="link" style="display:inline;min-height:0" href="https://www.tripadvisor.com/Attraction_Review-g190384-d18954017-Reviews-Latchi_Charters-Paphos_Paphos_District.html" target="_blank" rel="noopener">Tripadvisor</a>.</p>
+          <div class="reviews rv5"><figure class="review"><div class="rv-top"><span class="rv-stars" aria-label="5 out of 5">★★★★★</span><span class="rv-what">Bavaria C42</span></div><blockquote>“Our captain was Dave who was very knowledgeable, friendly, professional and helpful.”</blockquote><figcaption><b>Elizabeth K</b><span>Tripadvisor · May 2024</span></figcaption></figure><figure class="review"><div class="rv-top"><span class="rv-stars" aria-label="5 out of 5">★★★★★</span><span class="rv-what">Jeanneau NC33</span></div><blockquote>“The boat was super clean and the sandwiches and fruit platter were delicious! Captain Paul is an asset to the business.”</blockquote><figcaption><b>Natalie G</b><span>Tripadvisor · Aug 2026</span></figcaption></figure><figure class="review"><div class="rv-top"><span class="rv-stars" aria-label="5 out of 5">★★★★★</span><span class="rv-what">Private trip</span></div><blockquote>“This friendly team helped us to arrange the 2 highlights of our trip.”</blockquote><figcaption><b>charlottes456, Old Stratford</b><span>Tripadvisor · Jul 2024</span></figcaption></figure><figure class="review"><div class="rv-top"><span class="rv-stars" aria-label="5 out of 5">★★★★★</span><span class="rv-what">Yacht charter</span></div><blockquote>“Excellent service, over and beyond the call of duty.”</blockquote><figcaption><b>Hanne L</b><span>Tripadvisor · Oct 2023</span></figcaption></figure><figure class="review"><div class="rv-top"><span class="rv-stars" aria-label="5 out of 5">★★★★★</span><span class="rv-what">Yacht charter</span></div><blockquote>“Relaxed and enjoyable trip with a pro captain.”</blockquote><figcaption><b>Vernes P</b><span>Tripadvisor · Aug 2023</span></figcaption></figure></div>
+        </section>
+
         <section class="p-sec faq" aria-labelledby="h-yfaq">
           <h2 id="h-yfaq">Charter questions</h2>
           <details><summary>Do we need any boating experience?</summary><p>None at all. This is your holiday, so lie back and relax. Your captain and crew do everything for you: they drive, find the best swimming spots, anchor, and serve the fruit and drinks. All you need to do is enjoy the day.</p></details>
@@ -2140,7 +2157,7 @@ const YACHTS=[
  {id:'azimut',name:'Azimut 68',nick:'Florentina',len:'21.7m',guests:22,cabins:4,eng:'2 × 1070hp',img:['lc-azimut-0', 'lc-azimut-2', 'lc-azimut-1', 'lc-azimut-3', 'lc-azimut-4'],blurb:'Italian elegance, a big flybridge and al fresco dining on the aft deck.',tiers:[['Full day',null]]}
 ];
 const YIG={sl800:['sl800-ig1','sl800-ig5','sl800-ig6','sl800-ig7'],cs10:['lc-cs10-3'],rodman:['rodman-ig1','rodman-ig2','rodman-ig3','rodman-ig4'],bavaria:['bavaria-ig2','bavaria-cockpit','bavaria-ig3','bavaria-ig4','bavaria-ig5'],searay:['searay-ig1','searay-ig3']};
-const YDROP={'img/y/lc-sl800-8.webp':1,'img/y/lc-rodman-9.webp':1,'img/y/lc-sl800-9.webp':1,'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
+const YDROP={'img/y/lc-searay-25.webp':1,'img/y/lc-sl800-8.webp':1,'img/y/lc-rodman-9.webp':1,'img/y/lc-sl800-9.webp':1,'img/y/lc-nc33-1.webp':1,'img/y/rodman-ig3.webp':1,'img/boats/ig-sl800-b.webp':1,'img/y/cs10-4.webp':1,'img/boats/cs10-5.webp':1,'img/y/bavaria-ig5.webp':1,'img/y/searay-ig3.webp':1,'img/y/lc-searay-8.webp':1,'img/y/lc-searay62-2.webp':1};
 YACHTS.forEach(y=>{if(YIG[y.id])y.img=YIG[y.id].concat(y.img);y.img=y.img.filter(n=>!YDROP['img/y/'+n+'.webp']);const sn=new Set();y.img=y.img.filter(n=>{const k=dkey('img/y/'+n+'.webp');if(sn.has(k))return false;sn.add(k);return true})});
 const YF={sl800:['bt','cabin','wc','shower','ac','sun','swim'],nc33:['bt','cabin','wc','ac','galley','sun','swim'],cs10:['bt','cabin','galley','bar','sun','swim'],rodman:['bt','fly','cabin','ensuite','ac','galley','shower','swim'],bavaria:['bt','sail','cabin','ensuite','galley','sun','swim'],searay:['bt','fly','cabin','ensuite','ac','galley','swim'],searay62:['bt','cabin','ensuite','ac','galley','sun','swim'],fairline:['bt','fly','cabin','ensuite','jacuzzi','sun'],azimut:['bt','fly','cabin','ensuite','galley','bar','bbq','sun','swim']};
 YACHTS.forEach(y=>{y.f=YF[y.id]||[]});
@@ -2226,7 +2243,7 @@ $('#bpanel').addEventListener('submit',e=>{e.preventDefault();openBooking({act:'
 /* ---- Router ---- */
 function route(){
   const h=location.hash.slice(1)||'home';
-  const DEEP={diving:'dive',rya:'rya',jetski:'jet',parasailing:'para',seabob:'seabob',sunset:'sunset'};
+  const DEEP={diving:'dive',rya:'rya',jetski:'jet',parasailing:'para',seabob:'seabob',sunset:'sunset',waterski:'ski',tube:'tube',paddleboards:'sup'};
   const INFO={story:1,sales:1,marine:1,jobs:1,blog:1};
   if(INFO[h]){$('#view-home').hidden=false;$('#view-boat').hidden=true;$('#view-charters').hidden=true;$('#top').classList.remove('always');closeMenu();history.replaceState(null,'','#home');setTimeout(()=>{window.openAct&&openAct(h,null)},60);onScroll();return}
   if(h==='watersports'){$('#view-home').hidden=false;$('#view-boat').hidden=true;$('#view-charters').hidden=true;$('#top').classList.remove('always');closeMenu();requestAnimationFrame(()=>$('#activities')?.scrollIntoView());onScroll();return}
@@ -2528,10 +2545,13 @@ $('#drNext').addEventListener('click',()=>{
 /* ---- Motion: nav indicator, tilt cards, reveal ---- */
 (()=>{const nav=$('.nav'),ind=$('.nav-ind');if(!nav||!ind)return;
  const moveTo=a=>{if(!a){nav.classList.remove('has-ind');return}const r=a.getBoundingClientRect(),n=nav.getBoundingClientRect();ind.style.left=(r.left-n.left)+'px';ind.style.width=r.width+'px';nav.classList.add('has-ind')};
- $$('.nav a').forEach(a=>{a.addEventListener('mouseenter',()=>moveTo(a));a.addEventListener('focus',()=>moveTo(a))});
+ $$('.nav>a,.nav-dd>a').forEach(a=>{a.addEventListener('mouseenter',()=>moveTo(a));a.addEventListener('focus',()=>moveTo(a))});
  nav.addEventListener('mouseleave',()=>moveTo($('.nav a[aria-current]')));
  addEventListener('hashchange',()=>setTimeout(()=>moveTo($('.nav a[aria-current]')),50));setTimeout(()=>moveTo($('.nav a[aria-current]')),100)})();
 $$('#sheet a.big').forEach((a,i)=>a.style.setProperty('--i',i));
+$$('.nav-dd').forEach(d=>{const a=d.querySelector(':scope>a');a.addEventListener('click',e=>{if(matchMedia('(hover: none)').matches&&!d.classList.contains('open')){e.preventDefault();d.classList.add('open');a.setAttribute('aria-expanded','true')}});d.querySelectorAll('.dd a').forEach(x=>x.addEventListener('click',()=>{d.classList.remove('open');a.setAttribute('aria-expanded','false');a.blur();x.blur()}));document.addEventListener('click',e=>{if(!d.contains(e.target)){d.classList.remove('open');a.setAttribute('aria-expanded','false')}});d.addEventListener('mouseenter',()=>a.setAttribute('aria-expanded','true'));d.addEventListener('mouseleave',()=>a.setAttribute('aria-expanded','false'))});
+$$('#sheet .msub a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
+
 const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
 if(fine&&!reduce){
  const glare=c=>{if(!c.querySelector(':scope>.glare')){const g=document.createElement('span');g.className='glare';c.appendChild(g)}};
