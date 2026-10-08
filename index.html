@@ -1728,7 +1728,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.8}
 
       <aside aria-label="Book a boat">
         <form class="bpanel" id="bpanel">
-          <p class="from"><b class="tnum" id="bpFrom">from €80</b> <span id="bpBoatName">per hour, 13 boats to choose from</span></p>
+          <p class="from"><b class="tnum" id="bpFrom">from €80</b> <span id="bpBoatName">per hour, 13 boat categories to choose from</span></p>
           <div class="fgrid">
             <div class="fld"><label for="bp-date">Date</label><input type="date" id="bp-date"></div>
             <div class="fld"><label for="bp-g">Guests</label><select id="bp-g"></select></div>
@@ -2187,7 +2187,7 @@ const bpBoat=$('#bp-boat'),bpG=$('#bp-g'),bpDur=$('#bp-dur');
 bpBoat.innerHTML='<option value="" selected>Choose a boat</option>'+FLEET.map(b=>`<option value="${b.id}">${b.name} · up to ${b.guests}</option>`).join('');
 bpG.innerHTML=Array.from({length:10},(_,i)=>`<option${i===3?' selected':''}>${i+1}</option>`).join('');
 function syncPanel(){const b=FLEET.find(x=>x.id===bpBoat.value);const di=+bpDur.value||0;
-  if(!b){const lo=Math.min(...FLEET.map(x=>x.p[0]));bpDur.innerHTML=DUR.map((d,i)=>`<option value="${i}"${i===di?' selected':''}>${d[0]}</option>`).join('');$('#bpFrom').textContent='from €'+lo;$('#bpBoatName').textContent='per hour, 13 boats to choose from';$('#bpExcess').textContent='€350 or €850 held on card';$('#abPrice b').textContent='€'+lo;return}bpDur.innerHTML=b.tiers.map((t,i)=>`<option value="${i}"${i===di?' selected':''}>${t[0]} · €${t[1]}</option>`).join('');
+  if(!b){const lo=Math.min(...FLEET.map(x=>x.p[0]));bpDur.innerHTML=DUR.map((d,i)=>`<option value="${i}"${i===di?' selected':''}>${d[0]}</option>`).join('');$('#bpFrom').textContent='from €'+lo;$('#bpBoatName').textContent='per hour, 13 boat categories to choose from';$('#bpExcess').textContent='€350 or €850 held on card';$('#abPrice b').textContent='€'+lo;return}bpDur.innerHTML=b.tiers.map((t,i)=>`<option value="${i}"${i===di?' selected':''}>${t[0]} · €${t[1]}</option>`).join('');
   $('#bpFrom').textContent='€'+b.p[di];$('#bpBoatName').textContent=b.name+', '+DUR[di][0].toLowerCase();$('#bpExcess').textContent='€'+b.excess+' held on card';$('#abPrice b').textContent='€'+b.from}
 bpBoat.addEventListener('change',syncPanel);bpDur.addEventListener('change',syncPanel);
 bpG.addEventListener('change',()=>{const g=+bpG.value;const b=FLEET.find(x=>x.id===bpBoat.value);if(b&&g>b.guests){const fit=FLEET.find(x=>x.guests>=g);bpBoat.value=fit.id;toast(`${b.name} takes ${b.guests}. Switched to ${fit.name}.`)}syncPanel()});
