@@ -1,6 +1,71 @@
 {
-  "cleanUrls": true,
-  "headers": [
-    { "source": "/(img|video)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
-  ]
+ "cleanUrls": true,
+ "trailingSlash": false,
+ "redirects": [
+  {
+   "source": "/boat-sales/marine-services",
+   "destination": "/marine-services",
+   "permanent": true
+  },
+  {
+   "source": "/latest-news",
+   "destination": "/",
+   "permanent": false
+  },
+  {
+   "source": "/yacht-charters-cyprus",
+   "destination": "/yacht-charters",
+   "permanent": true
+  },
+  {
+   "source": "/40years",
+   "destination": "/our-story",
+   "permanent": true
+  }
+ ],
+ "headers": [
+  {
+   "source": "/(img|video|fonts)/(.*)",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "public, max-age=31536000, immutable"
+    }
+   ]
+  },
+  {
+   "source": "/(.*)\\.(png|ico|jpg|webmanifest)",
+   "headers": [
+    {
+     "key": "Cache-Control",
+     "value": "public, max-age=604800"
+    }
+   ]
+  },
+  {
+   "source": "/(.*)",
+   "headers": [
+    {
+     "key": "X-Content-Type-Options",
+     "value": "nosniff"
+    },
+    {
+     "key": "Referrer-Policy",
+     "value": "strict-origin-when-cross-origin"
+    },
+    {
+     "key": "Permissions-Policy",
+     "value": "camera=(), microphone=(), geolocation=()"
+    },
+    {
+     "key": "Strict-Transport-Security",
+     "value": "max-age=63072000; includeSubDomains; preload"
+    },
+    {
+     "key": "X-Frame-Options",
+     "value": "SAMEORIGIN"
+    }
+   ]
+  }
+ ]
 }
